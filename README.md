@@ -12,6 +12,7 @@ This is the application used to display the data collected from the NodeJS serve
 * User can go to into details by touching the annotation []
 * In the details view, user can view all the data (CO2,O3, dust, sound...). At each data, using status bar for better visualization []
 * There is a dashboard. That compares historical data using graph or maps according to daily, weekly, monthly. (thinking about it) []
+* If user is nearby the location that is having bad weather. Give Suggestion through notification and so on. []
 
 ### Hours spent up to the last commit:
 1.5 hours
