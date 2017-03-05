@@ -9,47 +9,64 @@
 import Foundation
 import Alamofire
 
-let baseURL = URL(string: "http://10.247.216.231:3000/")
-let loginURL = URL(string: "http://10.247.216.231:3000/auth")
-let userDefaults = UserDefaults.standard
+let baseURL = URL(string: "https://evn-monitor.herokuapp.com")
+let loginURL = URL(string: "\(baseURL!)/auth")
+let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
 
+public enum HTTPMethod: String {
+    case options = "OPTIONS"
+    case get     = "GET"
+    case head    = "HEAD"
+    case post    = "POST"
+    case put     = "PUT"
+    case patch   = "PATCH"
+    case delete  = "DELETE"
+    case trace   = "TRACE"
+    case connect = "CONNECT"
+}
 
 class Client {
     static var currentUser : User?
+    static let userDefaults = UserDefaults.standard
     
     //Login
-    static func login(params : [String : AnyObject], completion : @escaping ()->()) {
+    static func login(params : [String : AnyObject], completion : @escaping (Bool)->()) {
         Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).validate().responseJSON { (response) in
-            
             if let status = response.response?.statusCode {
                 switch status {
-                    case 200:
-                        print("Login Successfully")
-                    default:
-                        print("error with response status : ", status)
+                case 200:
+                    print("Login Successfully")
+                    if let result = response.result.value {
+                        let JSON = result as! [String : AnyObject]
+                        Client.currentUser = User(dictionary: JSON)
+                        userDefaults.set(JSON, forKey: "CurrentUser")
+                        print(JSON)
+                    }
+                    completion(true)
+                default:
+                    print("error with response status : ", status)
+                    completion(false)
                 }
             }
-            
-            if let result = response.result.value {
-                let JSON = result as! [String : AnyObject]
-                Client.currentUser = User(dictionary: JSON)
-                userDefaults.set(Client.currentUser?.token, forKey: "token")
-                print(JSON)
-            }
-            completion()
         }
     }
     
-    
     //Logout
     static func logout() {
-        
+        Client.userDefaults.removeObject(forKey: "CurrentUser")
+        print("Logout successfully")
     }
-    
     
     //Load dashboard
-    static func loadDashBoard() {
-        
+    static func loadDashBoard(completion: @escaping (_ dataDictArray : [[String:AnyObject]]) -> ()) {
+                let header : HTTPHeaders = [
+                    "Authorization" : "Bearer \(Client.currentUser!.token!)"
+                ]
+                Alamofire.request(fetchDataURL!, method: .get, headers: header).responseJSON { (response) in
+                    if let result = response.result.value {
+                        let JSON = result as! [[String : AnyObject]]
+                        completion(JSON)
+                    }
+                }
     }
-    
 }

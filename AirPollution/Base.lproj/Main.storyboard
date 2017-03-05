@@ -105,7 +105,7 @@
         <!--Dash Board Controller-->
         <scene sceneID="xDZ-cQ-cQT">
             <objects>
-                <viewController id="Gb6-cH-y5P" customClass="DashBoardController" customModule="AirPollution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashBoardController" id="Gb6-cH-y5P" customClass="DashBoardController" customModule="AirPollution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hgg-uU-BIX"/>
                         <viewControllerLayoutGuide type="bottom" id="ZKQ-bD-Glt"/>
@@ -122,9 +122,44 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OMm-tf-Mh4" id="M9y-gY-0Q9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="118.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi0-EP-RYv">
+                                                    <rect key="frame" x="8" y="8" width="14" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzc-kC-yfW">
+                                                    <rect key="frame" x="325" y="8" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="collector" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-dV-VCc">
+                                                    <rect key="frame" x="8" y="49" width="67" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bzc-kC-yfW" firstAttribute="leading" secondItem="Pi0-EP-RYv" secondAttribute="trailing" constant="303" id="6uU-eO-7Z9"/>
+                                                <constraint firstItem="CtL-dV-VCc" firstAttribute="top" secondItem="Pi0-EP-RYv" secondAttribute="bottom" constant="20" id="9aB-BO-XsG"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Pi0-EP-RYv" secondAttribute="bottom" constant="81.5" id="BVF-EF-THp"/>
+                                                <constraint firstAttribute="topMargin" secondItem="bzc-kC-yfW" secondAttribute="top" id="Bfk-ZN-vH5"/>
+                                                <constraint firstItem="CtL-dV-VCc" firstAttribute="leading" secondItem="Pi0-EP-RYv" secondAttribute="leading" id="WCV-51-b0F"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="Pi0-EP-RYv" secondAttribute="leading" id="dIF-KC-gHR"/>
+                                                <constraint firstAttribute="topMargin" secondItem="Pi0-EP-RYv" secondAttribute="top" id="jL0-B5-D78"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bzc-kC-yfW" secondAttribute="trailing" constant="8" id="vTQ-gx-0Q0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectorLabel" destination="CtL-dV-VCc" id="XCh-Pd-jzH"/>
+                                            <outlet property="idLabel" destination="Pi0-EP-RYv" id="yMP-nB-XpI"/>
+                                            <outlet property="timeLabel" destination="bzc-kC-yfW" id="CfY-WL-Kc3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -138,6 +173,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nfc-uY-PF7"/>
+                    <connections>
+                        <outlet property="tableView" destination="yyv-rP-oxh" id="vWq-CR-tQh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UcR-E2-Hc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

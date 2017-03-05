@@ -10,17 +10,7 @@ import UIKit
 import Alamofire
 
 class LoginController: UIViewController {
-    public enum HTTPMethod: String {
-        case options = "OPTIONS"
-        case get     = "GET"
-        case head    = "HEAD"
-        case post    = "POST"
-        case put     = "PUT"
-        case patch   = "PATCH"
-        case delete  = "DELETE"
-        case trace   = "TRACE"
-        case connect = "CONNECT"
-    }
+    
     
     @IBOutlet weak var usernameTextField: UITextField!
     
@@ -31,6 +21,15 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
+            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+
+            self.performSegue(withIdentifier: "LoginSuccessfully", sender: self)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,8 +40,10 @@ class LoginController: UIViewController {
 
     @IBAction func onLogin(_ sender: UIButton) {
         let params : [String : String] = ["username" : usernameTextField.text! , "password" : passwordTextField.text!]
-        Client.login(params: params as [String : AnyObject]) { () in
-            self.performSegue(withIdentifier: "LoginSuccessfully", sender: nil)
+        Client.login(params: params as [String : AnyObject]) { (isFinished) in
+            if (isFinished) {
+                self.performSegue(withIdentifier: "LoginSuccessfully", sender: nil)
+            }
         }
     }
     
