@@ -21,15 +21,15 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
-            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-
-            self.performSegue(withIdentifier: "LoginSuccessfully", sender: self)
-        }
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
+    override func viewDidAppear(_ animated: Bool) {
+        if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
+            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+            
+            self.performSegue(withIdentifier: "LoginSuccessfully", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +56,23 @@ class LoginController: UIViewController {
      }
 
     @IBAction func onRegister(_ sender: UIButton) {
-        
+        let params : [String : String] = ["username" : usernameTextField.text! , "password" : passwordTextField.text!]
+        Client.register(params: params as [String : AnyObject]) { (isFinished) in
+            let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(okAction)
+            if (isFinished) {
+                alertController.title = "You have registered successfully"
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else {
+                alertController.title = "An unknown error occurs or username has been taken:("
+                self.present(alertController, animated: true, completion: nil)
+
+            }
+        }
     }
 }
 

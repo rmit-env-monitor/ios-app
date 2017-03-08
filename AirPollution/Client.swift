@@ -12,6 +12,7 @@ import Alamofire
 let baseURL = URL(string: "https://evn-monitor.herokuapp.com")
 let loginURL = URL(string: "\(baseURL!)/auth")
 let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
+let registerURL = URL(string: "\(baseURL!)/users")
 
 public enum HTTPMethod: String {
     case options = "OPTIONS"
@@ -40,7 +41,7 @@ class Client {
                         let JSON = result as! [String : AnyObject]
                         Client.currentUser = User(dictionary: JSON)
                         userDefaults.set(JSON, forKey: "CurrentUser")
-                        print(JSON)
+//                        print(JSON)
                     }
                     completion(true)
                 default:
@@ -59,14 +60,48 @@ class Client {
     
     //Load dashboard
     static func loadDashBoard(completion: @escaping (_ dataDictArray : [[String:AnyObject]]) -> ()) {
-                let header : HTTPHeaders = [
-                    "Authorization" : "Bearer \(Client.currentUser!.token!)"
-                ]
-                Alamofire.request(fetchDataURL!, method: .get, headers: header).responseJSON { (response) in
-                    if let result = response.result.value {
-                        let JSON = result as! [[String : AnyObject]]
-                        completion(JSON)
-                    }
-                }
+        let header : HTTPHeaders = [
+            "Authorization" : "Bearer \(Client.currentUser!.token!)"
+        ]
+        Alamofire.request(fetchDataURL!, method: .get, headers: header).responseJSON { (response) in
+            if let result = response.result.value {
+                let JSON = result as! [[String : AnyObject]]
+                completion(JSON)
+            }
+        }
     }
+    
+    //Register
+    static func register(params : [String : AnyObject], completion : @escaping (Bool) -> ()) {
+        Alamofire.request(registerURL!, method: .post, parameters: params).validate().responseJSON { (response) in
+            if let status = response.response?.statusCode {
+                switch status {
+                case 200:
+                    print("Register Successfully")
+                    if let result = response.result.value {
+                        let JSON = result as! [String : AnyObject]
+                        if JSON.count == 1 {
+                            completion(false)
+                        }
+                        else {
+                            completion(true)
+                        }
+                    }
+                default:
+                    print("error with response status : ", status)
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

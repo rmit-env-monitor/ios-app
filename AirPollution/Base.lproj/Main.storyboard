@@ -122,7 +122,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OMm-tf-Mh4" id="M9y-gY-0Q9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="118.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi0-EP-RYv">
@@ -145,7 +145,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bzc-kC-yfW" firstAttribute="leading" secondItem="Pi0-EP-RYv" secondAttribute="trailing" constant="303" id="6uU-eO-7Z9"/>
+                                                <constraint firstItem="bzc-kC-yfW" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Pi0-EP-RYv" secondAttribute="trailing" constant="303" id="6uU-eO-7Z9"/>
                                                 <constraint firstItem="CtL-dV-VCc" firstAttribute="top" secondItem="Pi0-EP-RYv" secondAttribute="bottom" constant="20" id="9aB-BO-XsG"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Pi0-EP-RYv" secondAttribute="bottom" constant="81.5" id="BVF-EF-THp"/>
                                                 <constraint firstAttribute="topMargin" secondItem="bzc-kC-yfW" secondAttribute="top" id="Bfk-ZN-vH5"/>
@@ -159,6 +159,7 @@
                                             <outlet property="collectorLabel" destination="CtL-dV-VCc" id="XCh-Pd-jzH"/>
                                             <outlet property="idLabel" destination="Pi0-EP-RYv" id="yMP-nB-XpI"/>
                                             <outlet property="timeLabel" destination="bzc-kC-yfW" id="CfY-WL-Kc3"/>
+                                            <segue destination="tNQ-Pb-4pP" kind="show" identifier="CheckStats" id="3ck-fW-wg5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -180,6 +181,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UcR-E2-Hc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1928.8" y="123.68815592203899"/>
+        </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="Cil-t5-fuv">
+            <objects>
+                <viewController id="tNQ-Pb-4pP" customClass="StatsViewController" customModule="AirPollution" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ngh-bT-jMK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rxm-Hk-taK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zg8-aI-0Um">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9P-9J-PJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2686" y="124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zko-nO-LFs">
