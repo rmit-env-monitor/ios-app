@@ -15,7 +15,7 @@ This is the application used to display the data collected from the NodeJS serve
 * If user is nearby the location that is having bad weather. Give Suggestion through notification and so on. []
 
 ### Hours spent up to the last commit:
-1.5 hours
+3 hours
 
 ### Library Used:
 * [Alamofire](https://github.com/Alamofire/Alamofire)
