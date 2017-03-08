@@ -12,7 +12,7 @@ class Stats: NSObject {
     var o3 : Int?
     var latitude : Int?
     var no : Int?
-    var longtitude : Int?
+    var longitude : Int?
     var pm : Int?   //dust
     var so2: Int?
     var sound : Int?
@@ -22,7 +22,7 @@ class Stats: NSObject {
         self.o3 = dictionary["o3"] as? Int
         self.latitude = dictionary["latitude"] as? Int
         self.no = dictionary["no"] as? Int
-        self.longtitude = dictionary["longtitude"] as? Int
+        self.longitude = dictionary["longtitude"] as? Int
         self.pm = dictionary["pm"] as? Int
         self.so2 = dictionary["so2"] as? Int
         self.sound = dictionary["sound"] as? Int
