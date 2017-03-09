@@ -63,8 +63,8 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dashboardCell") as! DashboardCell
-        cell.idLabel.text = "\(indexPath.row + 1)"
-        cell.collectorLabel.text = "Collector: " + Client.currentUser!.name
+        cell.idLabel.text = "Data No.\(indexPath.row + 1)"
+        cell.collectorLabel.text = "Collector: " + "Duy"
         stats = dictionary[indexPath.row]
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss a"

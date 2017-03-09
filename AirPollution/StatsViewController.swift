@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import PopupDialog
+
 class StatsViewController: UIViewController {
     var stats = Stats(dictionary: [String : AnyObject]())
     
@@ -25,7 +27,7 @@ class StatsViewController: UIViewController {
        // let latitude = CLLocationDegrees(stats.latitude!)
         //let longitude = CLLocationDegrees(stats.longitude!)
         mapView.delegate = self
-        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+        let initialLocation = CLLocation(latitude: 10.729440, longitude: 106.695952)
         centerMapOnLocation(location: initialLocation)
         let annotation = MKPointAnnotation()
         annotation.coordinate = initialLocation.coordinate
@@ -73,6 +75,18 @@ extension StatsViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Click Accessory")
+        
+        let title = "Statistics at this location"
+        let message = "Some Message"
+        
+        let popUp = PopupDialog(title: title, message: message)
+        
+        let buttonOne = CancelButton(title: "Cancel") { 
+            print("You canceled the car dialog.")
+        }
+        
+        popUp.addButton(buttonOne)
+        self.present(popUp, animated: true, completion: nil)
         //TO DO: Pop up a view and show the stats
     }
 }
