@@ -1,15 +1,21 @@
 PODS:
   - Alamofire (4.4.0)
+  - ESTabBarController-swift (2.2)
+  - FoldingCell (2.0.3)
   - PopupDialog (0.5.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - ESTabBarController-swift
+  - FoldingCell (~> 2.0.3)
   - PopupDialog (~> 0.5)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  ESTabBarController-swift: c9abf50cbde98ad10732867ec9fbb5169661d844
+  FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
   PopupDialog: 533dd564f8781633375505b9fbd406f8f146ccc9
 
-PODFILE CHECKSUM: a71b0e8bf33819c760f6caf57d5a31adc6590016
+PODFILE CHECKSUM: 56a267053786693be5fd710e1d327a04a244bbf0
 
 COCOAPODS: 1.2.0

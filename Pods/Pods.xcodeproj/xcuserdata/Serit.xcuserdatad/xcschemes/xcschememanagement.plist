@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ESTabBarController-swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FoldingCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-AirPollution.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0BDF102CD0F968F6D88431C03A4A0529</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E707FF8CB3D090CCB960ECC250DC20F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C139600BA402FF71F1640131624965E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7EF1F3FF49D846BD6C2DC9E0AD609BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC94AD2220DE1429C142C65877D58EAE</key>
+		<key>B626E472969D6F87698AF0041EAAFC38</key>
 		<dict>
 			<key>primary</key>
 			<true/>

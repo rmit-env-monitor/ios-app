@@ -6,6 +6,8 @@ target 'AirPollution' do
   use_frameworks!
 	pod 'Alamofire', '~> 4.4'
 	pod 'PopupDialog', '~> 0.5'
+	pod 'FoldingCell’, '~> 2.0.3'
+	pod "ESTabBarController-swift"
   # Pods for AirPollution
 
 end
