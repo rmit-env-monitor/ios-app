@@ -68,6 +68,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         stats = dictionary[indexPath.row]
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss a"
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0700")
         if let seconds = dictionary[indexPath.row]["utcDateTime"]?.doubleValue {
             let date = NSDate(timeIntervalSince1970: seconds)
             cell.timeLabel.text = formatter.string(from: date as Date)

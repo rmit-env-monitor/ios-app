@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */; };
+		E3283F191E71C200004BBDCC /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3283F171E71C200004BBDCC /* PopUpVC.swift */; };
+		E3283F1A1E71C200004BBDCC /* PopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3283F181E71C200004BBDCC /* PopUpVC.xib */; };
+		E3283F1D1E72FA0A004BBDCC /* PopUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3283F1B1E72FA0A004BBDCC /* PopUpCell.swift */; };
+		E3283F1E1E72FA0A004BBDCC /* PopUpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3283F1C1E72FA0A004BBDCC /* PopUpCell.xib */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
 		E33F902E1E6ABB7300672B8E /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F902D1E6ABB7300672B8E /* DashBoardController.swift */; };
@@ -25,6 +29,10 @@
 		405CABA7326C80157FB0F5F0 /* Pods-AirPollution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.release.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.release.xcconfig"; sourceTree = "<group>"; };
 		4F5957569AE094C21052762A /* Pods-AirPollution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.debug.xcconfig"; sourceTree = "<group>"; };
 		573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirPollution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3283F171E71C200004BBDCC /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		E3283F181E71C200004BBDCC /* PopUpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpVC.xib; sourceTree = "<group>"; };
+		E3283F1B1E72FA0A004BBDCC /* PopUpCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpCell.swift; sourceTree = "<group>"; };
+		E3283F1C1E72FA0A004BBDCC /* PopUpCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpCell.xib; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E33F902D1E6ABB7300672B8E /* DashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
@@ -81,6 +89,7 @@
 		E33F90231E6A85A700672B8E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E3283F171E71C200004BBDCC /* PopUpVC.swift */,
 				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
 				E33F902D1E6ABB7300672B8E /* DashBoardController.swift */,
 				E34C45931E70119F0002BDE9 /* StatsViewController.swift */,
@@ -92,6 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				E33F902F1E6ABEAF00672B8E /* DashboardCell.swift */,
+				E3283F1B1E72FA0A004BBDCC /* PopUpCell.swift */,
+				E3283F1C1E72FA0A004BBDCC /* PopUpCell.xib */,
+				E3283F181E71C200004BBDCC /* PopUpVC.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -202,7 +214,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */,
+				E3283F1A1E71C200004BBDCC /* PopUpVC.xib in Resources */,
 				E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */,
+				E3283F1E1E72FA0A004BBDCC /* PopUpCell.xib in Resources */,
 				E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3283F191E71C200004BBDCC /* PopUpVC.swift in Sources */,
 				E33F90301E6ABEAF00672B8E /* DashboardCell.swift in Sources */,
 				E33F902E1E6ABB7300672B8E /* DashBoardController.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
@@ -269,6 +284,7 @@
 				E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
+				E3283F1D1E72FA0A004BBDCC /* PopUpCell.swift in Sources */,
 				E33F90271E6A88FD00672B8E /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

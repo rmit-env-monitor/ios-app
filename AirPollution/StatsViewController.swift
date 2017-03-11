@@ -75,18 +75,17 @@ extension StatsViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Click Accessory")
+        let popUpVC = PopUpVC(nibName: "PopUpVC", bundle: nil)
         
-        let title = "Statistics at this location"
-        let message = "Some Message"
+        popUpVC.dictionary = self.stats
+        let popUp = PopupDialog(viewController: popUpVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true, completion: nil)
         
-        let popUp = PopupDialog(title: title, message: message)
-        
-        let buttonOne = CancelButton(title: "Cancel") { 
-            print("You canceled the car dialog.")
+        let buttonOne = CancelButton(title: "Cancel") {
+            print("Tap cancel")
         }
         
         popUp.addButton(buttonOne)
-        self.present(popUp, animated: true, completion: nil)
+        present(popUp, animated: true, completion: nil)
         //TO DO: Pop up a view and show the stats
     }
 }

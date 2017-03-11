@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopUpCell" id="gTV-IL-0wX" customClass="PopUpCell" customModule="AirPollution" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="187"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="240" height="187"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCF-ym-WfR">
+                        <rect key="frame" x="18" y="83" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ngE-DZ-A5b"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="vTX-Nk-JyI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkY-r8-z7r">
+                        <rect key="frame" x="16" y="112" width="103" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="djy-Hr-i2a"/>
+                            <constraint firstAttribute="width" constant="103" id="y93-X6-RDp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kkY-r8-z7r" secondAttribute="trailing" constant="121" id="F2y-Il-twg"/>
+                <constraint firstItem="uCF-ym-WfR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="LX0-Wa-P9p"/>
+                <constraint firstItem="uCF-ym-WfR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="Pg5-B6-DeC"/>
+                <constraint firstItem="kkY-r8-z7r" firstAttribute="leading" secondItem="uCF-ym-WfR" secondAttribute="leading" constant="-2" id="fAl-VX-PV0"/>
+                <constraint firstItem="kkY-r8-z7r" firstAttribute="top" secondItem="uCF-ym-WfR" secondAttribute="bottom" constant="8" id="tiE-LL-VFF"/>
+            </constraints>
+            <size key="customSize" width="240" height="187"/>
+            <connections>
+                <outlet property="statsTypeLabel" destination="uCF-ym-WfR" id="IVL-6H-Tuu"/>
+                <outlet property="statusButton" destination="kkY-r8-z7r" id="UWF-N4-Fxd"/>
+            </connections>
+            <point key="canvasLocation" x="27" y="169.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
