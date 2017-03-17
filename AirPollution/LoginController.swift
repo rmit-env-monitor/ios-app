@@ -28,7 +28,6 @@ class LoginController: UIViewController {
         if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
             Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
             self.present(getToTabBarController(), animated: true, completion: nil)
-            //self.performSegue(withIdentifier: "LoginSuccessfully", sender: nil)
         }
     }
 
@@ -42,7 +41,6 @@ class LoginController: UIViewController {
         let params : [String : String] = ["username" : usernameTextField.text! , "password" : passwordTextField.text!]
         Client.login(params: params as [String : AnyObject]) { (isFinished) in
             if (isFinished) {
-                //self.performSegue(withIdentifier: "LoginSuccessfully", sender: nil)
                 self.present(self.getToTabBarController(), animated: true, completion: nil)
             }
         }
@@ -68,13 +66,7 @@ class LoginController: UIViewController {
         return tabBarController
     }
     
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSuccessfully" {
-            print("Move to DashBoardView")
-        }
-     }
+
 
     @IBAction func onRegister(_ sender: UIButton) {
         let params : [String : String] = ["username" : usernameTextField.text! , "password" : passwordTextField.text!]

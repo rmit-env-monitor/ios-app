@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import FoldingCell
 class DashBoardController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -53,17 +53,28 @@ class DashBoardController: UIViewController {
         //pass data next
     }
     
+    //Folding Cell Section
+    fileprivate struct C {
+        struct CellHeight {
+            static let close: CGFloat = 108 // equal or greater foregroundView height
+            static let open: CGFloat = 275 // equal or greater containerView height
+        }
+    }
+    
+    var itemHeights = (0..<3).map { _ in C.CellHeight.close }
+
+    
 }
 extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Number of data set \(dictionary.count)")
-        return dictionary.count
+        //print("Number of data set \(dictionary.count)")
+        return itemHeights.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dashboardCell") as! DashboardCell
-        cell.idLabel.text = "Data No.\(indexPath.row + 1)"
+        /*cell.idLabel.text = "Data No.\(indexPath.row + 1)"
         cell.collectorLabel.text = "Collector: " + "Duy"
         stats = dictionary[indexPath.row]
         let formatter = DateFormatter()
@@ -75,15 +86,56 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         }
         else {
             cell.timeLabel.text = "***"
-        }
+        }*/
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Just kicking a row")
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        //Folding Cell Section
+        guard case let cell as FoldingCell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        
+        var duration = 0
+        if itemHeights[indexPath.row] == C.CellHeight.close {
+            itemHeights[indexPath.row] = C.CellHeight.open
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = Int(0.5)
+        }
+        else {
+            itemHeights[indexPath.row] = C.CellHeight.close
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = Int(1.1)
+        }
+        
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveEaseOut, animations: { 
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
     }
     
-
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if case let cell as FoldingCell = cell {
+            if itemHeights[indexPath.row] == C.CellHeight.close {
+                cell.selectedAnimation(false, animated: false, completion: nil)
+            }
+            else {
+                cell.selectedAnimation(true, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return itemHeights[indexPath.row]
+    }
     
 }
