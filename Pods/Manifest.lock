@@ -3,19 +3,22 @@ PODS:
   - ESTabBarController-swift (2.2)
   - FoldingCell (2.0.3)
   - PopupDialog (0.5.3)
+  - TextFieldEffects (1.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - ESTabBarController-swift
   - FoldingCell (~> 2.0.3)
   - PopupDialog (~> 0.5)
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   ESTabBarController-swift: c9abf50cbde98ad10732867ec9fbb5169661d844
   FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
   PopupDialog: 533dd564f8781633375505b9fbd406f8f146ccc9
+  TextFieldEffects: faa47d428ee8eafb781a8413ac4345420d2328c4
 
-PODFILE CHECKSUM: 56a267053786693be5fd710e1d327a04a244bbf0
+PODFILE CHECKSUM: 25108ba3a4a87451269ca7e16852da88e53dd26b
 
 COCOAPODS: 1.2.0

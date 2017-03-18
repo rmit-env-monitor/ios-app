@@ -20,6 +20,10 @@ class DashboardCell: FoldingCell {
  
     @IBOutlet weak var bbContainerView: UIView!
     
+    @IBOutlet weak var districtLabel: UILabel!
+    
+    
+    
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
         // durations count equal it itemCount

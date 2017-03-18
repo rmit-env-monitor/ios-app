@@ -8,6 +8,7 @@ target 'AirPollution' do
 	pod 'PopupDialog', '~> 0.5'
 	pod 'FoldingCell’, '~> 2.0.3'
 	pod "ESTabBarController-swift"
+	pod "TextFieldEffects"
   # Pods for AirPollution
 
 end

@@ -61,7 +61,7 @@ class DashBoardController: UIViewController {
         }
     }
     
-    var itemHeights = (0..<3).map { _ in C.CellHeight.close }
+    var itemHeights = (0..<12).map { _ in C.CellHeight.close }
 
     
 }
@@ -88,6 +88,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
             cell.timeLabel.text = "***"
         }*/
         
+        cell.districtLabel.text = "District \(indexPath.row + 1)"
         
         return cell
     }

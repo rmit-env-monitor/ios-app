@@ -88,4 +88,6 @@ extension StatsViewController : MKMapViewDelegate {
         present(popUp, animated: true, completion: nil)
         //TO DO: Pop up a view and show the stats
     }
+    
+    
 }
