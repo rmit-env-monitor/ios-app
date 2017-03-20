@@ -11,6 +11,17 @@ import Alamofire
 import ESTabBarController_swift
 import OpenSansSwift
 import TextFieldEffects
+class customTextField : YoshikoTextField {
+    override func becomeFirstResponder() -> Bool {
+        if (!self.canBecomeFirstResponder) {
+            return false
+        }
+        UIView.animate(withDuration: 0.5) {
+            super.becomeFirstResponder()
+        }
+        return true
+    }
+}
 class LoginController: UIViewController {
     
     /*lazy var appNameLabel : UILabel = {
@@ -27,8 +38,9 @@ class LoginController: UIViewController {
      return lb
      }()*/
     
-    lazy var nameTextField : YoshikoTextField = {
-        let tf = YoshikoTextField()
+    
+    lazy var nameTextField : customTextField = {
+        let tf = customTextField()
         tf.font = UIFont.openSansLightFontOfSize(20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
@@ -42,8 +54,8 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    lazy var pwTextField : YoshikoTextField = {
-        let tf = YoshikoTextField()
+    lazy var pwTextField : customTextField = {
+        let tf = customTextField()
         tf.font = UIFont.openSansLightFontOfSize(20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
@@ -115,9 +127,10 @@ class LoginController: UIViewController {
     }
     
     func setupUI() {
+        
         //hint: add observer when keyboard appears to handle UI resizing
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardDidShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardDidHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //hint: add tap recognizer to dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -190,10 +203,11 @@ class LoginController: UIViewController {
         }
     }
     
-    func keyboardDidShow(notification : NSNotification) {
+    func keyboardWillShow(notification : NSNotification) {
         print("Keyboard did show")
         let keyBoardHeight = getInfoOfKeyBoard(notification: notification)["height"] as? CGFloat
-        let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
+        let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as! Float
+
         let resizingDistance = -(keyBoardHeight!) - 10
         self.nameTextFieldTopAnchor?.isActive = false
         self.nameTextFieldTopAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 340 + resizingDistance)
@@ -207,18 +221,14 @@ class LoginController: UIViewController {
         self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: resizingDistance + 10)
         self.bgImageViewTopAnchor?.isActive = true
         
-        UIView.animate(withDuration: TimeInterval(keyBoardDuration!)) {
+        UIView.animate(withDuration: TimeInterval(keyBoardDuration)) {
             self.view.layoutIfNeeded()
         }
-        
-        
     }
     
-    func keyboardDidHide(notification : NSNotification) {
+    func keyboardWillHide(notification : NSNotification) {
         print("Keyboard did Hide")
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
-        
-        
         self.nameTextFieldTopAnchor?.isActive = false
         self.nameTextFieldTopAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 350)
         self.nameTextFieldTopAnchor?.isActive = true
