@@ -39,9 +39,10 @@ class Client {
                     print("Login Successfully")
                     if let result = response.result.value {
                         let JSON = result as! [String : AnyObject]
+                        print(JSON)
+                        
                         Client.currentUser = User(dictionary: JSON)
                         userDefaults.set(JSON, forKey: "CurrentUser")
-//                        print(JSON)
                     }
                     completion(true)
                 default:
