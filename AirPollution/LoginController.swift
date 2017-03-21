@@ -16,7 +16,7 @@ class customTextField : YoshikoTextField {
         if (!self.canBecomeFirstResponder) {
             return false
         }
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.2) {
             super.becomeFirstResponder()
         }
         return true
@@ -37,7 +37,6 @@ class LoginController: UIViewController {
      NSStrokeWidthAttributeName: -1])
      return lb
      }()*/
-    
     
     lazy var nameTextField : customTextField = {
         let tf = customTextField()
@@ -77,8 +76,22 @@ class LoginController: UIViewController {
         btn.layer.cornerRadius = 5
         btn.layer.masksToBounds = true
         btn.isUserInteractionEnabled = true
-        btn.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleLoginOrRegister), for: .touchUpInside)
         return btn
+    }()
+    
+    lazy var registerLabel : UILabel = {
+        let lb = UILabel()
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        _ = OpenSans.registerFonts()
+        lb.font = UIFont.openSansFontOfSize(15)
+        lb.text = "Don't have an account?"
+        lb.textAlignment = .center
+        lb.isUserInteractionEnabled = true
+        let tapOnLabel = UITapGestureRecognizer()
+        tapOnLabel.addTarget(self, action: #selector(handleOpenRegisterView))
+        lb.addGestureRecognizer(tapOnLabel)
+        return lb
     }()
     
     /*lazy var registerBtn : UIButton = {
@@ -111,9 +124,8 @@ class LoginController: UIViewController {
     var loginBtnBottomAnchor : NSLayoutConstraint?
     
     func dismissKeyboard() {
-        
         if nameTextField.isFirstResponder {
-            UIView.animate(withDuration: 0.5, animations: { 
+            UIView.animate(withDuration: 0.5, animations: {
                 self.nameTextField.resignFirstResponder()
             })
         }
@@ -126,8 +138,42 @@ class LoginController: UIViewController {
         
     }
     
-    func setupUI() {
+    func handleOpenRegisterView(sender : UILabel) {
         
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(LoginController(), animated: false, completion: nil)
+    }
+    
+    var isRegisterView : Bool = false {
+        didSet {
+            updateLoginOrRegisterUI()
+        }
+    }
+    
+    func updateLoginOrRegisterUI() {
+        if isRegisterView {
+            loginBtn.setTitle("Register", for: .normal)
+            registerLabel.alpha = 0
+        }
+        else {
+            loginBtn.setTitle("Login", for: .normal)
+        }
+    }
+    
+    func handleLoginOrRegister() {
+        if isRegisterView {
+            handleRegister()
+        }
+        else {
+            handleLogin()
+        }
+    }
+    
+    func setupUI() {
         //hint: add observer when keyboard appears to handle UI resizing
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -141,6 +187,7 @@ class LoginController: UIViewController {
         view.addSubview(nameTextField)
         view.addSubview(pwTextField)
         view.addSubview(loginBtn)
+        view.addSubview(registerLabel)
         //view.addSubview(registerBtn)
         
         /*appNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
@@ -160,12 +207,16 @@ class LoginController: UIViewController {
         pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        loginBtnBottomAnchor = loginBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+        loginBtnBottomAnchor = loginBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
         loginBtnBottomAnchor?.isActive = true
         loginBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
         loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         
+        registerLabel.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 10).isActive = true
+        registerLabel.leadingAnchor.constraint(equalTo: loginBtn.leadingAnchor).isActive = true
+        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         
         /*registerBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 20).isActive = true
          registerBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
@@ -207,14 +258,14 @@ class LoginController: UIViewController {
         print("Keyboard did show")
         let keyBoardHeight = getInfoOfKeyBoard(notification: notification)["height"] as? CGFloat
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as! Float
-
+        
         let resizingDistance = -(keyBoardHeight!) - 10
         self.nameTextFieldTopAnchor?.isActive = false
         self.nameTextFieldTopAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 340 + resizingDistance)
         self.nameTextFieldTopAnchor?.isActive = true
         
         self.loginBtnBottomAnchor?.isActive = false
-        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance)
+        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance - 30)
         self.loginBtnBottomAnchor?.isActive = true
         
         self.bgImageViewTopAnchor?.isActive = false
@@ -234,7 +285,7 @@ class LoginController: UIViewController {
         self.nameTextFieldTopAnchor?.isActive = true
         
         self.loginBtnBottomAnchor?.isActive = false
-        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10)
+        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
         self.loginBtnBottomAnchor?.isActive = true
         self.bgImageViewTopAnchor?.isActive = false
         self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor)
@@ -282,7 +333,6 @@ class LoginController: UIViewController {
         tabBarController.viewControllers = [dashBoardNC,v2,v3,v4]
         return tabBarController
     }
-    
     
     //Register event
     func handleRegister() {
