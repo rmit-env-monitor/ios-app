@@ -9,6 +9,7 @@ target 'AirPollution' do
 	pod 'FoldingCell’, '~> 2.0.3'
 	pod "ESTabBarController-swift"
 	pod "TextFieldEffects"
+	pod 'PKHUD', '~> 4.0’
   # Pods for AirPollution
 
 end

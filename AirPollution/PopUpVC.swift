@@ -56,7 +56,7 @@ extension PopUpVC : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //TO DO : next
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopUpCell", for: indexPath) as! PopUpCell
-        var type = ""
+        //var type = ""
         
         switch indexPath.row {
             case 0:

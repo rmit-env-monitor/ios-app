@@ -36,15 +36,23 @@ class Client {
             if let status = response.response?.statusCode {
                 switch status {
                 case 200:
-                    print("Login Successfully")
+                    //print("Login Successfully")
                     if let result = response.result.value {
                         let JSON = result as! [String : AnyObject]
                         print(JSON)
+                        if JSON["message"] == nil {
+                            Client.currentUser = User(dictionary: JSON)
+                            userDefaults.set(JSON, forKey: "CurrentUser")
+                            completion(true)
+                        }
+                        else {
+                            completion(false)
+                        }
                         
-                        Client.currentUser = User(dictionary: JSON)
-                        userDefaults.set(JSON, forKey: "CurrentUser")
+                        
+                        
                     }
-                    completion(true)
+                    
                 default:
                     print("error with response status : ", status)
                     completion(false)

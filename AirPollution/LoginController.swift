@@ -11,7 +11,9 @@ import Alamofire
 import ESTabBarController_swift
 import OpenSansSwift
 import TextFieldEffects
-class customTextField : YoshikoTextField {
+import PKHUD
+
+class myTextField : YoshikoTextField {
     override func becomeFirstResponder() -> Bool {
         if (!self.canBecomeFirstResponder) {
             return false
@@ -22,6 +24,7 @@ class customTextField : YoshikoTextField {
         return true
     }
 }
+
 class LoginController: UIViewController {
     
     /*lazy var appNameLabel : UILabel = {
@@ -38,8 +41,8 @@ class LoginController: UIViewController {
      return lb
      }()*/
     
-    lazy var nameTextField : customTextField = {
-        let tf = customTextField()
+    lazy var nameTextField : myTextField = {
+        let tf = myTextField()
         tf.font = UIFont.openSansLightFontOfSize(20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
@@ -53,8 +56,8 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    lazy var pwTextField : customTextField = {
-        let tf = customTextField()
+    lazy var pwTextField : myTextField = {
+        let tf = myTextField()
         tf.font = UIFont.openSansLightFontOfSize(20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
@@ -62,6 +65,22 @@ class LoginController: UIViewController {
         tf.inactiveBorderColor = .gray
         tf.tintColor = .black
         tf.placeholder = "PASSWORD"
+        tf.isSecureTextEntry = true
+        tf.autocapitalizationType = .none
+        tf.placeholderColor = .black
+        return tf
+    }()
+    
+    lazy var confirmTextField : myTextField = {
+        let tf = myTextField()
+        tf.font = UIFont.openSansLightFontOfSize(20)
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.activeBackgroundColor = .white
+        tf.activeBorderColor = .black
+        tf.inactiveBorderColor = .gray
+        tf.tintColor = .black
+        tf.isSecureTextEntry = true
+        tf.placeholder = "CONFIRM PASSWORD"
         tf.autocapitalizationType = .none
         tf.placeholderColor = .black
         return tf
@@ -69,8 +88,8 @@ class LoginController: UIViewController {
     
     lazy var loginBtn : UIButton = {
         let btn = UIButton()
-        btn.setTitle("Login", for: .normal)
         btn.titleLabel?.font = UIFont.openSansLightFontOfSize(16)
+        btn.setTitle("Login", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = UIColor(r: 255, g: 102, b: 102)
         btn.layer.cornerRadius = 5
@@ -119,9 +138,10 @@ class LoginController: UIViewController {
         setupUI()
     }
     
-    var nameTextFieldTopAnchor : NSLayoutConstraint?
+    var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
-    var loginBtnBottomAnchor : NSLayoutConstraint?
+    var registerLabelBottomAnchor : NSLayoutConstraint?
+    //var loginBtnBottomAnchor : NSLayoutConstraint?
     
     func dismissKeyboard() {
         if nameTextField.isFirstResponder {
@@ -138,15 +158,43 @@ class LoginController: UIViewController {
         
     }
     
+    func handleBackToLoginVC() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func handleOpenRegisterView(sender : UILabel) {
+        if !isRegisterView {
+            let loginController = LoginController()
+            loginController.isRegisterView = true
+            presentAnimation(vc: loginController)
+        }
+        else {
+            dismissAnimation(vc: self)
+        }
         
+    }
+    
+    func presentAnimation(vc : UIViewController) {
         let transition = CATransition()
         transition.duration = 0.25
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
-        present(LoginController(), animated: false, completion: nil)
+        
+        
+        present(vc, animated: false, completion: nil)
     }
+    
+    func dismissAnimation(vc : UIViewController) {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.type = kCATransitionReveal
+        view.window!.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
+        
+    }
+    
+    
     
     var isRegisterView : Bool = false {
         didSet {
@@ -157,7 +205,7 @@ class LoginController: UIViewController {
     func updateLoginOrRegisterUI() {
         if isRegisterView {
             loginBtn.setTitle("Register", for: .normal)
-            registerLabel.alpha = 0
+            registerLabel.text = "I have an account already"
         }
         else {
             loginBtn.setTitle("Login", for: .normal)
@@ -173,7 +221,10 @@ class LoginController: UIViewController {
         }
     }
     
+    let distanceFromRegisterLabelToBottomView : CGFloat = -5
+    
     func setupUI() {
+        _ = OpenSans.registerFonts()
         //hint: add observer when keyboard appears to handle UI resizing
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -195,28 +246,39 @@ class LoginController: UIViewController {
          appNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
          appNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true*/
         
-        nameTextFieldTopAnchor = nameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 350)
-        nameTextFieldTopAnchor?.isActive = true
+        registerLabelBottomAnchor = registerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        registerLabelBottomAnchor?.isActive = true
+        registerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         
-        nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        loginBtn.bottomAnchor.constraint(equalTo: registerLabel.topAnchor, constant: -10)
+            .isActive = true
+        loginBtn.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor).isActive = true
+        loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         
-        pwTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 5).isActive = true
+        if isRegisterView {
+            view.addSubview(confirmTextField)
+            confirmTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10).isActive = true
+            confirmTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+            confirmTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        }
+        
+        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -80).isActive = true
         pwTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        loginBtnBottomAnchor = loginBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
-        loginBtnBottomAnchor?.isActive = true
-        loginBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
-        loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        nameTextFieldBottomAnchor = nameTextField.bottomAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -10)
+        nameTextFieldBottomAnchor?.isActive = true
+        nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        registerLabel.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 10).isActive = true
-        registerLabel.leadingAnchor.constraint(equalTo: loginBtn.leadingAnchor).isActive = true
-        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        
+        
         
         /*registerBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 20).isActive = true
          registerBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
@@ -242,31 +304,19 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //login function
-    func handleLogin() {
-        let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
-        print(nameTextField.text!)
-        print(pwTextField.text!)
-        Client.login(params: params as [String : AnyObject]) { (isFinished) in
-            if (isFinished) {
-                self.present(self.getToTabBarController(), animated: true, completion: nil)
-            }
-        }
-    }
-    
     func keyboardWillShow(notification : NSNotification) {
         print("Keyboard did show")
         let keyBoardHeight = getInfoOfKeyBoard(notification: notification)["height"] as? CGFloat
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as! Float
         
         let resizingDistance = -(keyBoardHeight!) - 10
-        self.nameTextFieldTopAnchor?.isActive = false
-        self.nameTextFieldTopAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 340 + resizingDistance)
-        self.nameTextFieldTopAnchor?.isActive = true
+        //        self.nameTextFieldBottomAnchor?.isActive = false
+        //        self.nameTextFieldBottomAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 340 + resizingDistance)
+        //        self.nameTextFieldBottomAnchor?.isActive = true
         
-        self.loginBtnBottomAnchor?.isActive = false
-        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance - 30)
-        self.loginBtnBottomAnchor?.isActive = true
+        self.registerLabelBottomAnchor?.isActive = false
+        self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor?.isActive = true
         
         self.bgImageViewTopAnchor?.isActive = false
         self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: resizingDistance + 10)
@@ -280,13 +330,12 @@ class LoginController: UIViewController {
     func keyboardWillHide(notification : NSNotification) {
         print("Keyboard did Hide")
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
-        self.nameTextFieldTopAnchor?.isActive = false
-        self.nameTextFieldTopAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 350)
-        self.nameTextFieldTopAnchor?.isActive = true
         
-        self.loginBtnBottomAnchor?.isActive = false
-        self.loginBtnBottomAnchor = self.loginBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
-        self.loginBtnBottomAnchor?.isActive = true
+        
+        self.registerLabelBottomAnchor?.isActive = false
+        self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor?.isActive = true
+        
         self.bgImageViewTopAnchor?.isActive = false
         self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor)
         self.bgImageViewTopAnchor?.isActive = true
@@ -335,23 +384,64 @@ class LoginController: UIViewController {
     }
     
     //Register event
+    
+    
     func handleRegister() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
+        HUD.show(.progress)
         Client.register(params: params as [String : AnyObject]) { (isFinished) in
             let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
                 alertController.dismiss(animated: true, completion: nil)
             })
             alertController.addAction(okAction)
-            if (isFinished) {
-                alertController.title = "You have registered successfully"
-                self.present(alertController, animated: true, completion: nil)
-            }
-            else {
-                alertController.title = "An unknown error occurs or username has been taken:("
+            HUD.hide({ (finished) in
+                if (self.pwTextField.text! != self.confirmTextField.text!) {
+                    alertController.title = "Confirmed password does not matched, please try again:D"
+                    
+                }
+                else if (isFinished) {
+                    alertController.title = "You have registered successfully"
+                    self.dismissAnimation(vc: self)
+                }
+                else {
+                    alertController.title = "An unknown error occurs or username has been taken:("
+                    
+                }
                 self.present(alertController, animated: true, completion: nil)
                 
+            })
+        }
+    }
+    
+    //login function
+    func handleLogin() {
+        let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
+        print(nameTextField.text!)
+        print(pwTextField.text!)
+        HUD.show(.progress)
+        HUD.dimsBackground = true
+        Client.login(params: params as [String : AnyObject]) { (isFinished) in
+            let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(okAction)
+            
+            if (isFinished) {
+                HUD.hide({ (finished) in
+                    alertController.title = "You have login successfully"
+                    self.present(self.getToTabBarController(), animated: true, completion: nil)
+                })
+                
             }
+            else {
+                HUD.hide({ (finished) in
+                    alertController.title = "Invalid username/password. Please try again:D"
+                })
+                
+            }
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
