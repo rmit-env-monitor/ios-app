@@ -22,7 +22,9 @@ class DashboardCell: FoldingCell {
     
     @IBOutlet weak var districtLabel: UILabel!
     
+    @IBOutlet weak var detailBackgroundView: UIView!
     
+    @IBOutlet weak var foregroundBackgroundView: UIView!
     
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
@@ -76,6 +78,19 @@ class DashboardCell: FoldingCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setupUI()
+    }
+    
+    func setupUI() {
+        bbForegroundView.backgroundColor = UIColor.clear
+        self.backViewColor = UIColor.lightGray
+        bbContainerView.backgroundColor = UIColor.clear
+        foregroundBackgroundView.backgroundColor = UIColor.white
+        foregroundBackgroundView.layer.cornerRadius = 5
+        detailBackgroundView.layer.cornerRadius = 5
+        detailBackgroundView.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.gray
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

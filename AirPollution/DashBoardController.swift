@@ -30,6 +30,7 @@ class DashBoardController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        tableView.backgroundColor = UIColor.gray
         let navigationBar = self.navigationController?.navigationBar
         navigationBar?.barTintColor = UIColor.black
         navigationBar?.tintColor = UIColor.init(r: 201, g: 251, b: 82)
@@ -95,7 +96,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         else {
             cell.timeLabel.text = "***"
         }*/
-        
+            
         cell.districtLabel.text = "District \(indexPath.row + 1)"
         
         return cell
