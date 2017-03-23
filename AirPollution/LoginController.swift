@@ -384,8 +384,6 @@ class LoginController: UIViewController {
     }
     
     //Register event
-    
-    
     func handleRegister() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
         HUD.show(.progress)
@@ -430,7 +428,6 @@ class LoginController: UIViewController {
             
             if (isFinished) {
                 HUD.hide({ (finished) in
-                    alertController.title = "You have login successfully"
                     self.present(self.getToTabBarController(), animated: true, completion: nil)
                 })
                 
@@ -441,7 +438,6 @@ class LoginController: UIViewController {
                 })
                 
             }
-            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

@@ -20,6 +20,7 @@
 		E33F90301E6ABEAF00672B8E /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F902F1E6ABEAF00672B8E /* DashboardCell.swift */; };
 		E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45931E70119F0002BDE9 /* StatsViewController.swift */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
+		E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */; };
 		E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888D81E6A7A440036B1ED /* AppDelegate.swift */; };
 		E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888DA1E6A7A440036B1ED /* LoginController.swift */; };
 		E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DC1E6A7A440036B1ED /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		E33F902F1E6ABEAF00672B8E /* DashboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCell.swift; sourceTree = "<group>"; };
 		E34C45931E70119F0002BDE9 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardController.swift; sourceTree = "<group>"; };
 		E3B888D51E6A7A440036B1ED /* AirPollution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPollution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B888D81E6A7A440036B1ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B888DA1E6A7A440036B1ED /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
 				E33F902D1E6ABB7300672B8E /* DashBoardController.swift */,
 				E34C45931E70119F0002BDE9 /* StatsViewController.swift */,
+				E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				E33F90301E6ABEAF00672B8E /* DashboardCell.swift in Sources */,
 				E33F902E1E6ABB7300672B8E /* DashBoardController.swift in Sources */,
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
+				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */,

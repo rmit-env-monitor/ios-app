@@ -9,6 +9,9 @@
 import UIKit
 import Alamofire
 import FoldingCell
+import OpenSansSwift
+
+
 class DashBoardController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -21,12 +24,17 @@ class DashBoardController: UIViewController {
     
     func setupUI() {
         self.navigationItem.title = "Dashboard"
-        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onLogout))
-        self.navigationItem.leftBarButtonItem = logoutButton
+        let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
+        self.navigationItem.rightBarButtonItem = logoutButton
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.barTintColor = UIColor.black
+        navigationBar?.tintColor = UIColor.init(r: 201, g: 251, b: 82)
+        _ = OpenSans.registerFonts()
+        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansLightFontOfSize(18)]
     }
     
     func onLogout() {
@@ -57,7 +65,7 @@ class DashBoardController: UIViewController {
     fileprivate struct C {
         struct CellHeight {
             static let close: CGFloat = 108 // equal or greater foregroundView height
-            static let open: CGFloat = 275 // equal or greater containerView height
+            static let open: CGFloat = 282 // equal or greater containerView height
         }
     }
     
@@ -117,6 +125,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveEaseOut, animations: { 
             tableView.beginUpdates()
             tableView.endUpdates()
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }, completion: nil)
     }
     

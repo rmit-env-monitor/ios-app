@@ -22,6 +22,7 @@ class PopUpCell: UICollectionViewCell {
     
     func setupUI() {
         statusButton.layer.cornerRadius = 20
+        self.contentView.backgroundColor = UIColor.lightGray
     }
 
 }
