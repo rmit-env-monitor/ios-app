@@ -10,6 +10,12 @@ import UIKit
 import FoldingCell
 import OpenSansSwift
 
+
+@objc protocol DashBoardCellDelegate {
+    func didCloseTheFoldingCell(ip : IndexPath)
+}
+
+
 class DashboardCell: FoldingCell {
     
     //    @IBOutlet weak var timeLabel: UILabel!
@@ -30,7 +36,9 @@ class DashboardCell: FoldingCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    weak var delegate : DashBoardCellDelegate?
     
+    var indexPath : IndexPath?
     
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
@@ -123,7 +131,7 @@ class DashboardCell: FoldingCell {
     
     
     func closeCell() {
-        self.selectedAnimation(false, animated: false, completion: nil)
+        delegate?.didCloseTheFoldingCell(ip: self.indexPath!)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import OpenSansSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
+        let appearance = UINavigationBar.appearance()
+        appearance.tintColor = UIColor.init(r: 201, g: 251, b: 82)
+        appearance.barTintColor = UIColor.black
+        _ = OpenSans.registerFonts()
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]
         return true
     }
 

@@ -10,9 +10,9 @@ import UIKit
 
 class Stats: NSObject {
     var o3 : Int?
-    var latitude : Int?
+    var latitude : Float?
     var no : Int?
-    var longitude : Int?
+    var longitude : Float?
     var pm : Int?   //dust
     var so2: Int?
     var sound : Int?
@@ -20,9 +20,9 @@ class Stats: NSObject {
     
     init(dictionary : [String : AnyObject]) {
         self.o3 = dictionary["o3"] as? Int
-        self.latitude = dictionary["latitude"] as? Int
+        self.latitude = dictionary["latitude"] as? Float
         self.no = dictionary["no"] as? Int
-        self.longitude = dictionary["longtitude"] as? Int
+        self.longitude = dictionary["longtitude"] as? Float
         self.pm = dictionary["pm"] as? Int
         self.so2 = dictionary["so2"] as? Int
         self.sound = dictionary["sound"] as? Int

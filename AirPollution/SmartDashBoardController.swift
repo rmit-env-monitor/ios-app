@@ -7,29 +7,96 @@
 //
 
 import UIKit
-
+import MapKit
 class SmartDashBoardController: UIViewController {
-
+    
+    var currentLocation : Location?
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupUI()
     }
+    
+    func setupUI() {
+        self.navigationItem.title = "Current Location"
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    var getAuthorized = false
+    
+}
+
+
+
+
+enum Section : Int {
+    case MapCell
+    case DistrictCell
+    
+    init?(indexPath : NSIndexPath) {
+        self.init(rawValue: indexPath.row)
+    }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        switch Section(indexPath: indexPath as NSIndexPath) {
+        case .MapCell?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as! MapCell
+            cell.getAuthorized = self.getAuthorized
+            return cell
+        case .DistrictCell?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardCell") as! DashboardCell
+            return cell
+        case .none:
+            return UITableViewCell()
+        }
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch Section(rawValue: section) {
+        case .MapCell?:
+            return 1
+        case .DistrictCell?:
+            return 1
+        case .none:
+            return 0
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,11 +33,7 @@ class DashBoardController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.backgroundColor = UIColor.gray
-        let navigationBar = self.navigationController?.navigationBar
-        navigationBar?.barTintColor = UIColor.black
-        navigationBar?.tintColor = UIColor.init(r: 201, g: 251, b: 82)
-        _ = OpenSans.registerFonts()
-        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]
+
     }
     
     func onLogout() {
@@ -73,10 +69,9 @@ class DashBoardController: UIViewController {
     }
     
     var itemHeights = (0..<12).map { _ in C.CellHeight.close }
-
     
 }
-extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
+extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashBoardCellDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("Number of data set \(dictionary.count)")
@@ -109,11 +104,13 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         //Folding Cell Section
-        guard case let cell as FoldingCell = tableView.cellForRow(at: indexPath) else {
+        guard case let cell as DashboardCell = tableView.cellForRow(at: indexPath) else {
             return
         }
-        
+        cell.indexPath = indexPath
+        cell.delegate = self
         var duration = 0
+        cell.districtLabel.alpha = 0
         if itemHeights[indexPath.row] == C.CellHeight.close {
             itemHeights[indexPath.row] = C.CellHeight.open
             cell.selectedAnimation(true, animated: true, completion: nil)
@@ -124,16 +121,24 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
             cell.selectedAnimation(false, animated: true, completion: nil)
             duration = Int(1.1)
         }
-        
-        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveEaseOut, animations: { 
+        UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveEaseOut, animations: {
             tableView.beginUpdates()
             tableView.endUpdates()
+
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }, completion: nil)
+            
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.districtLabel.alpha = 1
+            })
+        })
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return itemHeights[indexPath.row]
     }
     
+    func didCloseTheFoldingCell(ip: IndexPath) {
+        self.tableView(self.tableView, didSelectRowAt: ip)
+    }
 }
