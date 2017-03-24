@@ -15,6 +15,8 @@ import OpenSansSwift
 class DashBoardController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+ 
+    
     var dictionary = [[String : AnyObject]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,7 @@ class DashBoardController: UIViewController {
         navigationBar?.barTintColor = UIColor.black
         navigationBar?.tintColor = UIColor.init(r: 201, g: 251, b: 82)
         _ = OpenSans.registerFonts()
-        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansLightFontOfSize(18)]
+        navigationBar?.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]
     }
     
     func onLogout() {
@@ -96,7 +98,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
         else {
             cell.timeLabel.text = "***"
         }*/
-            
+        cell.districtLabel.font = UIFont.openSansSemiboldFontOfSize(17)
         cell.districtLabel.text = "District \(indexPath.row + 1)"
         
         return cell
@@ -129,21 +131,6 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }, completion: nil)
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if case let cell as FoldingCell = cell {
-            if itemHeights[indexPath.row] == C.CellHeight.close {
-                cell.selectedAnimation(false, animated: false, completion: nil)
-            }
-            else {
-                cell.selectedAnimation(true, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    
-    
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return itemHeights[indexPath.row]

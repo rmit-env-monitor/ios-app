@@ -13,7 +13,6 @@ class PopUpCell: UICollectionViewCell {
     @IBOutlet weak var statsTypeLabel: UILabel!
     
     
-    @IBOutlet weak var statusButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
@@ -21,8 +20,7 @@ class PopUpCell: UICollectionViewCell {
     }
     
     func setupUI() {
-        statusButton.layer.cornerRadius = 20
-        self.contentView.backgroundColor = UIColor.lightGray
+        self.contentView.backgroundColor = UIColor.clear
     }
 
 }

@@ -8,16 +8,18 @@
 
 import UIKit
 import FoldingCell
-class DashboardCell: FoldingCell {
+import OpenSansSwift
 
-//    @IBOutlet weak var timeLabel: UILabel!
-//    
-//    @IBOutlet weak var idLabel: UILabel!
-//    
-//    @IBOutlet weak var collectorLabel: UILabel!
+class DashboardCell: FoldingCell {
+    
+    //    @IBOutlet weak var timeLabel: UILabel!
+    //
+    //    @IBOutlet weak var idLabel: UILabel!
+    //
+    //    @IBOutlet weak var collectorLabel: UILabel!
     
     @IBOutlet weak var bbForegroundView: RotatedView!
- 
+    
     @IBOutlet weak var bbContainerView: UIView!
     
     @IBOutlet weak var districtLabel: UILabel!
@@ -25,6 +27,10 @@ class DashboardCell: FoldingCell {
     @IBOutlet weak var detailBackgroundView: UIView!
     
     @IBOutlet weak var foregroundBackgroundView: UIView!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
@@ -73,12 +79,13 @@ class DashboardCell: FoldingCell {
         }
     }
     
-   
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setupUI()
+        configureCollectionView()
     }
     
     func setupUI() {
@@ -91,11 +98,60 @@ class DashboardCell: FoldingCell {
         detailBackgroundView.backgroundColor = UIColor.white
         self.backgroundColor = UIColor.gray
         
+        
+        
     }
-
+    
+    func configureCollectionView() {
+        //setup the collectionView
+        let nib = UINib(nibName: "PopUpCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "PopUpCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: collectionView.bounds.width/2 + 20, height: 90)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        _ = OpenSans.registerFonts()
+        collectionView.collectionViewLayout = layout
+        
+        //add gesture on collection view to close the cell
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeCell))
+        collectionView.addGestureRecognizer(tap)
+    }
+    
+    
+    func closeCell() {
+        self.selectedAnimation(false, animated: false, completion: nil)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
+    }
+}
+
+extension DashboardCell : UICollectionViewDelegate, UICollectionViewDataSource {
+    //comform collectionView datasource functions
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //TO DO : next
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopUpCell", for: indexPath) as! PopUpCell
+        //var type = ""
+        
+        let statsTypeLabels = ["AQHI","NO/NO2","SO2","PM2.5/10","O3","Sound","***"]
+        
+        cell.statsTypeLabel.font = UIFont.openSansSemiboldFontOfSize(12)
+        cell.statsTypeLabel.text = statsTypeLabels[indexPath.row]
+        return cell
     }
 }

@@ -12,6 +12,7 @@ class PopUpVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var dashboardCollectionView : UICollectionView!
     var dictionary = Stats(dictionary: [String : AnyObject]())
     
     override func viewDidLoad() {
@@ -22,9 +23,10 @@ class PopUpVC: UIViewController {
     
     func setupUI() {
         let nib = UINib(nibName: "PopUpCell", bundle: nil)
-        self.collectionView.register(nib, forCellWithReuseIdentifier: "PopUpCell")
+        collectionView.register(nib, forCellWithReuseIdentifier: "PopUpCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
@@ -43,8 +45,8 @@ class PopUpVC: UIViewController {
     
 }
 extension PopUpVC : UICollectionViewDelegate, UICollectionViewDataSource{
-    //comform collectionView datasource functions
     
+    //comform collectionView datasource functions
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -61,7 +63,6 @@ extension PopUpVC : UICollectionViewDelegate, UICollectionViewDataSource{
         switch indexPath.row {
             case 0:
                 cell.statsTypeLabel.text = "AQHI"
-                cell.statusButton.titleLabel?.text = "NN"
             case 1:
                 cell.statsTypeLabel.text = "NO/NO2"
 //                cell.statusButton.titleLabel?.text = dictionary.no as! String
@@ -79,9 +80,8 @@ extension PopUpVC : UICollectionViewDelegate, UICollectionViewDataSource{
                 //cell.statusButton.titleLabel?.text = dictionary.sound as! String
             default:
                 cell.statsTypeLabel.text = "***"
-                cell.statusButton.titleLabel?.text = "NN"
+                //cell.statusButton.titleLabel?.text = "NN"
         }
-        
         return cell
         
     }

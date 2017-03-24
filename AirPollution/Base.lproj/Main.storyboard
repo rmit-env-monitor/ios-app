@@ -87,20 +87,34 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4U8-Do-72J">
                                                             <rect key="frame" x="8" y="0.0" width="288" height="266"/>
                                                             <subviews>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Czc-GU-pfM">
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hcf-ac-Q2t">
                                                                     <rect key="frame" x="8" y="8" width="272" height="250"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TQq-9t-4xQ">
-                                                                        <size key="itemSize" width="119" height="140"/>
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aMC-Tn-kcy">
+                                                                        <size key="itemSize" width="50" height="50"/>
                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                     </collectionViewFlowLayout>
-                                                                    <cells/>
+                                                                    <cells>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZjF-bH-HvX">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                            </view>
+                                                                        </collectionViewCell>
+                                                                    </cells>
                                                                 </collectionView>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.56923076920000004" green="0.56923076920000004" blue="0.56923076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstItem="Hcf-ac-Q2t" firstAttribute="leading" secondItem="4U8-Do-72J" secondAttribute="leading" constant="8" id="OeA-Wc-gdc"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Hcf-ac-Q2t" secondAttribute="trailing" constant="8" id="lXM-QQ-4zD"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Hcf-ac-Q2t" secondAttribute="bottom" constant="8" id="mpO-es-7dt"/>
+                                                                <constraint firstItem="Hcf-ac-Q2t" firstAttribute="top" secondItem="4U8-Do-72J" secondAttribute="top" constant="8" id="yVl-NC-g5q"/>
+                                                            </constraints>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
@@ -134,6 +148,7 @@
                                             <outlet property="bbContainerViewTop" destination="2r2-YA-1QT" id="imT-5Z-f5k"/>
                                             <outlet property="bbForegroundView" destination="GMq-zP-QhK" id="k9P-G0-e4B"/>
                                             <outlet property="bbForegroundViewTop" destination="VjM-OW-MSk" id="XgN-Jv-RAU"/>
+                                            <outlet property="collectionView" destination="Hcf-ac-Q2t" id="vi8-Fp-ChW"/>
                                             <outlet property="detailBackgroundView" destination="4U8-Do-72J" id="bfx-UN-rvI"/>
                                             <outlet property="districtLabel" destination="syb-Ys-3gA" id="eb9-yS-SjL"/>
                                             <outlet property="foregroundBackgroundView" destination="xAv-rv-O8a" id="3cu-ss-vND"/>
@@ -185,24 +200,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s9P-9J-PJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3624.8000000000002" y="123.68815592203899"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="jfm-qe-6tB">
-            <objects>
-                <viewController id="XEW-aj-tP4" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VbM-VM-SWq"/>
-                        <viewControllerLayoutGuide type="bottom" id="D52-PC-vQB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VqR-jl-Tep">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UaJ-bI-Hzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4888.8000000000002" y="145.27736131934034"/>
         </scene>
     </scenes>
 </document>
