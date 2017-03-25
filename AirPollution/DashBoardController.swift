@@ -100,7 +100,6 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashB
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Just kicking a row")
         tableView.deselectRow(at: indexPath, animated: true)
         
         //Folding Cell Section
@@ -111,17 +110,22 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashB
         cell.delegate = self
         var duration = 0
         cell.districtLabel.alpha = 0
-        
+        cell.isUserInteractionEnabled = false
+
         //open the cell
         if itemHeights[indexPath.row] == C.CellHeight.close {
             itemHeights[indexPath.row] = C.CellHeight.open
-            cell.selectedAnimation(true, animated: true, completion: nil)
+            cell.selectedAnimation(true, animated: true, completion: { _ in
+              cell.isUserInteractionEnabled = true
+            })
             duration = Int(0.5)
         }
         //close the cell
         else {
             itemHeights[indexPath.row] = C.CellHeight.close
-            cell.selectedAnimation(false, animated: true, completion: nil)
+            cell.selectedAnimation(false, animated: true, completion: { _ in
+                cell.isUserInteractionEnabled = true
+            })
             duration = Int(1.1)
         }
         
