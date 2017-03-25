@@ -111,20 +111,23 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashB
         cell.delegate = self
         var duration = 0
         cell.districtLabel.alpha = 0
+        
+        //open the cell
         if itemHeights[indexPath.row] == C.CellHeight.close {
             itemHeights[indexPath.row] = C.CellHeight.open
             cell.selectedAnimation(true, animated: true, completion: nil)
             duration = Int(0.5)
         }
+        //close the cell
         else {
             itemHeights[indexPath.row] = C.CellHeight.close
             cell.selectedAnimation(false, animated: true, completion: nil)
             duration = Int(1.1)
         }
+        
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveEaseOut, animations: {
             tableView.beginUpdates()
             tableView.endUpdates()
-
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             
         }, completion: { _ in
@@ -133,6 +136,18 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashB
             })
         })
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if case let cell as FoldingCell = cell {
+            if itemHeights[indexPath.row] == C.CellHeight.close {
+                cell.selectedAnimation(false, animated: false, completion:nil)
+            } else {
+                cell.selectedAnimation(true, animated: false, completion: nil)
+            }
+        }
+    }
+    
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return itemHeights[indexPath.row]

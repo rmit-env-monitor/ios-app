@@ -129,6 +129,10 @@ class DashboardCell: FoldingCell {
         collectionView.addGestureRecognizer(tap)
     }
     
+    override func prepareForReuse() {
+        //å
+    }
+    
     
     func closeCell() {
         delegate?.didCloseTheFoldingCell(ip: self.indexPath!)
