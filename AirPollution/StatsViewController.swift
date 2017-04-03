@@ -28,14 +28,14 @@ class StatsViewController: UIViewController {
         //let longitude = CLLocationDegrees(stats.longitude!)
         mapView.delegate = self
         let initialLocation = CLLocation(latitude: 10.729440, longitude: 106.695952)
-        centerMapOnLocation(location: initialLocation)
+        centerMapOnLocation(initialLocation)
         let annotation = MKPointAnnotation()
         annotation.coordinate = initialLocation.coordinate
         annotation.title = "This is my annotation"
         mapView.addAnnotation(annotation)
     }
     
-    func centerMapOnLocation(location : CLLocation) {
+    func centerMapOnLocation(_ location : CLLocation) {
         let regionRadius : CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2, regionRadius * 2)
         mapView.setRegion(coordinateRegion, animated: true)

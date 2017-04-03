@@ -86,7 +86,7 @@ extension PopUpVC : UICollectionViewDelegate, UICollectionViewDataSource{
         
     }
     
-    func setupStatusButton(statsType : String, cell : PopUpCell) {
+    func setupStatusButton(_ statsType : String, cell : PopUpCell) {
         
         
     }

@@ -25,9 +25,7 @@ class DashBoardController: UIViewController {
     }
     
     func setupUI() {
-        self.navigationItem.title = "Dashboard"
-        let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
-        self.navigationItem.rightBarButtonItem = logoutButton
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -35,12 +33,7 @@ class DashBoardController: UIViewController {
         tableView.backgroundColor = UIColor.gray
 
     }
-    
-    func onLogout() {
-        Client.logout()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+        
     func fetchData() {
         Client.loadDashBoard { (response) in
             self.dictionary = response
@@ -157,7 +150,7 @@ extension DashBoardController : UITableViewDelegate,UITableViewDataSource, DashB
         return itemHeights[indexPath.row]
     }
     
-    func didCloseTheFoldingCell(ip: IndexPath) {
+    func didCloseTheFoldingCell(_ ip: IndexPath) {
         self.tableView(self.tableView, didSelectRowAt: ip)
     }
 }

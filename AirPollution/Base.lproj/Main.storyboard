@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="2151" y="-376"/>
         </scene>
         <!--Dash Board Controller-->
         <scene sceneID="xDZ-cQ-cQT">
@@ -367,6 +367,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7K-O5-6cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4584" y="71"/>
+        </scene>
+        <!--Pop Up View Controller-->
+        <scene sceneID="6MY-Mf-ycd">
+            <objects>
+                <viewController storyboardIdentifier="LoginPopUpVC" id="MUF-NW-hvR" customClass="PopUpViewController" customModule="AirPollution" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pH2-5w-Hr3"/>
+                        <viewControllerLayoutGuide type="bottom" id="sWJ-LA-drZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ppv-FW-UaV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUR-JP-g1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5418.75" y="-698.75"/>
         </scene>
     </scenes>
 </document>

@@ -22,6 +22,9 @@ class SmartDashBoardController: UIViewController {
     }
     
     func setupUI() {
+        self.navigationItem.title = "Dashboard"
+        let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
+        self.navigationItem.rightBarButtonItem = logoutButton
         self.navigationItem.title = "Home"
         tableView.delegate = self
         tableView.dataSource = self
@@ -29,6 +32,11 @@ class SmartDashBoardController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.backgroundColor = UIColor.gray
         
+    }
+    
+    func onLogout() {
+        Client.logout()
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,10 +60,10 @@ fileprivate struct C {
 
 
 enum Section : Int {
-    case MapCell
-    case DistrictCell
+    case mapCell
+    case districtCell
     
-    init?(indexPath : NSIndexPath) {
+    init?(indexPath : IndexPath) {
         self.init(rawValue: indexPath.row)
     }
     
@@ -161,7 +169,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
 }
 
 extension SmartDashBoardController : DashBoardCellDelegate {
-    func didCloseTheFoldingCell(ip: IndexPath) {
+    func didCloseTheFoldingCell(_ ip: IndexPath) {
         self.tableView(tableView, didSelectRowAt: ip)
     }
 }

@@ -10,9 +10,8 @@ import UIKit
 import FoldingCell
 import OpenSansSwift
 
-
 @objc protocol DashBoardCellDelegate {
-    func didCloseTheFoldingCell(ip : IndexPath)
+    func didCloseTheFoldingCell(_ ip : IndexPath)
 }
 
 
@@ -47,7 +46,7 @@ class DashboardCell: FoldingCell {
         return durations[itemIndex]
     }
     
-    override public var foregroundView: RotatedView! {
+    override open var foregroundView: RotatedView! {
         get {
             return bbForegroundView
         }
@@ -56,7 +55,7 @@ class DashboardCell: FoldingCell {
         }
     }
     
-    override public var containerView: UIView! {
+    override open var containerView: UIView! {
         get {
             return bbContainerView
         }
@@ -69,7 +68,7 @@ class DashboardCell: FoldingCell {
     
     @IBOutlet weak var bbForegroundViewTop: NSLayoutConstraint!
     
-    override public var containerViewTop: NSLayoutConstraint! {
+    override open var containerViewTop: NSLayoutConstraint! {
         get {
             return bbContainerViewTop
         }
@@ -78,7 +77,7 @@ class DashboardCell: FoldingCell {
         }
     }
     
-    override public var foregroundViewTop: NSLayoutConstraint! {
+    override open var foregroundViewTop: NSLayoutConstraint! {
         get {
             return bbForegroundViewTop
         }
@@ -135,7 +134,7 @@ class DashboardCell: FoldingCell {
     
     
     func closeCell() {
-        delegate?.didCloseTheFoldingCell(ip: self.indexPath!)
+        delegate?.didCloseTheFoldingCell(self.indexPath!)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

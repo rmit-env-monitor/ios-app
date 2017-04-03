@@ -12,6 +12,7 @@ import ESTabBarController_swift
 import OpenSansSwift
 import TextFieldEffects
 import PKHUD
+import PopupDialog
 
 class myTextField : YoshikoTextField {
     override func becomeFirstResponder() -> Bool {
@@ -162,19 +163,19 @@ class LoginController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func handleOpenRegisterView(sender : UILabel) {
+    func handleOpenRegisterView(_ sender : UILabel) {
         if !isRegisterView {
             let loginController = LoginController()
             loginController.isRegisterView = true
-            presentAnimation(vc: loginController)
+            presentAnimation(loginController)
         }
         else {
-            dismissAnimation(vc: self)
+            dismissAnimation(self)
         }
         
     }
     
-    func presentAnimation(vc : UIViewController) {
+    func presentAnimation(_ vc : UIViewController) {
         let transition = CATransition()
         transition.duration = 0.25
         transition.type = kCATransitionPush
@@ -185,7 +186,7 @@ class LoginController: UIViewController {
         present(vc, animated: false, completion: nil)
     }
     
-    func dismissAnimation(vc : UIViewController) {
+    func dismissAnimation(_ vc : UIViewController) {
         let transition = CATransition()
         transition.duration = 0.25
         transition.type = kCATransitionReveal
@@ -388,7 +389,7 @@ class LoginController: UIViewController {
     func handleRegister() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
         HUD.show(.progress)
-        Client.register(params: params as [String : AnyObject]) { (isFinished) in
+        Client.register(params as [String : AnyObject]) { (isFinished) in
             let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
                 alertController.dismiss(animated: true, completion: nil)
@@ -401,7 +402,7 @@ class LoginController: UIViewController {
                 }
                 else if (isFinished) {
                     alertController.title = "You have registered successfully"
-                    self.dismissAnimation(vc: self)
+                    self.dismissAnimation(self)
                 }
                 else {
                     alertController.title = "An unknown error occurs or username has been taken:("
@@ -413,6 +414,23 @@ class LoginController: UIViewController {
         }
     }
     
+    //open PopupView to ask user about the location
+    lazy var popUpView : UIView =  {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        
+        return v
+    }()
+    
+    func openPopUpView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let popUpVC = storyboard.instantiateViewController(withIdentifier: "LoginPopUpVC")
+        let popUp = PopupDialog(viewController: popUpVC)
+        
+        present(popUp, animated: true, completion: nil)
+    }
+    
+
     //login function
     func handleLogin() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
@@ -420,7 +438,7 @@ class LoginController: UIViewController {
         print(pwTextField.text!)
         HUD.show(.progress)
         HUD.dimsBackground = true
-        Client.login(params: params as [String : AnyObject]) { (isFinished) in
+        Client.login(params as [String : AnyObject]) { (isFinished) in
             let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
                 alertController.dismiss(animated: true, completion: nil)
@@ -429,7 +447,8 @@ class LoginController: UIViewController {
             
             if (isFinished) {
                 HUD.hide({ (finished) in
-                    self.present(self.getToTabBarController(), animated: true, completion: nil)
+                    self.openPopUpView()
+//                    self.present(self.getToTabBarController(), animated: true, completion: nil)
                 })
                 
             }

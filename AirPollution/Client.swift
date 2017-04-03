@@ -31,7 +31,7 @@ class Client {
     static let userDefaults = UserDefaults.standard
     
     //Login
-    static func login(params : [String : AnyObject], completion : @escaping (Bool)->()) {
+    static func login(_ params : [String : AnyObject], completion : @escaping (Bool)->()) {
         Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).validate().responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {
@@ -68,7 +68,7 @@ class Client {
     }
     
     //Load dashboard
-    static func loadDashBoard(completion: @escaping (_ dataDictArray : [[String:AnyObject]]) -> ()) {
+    static func loadDashBoard(_ completion: @escaping (_ dataDictArray : [[String:AnyObject]]) -> ()) {
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"
         ]
@@ -81,7 +81,7 @@ class Client {
     }
     
     //Register
-    static func register(params : [String : AnyObject], completion : @escaping (Bool) -> ()) {
+    static func register(_ params : [String : AnyObject], completion : @escaping (Bool) -> ()) {
         Alamofire.request(registerURL!, method: .post, parameters: params).validate().responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {
