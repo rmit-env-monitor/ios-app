@@ -363,7 +363,7 @@ class LoginController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
-        let dashBoardVC = storyboard.instantiateViewController(withIdentifier: "DashBoardController") as! DashBoardController
+        let v2 = UIViewController()
         let smartDashBoardVC = storyboard.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
         let v3 = UIViewController()
         let v4 = UIViewController()
@@ -372,16 +372,17 @@ class LoginController: UIViewController {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
         }
-        let dashBoardNC = UINavigationController(rootViewController: dashBoardVC)
         let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC)
-        dashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Nearby", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
+        
         
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
+        
+        v2.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
         
         v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Routing", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        tabBarController.viewControllers = [smartDashBoardNC,dashBoardNC,v3,v4]
+        tabBarController.viewControllers = [smartDashBoardNC,v2,v3,v4]
         return tabBarController
     }
     
