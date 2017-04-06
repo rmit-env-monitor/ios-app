@@ -9,12 +9,24 @@
 import UIKit
 import OpenSansSwift
 
-class PopUpViewController: UIViewController {
 
+enum locationMethod {
+    case manually
+    case automatically
+}
+
+protocol PopUpViewControllerDelegate : class {
+    func getCurrentLocation(method : locationMethod)
+}
+
+class PopUpViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    
+    weak var delegate : PopUpViewControllerDelegate?
     
     lazy var inputLabel : UILabel = {
         let lb = UILabel()
@@ -29,8 +41,6 @@ class PopUpViewController: UIViewController {
     lazy var buttonContainer : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         return view
     }()
     
@@ -40,7 +50,8 @@ class PopUpViewController: UIViewController {
         btn.setTitle("Automatically detect my location", for: .normal)
         btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
         btn.setTitleColor(UIColor.gray, for: .normal)
-    
+        btn.setTitleColor(UIColor.black, for: .highlighted)
+        btn.addTarget(self, action: #selector(handleDetectLocationAutomatically), for: .touchUpInside)
         return btn
     }()
     
@@ -50,7 +61,7 @@ class PopUpViewController: UIViewController {
         btn.setTitle("My location is...", for: .normal)
         btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
         btn.setTitleColor(UIColor.gray, for: .normal)
-       
+        btn.setTitleColor(UIColor.black, for: .highlighted)
         return btn
     }()
     
@@ -58,7 +69,6 @@ class PopUpViewController: UIViewController {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.backgroundColor = UIColor.gray
-        
         return lb
     }()
     
@@ -66,15 +76,32 @@ class PopUpViewController: UIViewController {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.backgroundColor = UIColor.gray
-        
         return lb
     }()
     
+}
+
+//MARK : set up function for buttons
+extension PopUpViewController {
+    func handleDetectLocationAutomatically(sender : UIButton) {
+        self.delegate?.getCurrentLocation(method: .automatically)
+        
+        
+    }
+    
+    func handleDetectLocationManually(sender : UIButton) {
+        self.delegate?.getCurrentLocation(method: .manually)
+    }
+}
+
+
+
+//MARK : set up constraints for this VC
+extension PopUpViewController {
     func setupUI() {
         _ = OpenSans.registerFonts()
         view.addSubview(inputLabel)
         view.addSubview(buttonContainer)
-       
         
         inputLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: -8).isActive = true
         inputLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
@@ -112,7 +139,5 @@ class PopUpViewController: UIViewController {
         manuallyButton.heightAnchor.constraint(equalTo: buttonContainer.heightAnchor, multiplier: 1/2).isActive = true
         manuallyButton.widthAnchor.constraint(equalTo: buttonContainer.widthAnchor).isActive = true
         
-        
     }
-
 }

@@ -9,27 +9,23 @@
 
 import UIKit
 import MapKit
+
 class MapCell: UITableViewCell {
     
-    @IBOutlet weak var mapView: MKMapView!
     
     var getAuthorized : Bool? {
         didSet {
             //mapView.showsUserLocation = getAuthorized!
         }
     }
-    let locationManager = CLLocationManager()
 
-    func configureMap() {
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        
-    }
+    
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +38,5 @@ class MapCell: UITableViewCell {
 
 
 extension MapCell : CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        getAuthorized = (status == .authorizedAlways)
-    }
+    
 }

@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Because for studying purpose</string>
+	<string>Request permission</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Request permission</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

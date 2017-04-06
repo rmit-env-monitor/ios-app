@@ -8,21 +8,36 @@
 
 import UIKit
 import MapKit
+
 class SmartDashBoardController: UIViewController {
     
-    var currentLocation : Location?
     
     @IBOutlet weak var tableView: UITableView!
     
-    var getAuthorized = false
+    
+    
+    var currentLocation : CLLocationCoordinate2D?
+
+    
+    let locationManager = LocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        locationManager.viewController = self
+        NotificationCenter.default.addObserver(self, selector: #selector(locationManager.requestLocationPermission), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
     }
     
+    
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        locationManager.requestLocationPermission()
+    }
+    
+
+    
     func setupUI() {
-        self.navigationItem.title = "Dashboard"
         let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
         self.navigationItem.rightBarButtonItem = logoutButton
         self.navigationItem.title = "Home"
@@ -31,11 +46,13 @@ class SmartDashBoardController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.backgroundColor = UIColor.gray
-        
     }
+    
+    
     
     func onLogout() {
         Client.logout()
+        Client.userDefaults.removeObject(forKey: "locatingMethod")
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -43,38 +60,13 @@ class SmartDashBoardController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    var itemHeights = (0..<12).map { _ in C.CellHeight.close }
-    
-    
 }
 
-fileprivate struct C {
-    struct CellHeight {
-        static let close: CGFloat = 108
-        static let open: CGFloat = 282
-    }
-}
-
-
-
-
-enum Section : Int {
-    case mapCell
-    case districtCell
-    
-    init?(indexPath : IndexPath) {
-        self.init(rawValue: indexPath.row)
-    }
-    
-    
-}
-
+//MARK : Setup table view
 extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as! MapCell
-            cell.getAuthorized = self.getAuthorized
             return cell
         }
         return UITableViewCell()

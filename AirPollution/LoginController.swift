@@ -13,6 +13,7 @@ import OpenSansSwift
 import TextFieldEffects
 import PKHUD
 import PopupDialog
+import MapKit
 
 class myTextField : YoshikoTextField {
     override func becomeFirstResponder() -> Bool {
@@ -28,19 +29,8 @@ class myTextField : YoshikoTextField {
 
 class LoginController: UIViewController {
     
-    /*lazy var appNameLabel : UILabel = {
-     let lb = UILabel()
-     lb.translatesAutoresizingMaskIntoConstraints = false
-     lb.text = "AIR POLLUTION"
-     lb.textAlignment = .center
-     
-     _ = OpenSans.registerFonts()
-     lb.font = UIFont.openSansBoldFontOfSize(45)
-     lb.textColor = UIColor.white
-     lb.attributedText = NSAttributedString(string: "AIR POLLUTION", attributes: [NSStrokeColorAttributeName: UIColor.black,
-     NSStrokeWidthAttributeName: -1])
-     return lb
-     }()*/
+    
+   
     
     lazy var nameTextField : myTextField = {
         let tf = myTextField()
@@ -114,18 +104,6 @@ class LoginController: UIViewController {
         return lb
     }()
     
-    /*lazy var registerBtn : UIButton = {
-     let btn = UIButton()
-     btn.translatesAutoresizingMaskIntoConstraints = false
-     btn.setTitle("Register", for: .normal)
-     btn.backgroundColor = UIColor.gray
-     btn.layer.cornerRadius = 20
-     btn.layer.masksToBounds = true
-     btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-     btn.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
-     return btn
-     }()*/
-    
     lazy var bgImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -134,8 +112,17 @@ class LoginController: UIViewController {
         return imageView
     }()
     
+    var popUpVC : PopUpViewController!
+    var smartDashBoardVC : SmartDashBoardController!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        popUpVC = storyboard.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
+        
+        smartDashBoardVC = storyboard.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
         setupUI()
     }
     
@@ -155,8 +142,6 @@ class LoginController: UIViewController {
                 self.pwTextField.resignFirstResponder()
             })
         }
-        
-        
     }
     
     func handleBackToLoginVC() {
@@ -181,8 +166,6 @@ class LoginController: UIViewController {
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
-        
-        
         present(vc, animated: false, completion: nil)
     }
     
@@ -194,8 +177,6 @@ class LoginController: UIViewController {
         self.dismiss(animated: false, completion: nil)
         
     }
-    
-    
     
     var isRegisterView : Bool = false {
         didSet {
@@ -224,74 +205,6 @@ class LoginController: UIViewController {
     
     let distanceFromRegisterLabelToBottomView : CGFloat = -5
     
-    func setupUI() {
-        _ = OpenSans.registerFonts()
-        //hint: add observer when keyboard appears to handle UI resizing
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        //hint: add tap recognizer to dismiss keyboard
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-        view.addSubview(bgImageView)
-        //view.addSubview(appNameLabel)
-        view.addSubview(nameTextField)
-        view.addSubview(pwTextField)
-        view.addSubview(loginBtn)
-        view.addSubview(registerLabel)
-        //view.addSubview(registerBtn)
-        
-        /*appNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-         appNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-         appNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-         appNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true*/
-        
-        registerLabelBottomAnchor = registerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
-        registerLabelBottomAnchor?.isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        
-        loginBtn.bottomAnchor.constraint(equalTo: registerLabel.topAnchor, constant: -10)
-            .isActive = true
-        loginBtn.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor).isActive = true
-        loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        
-        if isRegisterView {
-            view.addSubview(confirmTextField)
-            confirmTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10).isActive = true
-            confirmTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-            confirmTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        }
-        
-        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -80).isActive = true
-        pwTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        nameTextFieldBottomAnchor = nameTextField.bottomAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -10)
-        nameTextFieldBottomAnchor?.isActive = true
-        nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        
-        
-        
-        /*registerBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: 20).isActive = true
-         registerBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
-         registerBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-         registerBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true*/
-        
-        bgImageViewTopAnchor = bgImageView.topAnchor.constraint(equalTo: view.topAnchor)
-        bgImageViewTopAnchor?.isActive = true
-        bgImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        bgImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        bgImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
@@ -311,9 +224,6 @@ class LoginController: UIViewController {
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as! Float
         
         let resizingDistance = -(keyBoardHeight!) - 10
-        //        self.nameTextFieldBottomAnchor?.isActive = false
-        //        self.nameTextFieldBottomAnchor = self.nameTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 340 + resizingDistance)
-        //        self.nameTextFieldBottomAnchor?.isActive = true
         
         self.registerLabelBottomAnchor?.isActive = false
         self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
@@ -329,7 +239,6 @@ class LoginController: UIViewController {
     }
     
     func keyboardWillHide(notification : NSNotification) {
-        print("Keyboard did Hide")
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
         
         
@@ -360,11 +269,10 @@ class LoginController: UIViewController {
     
     func getToTabBarController() -> ESTabBarController {
         let tabBarController = ESTabBarController()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
         let v2 = UIViewController()
-        let smartDashBoardVC = storyboard.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
+        
         let v3 = UIViewController()
         let v4 = UIViewController()
         
@@ -419,15 +327,13 @@ class LoginController: UIViewController {
     lazy var popUpView : UIView =  {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        
         return v
     }()
-    
+
+    var popUp : PopupDialog!
     func openPopUpView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let popUpVC = storyboard.instantiateViewController(withIdentifier: "LoginPopUpVC")
-        let popUp = PopupDialog(viewController: popUpVC)
-        
+        popUpVC.delegate = self
+        popUp = PopupDialog(viewController: popUpVC)
         present(popUp, animated: true, completion: nil)
     }
     
@@ -449,7 +355,6 @@ class LoginController: UIViewController {
             if (isFinished) {
                 HUD.hide({ (finished) in
                     self.openPopUpView()
-//                    self.present(self.getToTabBarController(), animated: true, completion: nil)
                 })
                 
             }
@@ -461,5 +366,84 @@ class LoginController: UIViewController {
             }
         }
     }
+
+}
+
+
+//MARK : handle getting location of user
+extension LoginController : PopUpViewControllerDelegate, CLLocationManagerDelegate {
+    func getCurrentLocation(method: locationMethod) {
+        popUp.dismiss(animated: true, completion: { 
+            switch method {
+            case .manually:
+                Client.userDefaults.set("manually", forKey: "locationMethod")
+                break
+            case .automatically:
+                Client.userDefaults.set("automatically", forKey: "locationMethod")
+                break
+            }
+        })
+        present(getToTabBarController(), animated: true, completion: nil)
+    }
+    
+}
+
+
+
+//MARK : setup view constraints
+extension LoginController {
+    func setupUI() {
+        _ = OpenSans.registerFonts()
+        //hint: add observer when keyboard appears to handle UI resizing
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //hint: add tap recognizer to dismiss keyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        view.addSubview(bgImageView)
+        view.addSubview(nameTextField)
+        view.addSubview(pwTextField)
+        view.addSubview(loginBtn)
+        view.addSubview(registerLabel)
+        
+        registerLabelBottomAnchor = registerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        registerLabelBottomAnchor?.isActive = true
+        registerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        
+        loginBtn.bottomAnchor.constraint(equalTo: registerLabel.topAnchor, constant: -10)
+            .isActive = true
+        loginBtn.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor).isActive = true
+        loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        
+        if isRegisterView {
+            view.addSubview(confirmTextField)
+            confirmTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10).isActive = true
+            confirmTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+            confirmTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        }
+        
+        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -80).isActive = true
+        pwTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        nameTextFieldBottomAnchor = nameTextField.bottomAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -10)
+        nameTextFieldBottomAnchor?.isActive = true
+        nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        bgImageViewTopAnchor = bgImageView.topAnchor.constraint(equalTo: view.topAnchor)
+        bgImageViewTopAnchor?.isActive = true
+        bgImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        bgImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        bgImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    }
+
 }
 

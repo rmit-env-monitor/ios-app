@@ -21,6 +21,7 @@ class StatsViewController: UIViewController {
         setupUI()
         setupMap()
         print(stats)
+        
     }
     
     func setupMap() {
