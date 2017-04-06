@@ -34,20 +34,8 @@ class SmartDashBoardController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocationPermission()
-        }
-        else {
-            checkPermission()
-        }
+        requestAccess()
     }
-    
-    func showUserLocation(userLocation : CLLocationCoordinate2D!) {
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(userLocation, span)
-        
-    }
-    
     
     func checkPermission() {
         if locationManager.permissionStatus == .denied {
