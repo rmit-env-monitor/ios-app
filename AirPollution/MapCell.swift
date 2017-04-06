@@ -13,6 +13,8 @@ import MapKit
 class MapCell: UITableViewCell {
     
     
+    @IBOutlet weak var mapView: MKMapView!
+    
     var getAuthorized : Bool? {
         didSet {
             //mapView.showsUserLocation = getAuthorized!

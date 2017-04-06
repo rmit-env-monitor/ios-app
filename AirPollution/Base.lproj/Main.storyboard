@@ -80,6 +80,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="MKi-fC-HrK" secondAttribute="trailing" id="zBn-IN-vIx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mapView" destination="MKi-fC-HrK" id="fkJ-Lx-6Y1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

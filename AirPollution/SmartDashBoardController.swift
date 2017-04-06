@@ -14,29 +14,55 @@ class SmartDashBoardController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var currentLocation : CLLocationCoordinate2D? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
-    
-    var currentLocation : CLLocationCoordinate2D?
-
-    
-    let locationManager = LocationManager()
+    var locationManager : LocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        locationManager.viewController = self
-        NotificationCenter.default.addObserver(self, selector: #selector(locationManager.requestLocationPermission), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
+        locationManager = LocationManager(SmartDashBoardViewController: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestAccess), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
+    }
+    
+    func requestAccess() {
+        checkPermission()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocationPermission()
+        }
+        else {
+            checkPermission()
+        }
+    }
+    
+    func showUserLocation(userLocation : CLLocationCoordinate2D!) {
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegionMake(userLocation, span)
+        
     }
     
     
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        locationManager.requestLocationPermission()
+    func checkPermission() {
+        if locationManager.permissionStatus == .denied {
+            let alert = UIAlertController(title: "Need Authorization", message: "This feature is unusable if you don't authorize this app to use your location!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+                let url = URL(string: UIApplicationOpenSettingsURLString)!
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if locationManager.permissionStatus == .authorizedWhenInUse || locationManager.permissionStatus == .authorizedAlways {
+            locationManager.requestLocationPermission()
+        }
     }
-    
-
-    
     func setupUI() {
         let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
         self.navigationItem.rightBarButtonItem = logoutButton
@@ -67,6 +93,13 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as! MapCell
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+            if currentLocation != nil {
+                let region = MKCoordinateRegionMake(currentLocation!, span)
+                cell.mapView.setRegion(region, animated: true)
+                cell.mapView.showsUserLocation = true
+            }
+          
             return cell
         }
         return UITableViewCell()
