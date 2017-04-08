@@ -13,15 +13,19 @@ import OpenSansSwift
 class SmartDashBoardController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    static var currentLocation : CLLocationCoordinate2D? {
+    var currentAddress : Location?
+    
+    var currentLocation : CLLocationCoordinate2D? {
         didSet {
-//            print("\(SmartDashBoardController.currentLocation?.latitude)" , "\(SmartDashBoardController.currentLocation?.longitude)")
+            let latitude = "\((currentLocation?.latitude)!)"
+            let longitude = "\((currentLocation?.longitude)!)"
             
-            let latitude = "\((SmartDashBoardController.currentLocation?.latitude)!)"
-            let longitude = "\((SmartDashBoardController.currentLocation?.longitude)!)"
-
-            
-            Client.getAddressForLatLng(latitude: latitude, longitude: longitude)
+            Client.getAddressForLatLng(latitude: latitude, longitude: longitude) { (address) in
+                guard address != nil else {
+                    return
+                }
+                self.currentAddress = address
+            }
         }
     }
      

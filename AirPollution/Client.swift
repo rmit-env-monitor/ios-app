@@ -34,20 +34,20 @@ class Client {
     static let userDefaults = UserDefaults.standard
     
     //Get location based on Longtitude and Lantitude
-    static func getAddressForLatLng(latitude : String, longitude : String) {
+    static func getAddressForLatLng(latitude : String, longitude : String, completion : @escaping (_ currentLocation : Location?) -> ()) {
         let params = ["latlng" : latitude + "," + longitude, "key" : "\(geocodingAPIKey)"]
+        var location : Location?
         Alamofire.request(geocodingURL!, method : .get, parameters : params).responseJSON { (response) in
             if let jsonResponse = response.result.value as? [String : AnyObject] {
                 let jsonArray = jsonResponse["results"] as! [[String : AnyObject]]
-                if let address = jsonArray[0]["address_components"] as? [[String : AnyObject]] {
-                    let location = Location(dictionary: address)
-                    print("\n\(location.streetNumber) \(location.street), \(location.city), \(location.district)")
 
+                if let address = jsonArray[0]["address_components"] as? [[String : AnyObject]] {
+                    location = Location(dictionary: address)
                 }
-               
+                
             }
+            completion(location)
         }
-        
     }
     
     //Login
