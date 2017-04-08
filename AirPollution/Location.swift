@@ -29,6 +29,6 @@ class Location {
     
     func printAddress() {
         
-        print("\((self.streetNumber)!)")
+        print("\((self.district)!)")
     }
 }

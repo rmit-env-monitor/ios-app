@@ -26,6 +26,7 @@
 		E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DC1E6A7A440036B1ED /* Main.storyboard */; };
 		E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DF1E6A7A440036B1ED /* Assets.xcassets */; };
 		E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */; };
+		E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		E3B888E21E6A7A440036B1ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3B888E41E6A7A440036B1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C00F021E925AAF001D1305 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "../../../../Desktop/OpenSansSwift-master/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
+		E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */,
 				E37408B31E858DD400B92FB0 /* MapCell.swift */,
+				E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				E37408B41E858DD400B92FB0 /* MapCell.swift in Sources */,
 				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
+				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E30CBD711E977B59001CA8CE /* SuggestedLocationViewController.swift in Sources */,

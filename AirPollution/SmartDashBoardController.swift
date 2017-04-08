@@ -14,18 +14,23 @@ import GooglePlaces
 class SmartDashBoardController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var currentAddress : Location?
+    var currentAddress : Location? {
+        didSet {
+          self.tableView.reloadData()
+        }
+    }
     
     var currentLocation : CLLocationCoordinate2D? {
         didSet {
             let latitude = "\((currentLocation?.latitude)!)"
             let longitude = "\((currentLocation?.longitude)!)"
             
-            Client.getAddressForLatLng(latitude: latitude, longitude: longitude) { (address) in
+            Client.getAddressForLatLng(latitude: latitude, longitude: longitude) { (address, fullAddress) in
                 guard address != nil else {
                     return
                 }
                 self.currentAddress = address
+                self.currentAddress?.fullAddress = fullAddress
             }
         }
     }
@@ -41,16 +46,16 @@ class SmartDashBoardController: UIViewController {
         setupSearchBarUI()
         setupUI()
         locationManager = LocationManager(SmartDashBoardViewController: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(checkPermission), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkPermissionAndMethodLocation), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        checkPermission()
+        checkPermissionAndMethodLocation()
     }
     
-    func checkPermission() {
+    func checkPermissionAndMethodLocation() {
         let permissionStatus = locationManager.permissionStatus
         if permissionStatus == .denied {
             let alert = UIAlertController(title: "Need Authorization", message: "This feature is unusable if you don't authorize this app to use your location!", preferredStyle: .alert)
@@ -63,7 +68,11 @@ class SmartDashBoardController: UIViewController {
         }
         else if permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways {
             if Client.userDefaults.object(forKey: locationMethodKey) as? String == "\(locationMethod.manually)" {
-             
+                if currentAddress == nil {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.searchLocationController.searchBar.becomeFirstResponder()
+                    }
+                }
             }
             else {
                 locationManager.requestLocationPermission()
@@ -79,6 +88,7 @@ class SmartDashBoardController: UIViewController {
         
         searchLocationController.hidesNavigationBarDuringPresentation = false
         searchLocationController.searchBar.searchBarStyle = .minimal
+        searchLocationController.dimsBackgroundDuringPresentation = false
         let searchBarTextField = searchLocationController.searchBar.value(forKey: "searchField") as? UITextField
         searchBarTextField?.textColor = navigationBarTintColor
         searchBarTextField?.font = UIFont.openSansFontOfSize(16)
@@ -100,7 +110,7 @@ class SmartDashBoardController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        tableView.backgroundColor = UIColor.gray
+        tableView.backgroundColor = UIColor.white
     }
     
     func onLogout() {
@@ -122,9 +132,7 @@ extension SmartDashBoardController : GMSAutocompleteResultsViewControllerDelegat
         // Do something with the selected place.
         //print("Place name: \(place.name)")
         //print("Place address: \(place.formattedAddress)")
-        Client.getAddressForLatLng(latitude: "\(place.coordinate.latitude)", longitude: "\(place.coordinate.longitude)") { (location) in
-            location?.printAddress()
-        }
+        currentLocation = place.coordinate
         //print("Place attributions: \(place.attributions)")
         resultsController.dismiss(animated: true, completion: nil)
     }
@@ -149,10 +157,19 @@ extension SmartDashBoardController : GMSAutocompleteResultsViewControllerDelegat
 //MARK : Setup table view
 extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            //TODO : showing current location
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SmartDashboardCell") as! SmartDashBoardCell
+        if indexPath.section == 0 {
+            cell.districtLabel.text = "District X"
+            cell.aqhiLabel.text = "AQHI: 0"
         }
-        return UITableViewCell()
+        else if indexPath.section == 1 {
+            cell.districtLabel.text = "District Y"
+            cell.aqhiLabel.text = "AQHI: 0"
+        }
+        
+        return cell
+
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -160,16 +177,38 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.bounds.height
+        return 2
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section{
+            case 0:
+                return 1
+
+            case 1:
+                return 4
+            default : return 0
+        }
+
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            if currentAddress != nil {
+                return "\((self.currentAddress?.fullAddress)!)"
+            }
+            return "Cannot detect location yet!"
+        case 1:
+            return "Districts Nearby"
+        default: return "None"
+        }
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
 }
 

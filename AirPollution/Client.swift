@@ -16,19 +16,24 @@ class Client {
     static let userDefaults = UserDefaults.standard
     
     //Get location based on Longtitude and Lantitude
-    static func getAddressForLatLng(latitude : String, longitude : String, completion : @escaping (_ currentLocation : Location?) -> ()) {
+    static func getAddressForLatLng(latitude : String, longitude : String, completion : @escaping (_ currentLocation : Location?, _ fullAddress : String?) -> ()) {
         let params = ["latlng" : latitude + "," + longitude, "key" : "\(geocodingAPIKey)"]
         var location : Location?
+        var fullAddress : String?
         Alamofire.request(geocodingURL!, method : .get, parameters : params).responseJSON { (response) in
             if let jsonResponse = response.result.value as? [String : AnyObject] {
                 let jsonArray = jsonResponse["results"] as! [[String : AnyObject]]
-
+                
                 if let address = jsonArray[0]["address_components"] as? [[String : AnyObject]] {
                     location = Location(dictionary: address)
                 }
                 
+                if let completeAddress = jsonArray[2]["formatted_address"] as? String {
+                    fullAddress = completeAddress
+                }
+                
             }
-            completion(location)
+            completion(location,fullAddress)
         }
     }
     

@@ -46,8 +46,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         if Client.userDefaults.string(forKey: "locationMethod")! == "automatically" {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             self.currentLocation = locValue
-            self.viewController?.currentLocation = locValue
-//            print("locations = \(self.viewController?.currentLocation?.latitude) \(self.viewController?.currentLocation?.longitude)")
+           self.viewController?.currentLocation = locValue
         }
     }
 }
