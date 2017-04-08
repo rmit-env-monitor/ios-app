@@ -42,13 +42,12 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
         if Client.userDefaults.string(forKey: "locationMethod")! == "automatically" {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             self.currentLocation = locValue
-            
-            self.viewController?.currentLocation = locValue
+            SmartDashBoardController.currentLocation = locValue
 //            print("locations = \(self.viewController?.currentLocation?.latitude) \(self.viewController?.currentLocation?.longitude)")
-            locationManager.stopUpdatingLocation()
         }
     }
 }

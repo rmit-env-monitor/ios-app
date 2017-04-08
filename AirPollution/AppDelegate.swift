@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         let appearance = UINavigationBar.appearance()
-        appearance.tintColor = UIColor.init(r: 201, g: 251, b: 82)
+        appearance.tintColor = navigationBarTintColor
         appearance.barTintColor = UIColor.black
         _ = OpenSans.registerFonts()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]

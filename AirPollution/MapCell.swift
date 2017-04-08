@@ -12,18 +12,6 @@ import MapKit
 
 class MapCell: UITableViewCell {
     
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    var getAuthorized : Bool? {
-        didSet {
-            //mapView.showsUserLocation = getAuthorized!
-        }
-    }
-
-    
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -38,7 +26,7 @@ class MapCell: UITableViewCell {
     
 }
 
-
-extension MapCell : CLLocationManagerDelegate {
+extension MapCell : MKMapViewDelegate {
+    
     
 }

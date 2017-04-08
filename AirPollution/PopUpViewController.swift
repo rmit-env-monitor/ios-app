@@ -62,6 +62,7 @@ class PopUpViewController: UIViewController {
         btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.setTitleColor(UIColor.black, for: .highlighted)
+        btn.addTarget(self, action: #selector(handleDetectLocationManually), for: .touchUpInside)
         return btn
     }()
     

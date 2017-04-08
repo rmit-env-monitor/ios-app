@@ -8,12 +8,17 @@
 
 import Foundation
 
-class Location : NSObject {
-    var longitude : Float?
-    var latitude : Float?
+class Location {
+
+    var streetNumber : String?
+    var city : String?
+    var street : String?
+    var district : String?
     
-    init(longitude : Float, latitude : Float) {
-        self.longitude = longitude
-        self.latitude = latitude
+    init(dictionary : [[String : AnyObject]]) {
+        self.streetNumber = dictionary[0]["long_name"] as? String
+        self.street = dictionary[1]["long_name"] as? String
+        self.city = dictionary[3]["long_name"] as? String
+        self.district = dictionary[4]["long_name"] as? String
     }
 }

@@ -61,30 +61,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="455" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qu1-kp-EIu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapCell" rowHeight="455" id="Ilf-OR-mfB" customClass="MapCell" customModule="AirPollution" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="455"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ilf-OR-mfB" id="giM-7P-4cn">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MKi-fC-HrK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                                </mapView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="MKi-fC-HrK" firstAttribute="top" secondItem="giM-7P-4cn" secondAttribute="top" id="ELR-BQ-fz3"/>
-                                                <constraint firstAttribute="bottom" secondItem="MKi-fC-HrK" secondAttribute="bottom" id="SGg-Ht-GIz"/>
-                                                <constraint firstItem="MKi-fC-HrK" firstAttribute="leading" secondItem="giM-7P-4cn" secondAttribute="leading" id="vhV-HC-98O"/>
-                                                <constraint firstAttribute="trailing" secondItem="MKi-fC-HrK" secondAttribute="trailing" id="zBn-IN-vIx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="mapView" destination="MKi-fC-HrK" id="fkJ-Lx-6Y1"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,6 +98,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUR-JP-g1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5418.75" y="-698.75"/>
+        </scene>
+        <!--Suggested Location View Controller-->
+        <scene sceneID="qRa-OH-zZb">
+            <objects>
+                <tableViewController storyboardIdentifier="SuggestedLocationViewController" id="xaC-eH-28r" customClass="SuggestedLocationViewController" customModule="AirPollution" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="28" sectionFooterHeight="28" id="a9R-8y-gfP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestedLocationCell" textLabel="jlP-UG-rUU" detailTextLabel="Bk6-XH-qrn" rowHeight="69" style="IBUITableViewCellStyleSubtitle" id="VnU-95-Nuk">
+                                <rect key="frame" x="0.0" y="28" width="320" height="69"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VnU-95-Nuk" id="BqF-zO-7Em">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="68.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jlP-UG-rUU">
+                                            <rect key="frame" x="15" y="17" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bk6-XH-qrn">
+                                            <rect key="frame" x="15" y="37.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xaC-eH-28r" id="cu6-7D-KDf"/>
+                            <outlet property="delegate" destination="xaC-eH-28r" id="PiF-7Z-Tnj"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTX-XS-q2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6170.625" y="-50"/>
         </scene>
     </scenes>
 </document>

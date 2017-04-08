@@ -13,6 +13,8 @@ let baseURL = URL(string: "https://evn-monitor.herokuapp.com")
 let loginURL = URL(string: "\(baseURL!)/auth")
 let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
 let registerURL = URL(string: "\(baseURL!)/users")
+let geocodingURL = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?")
+let geocodingAPIKey = "AIzaSyBddDGxR0o_xgI-TbNSxH0I5-0VIX3Mwyw"
 
 public enum HTTPMethod: String {
     case options = "OPTIONS"
@@ -26,9 +28,27 @@ public enum HTTPMethod: String {
     case connect = "CONNECT"
 }
 
+
 class Client {
     static var currentUser : User?
     static let userDefaults = UserDefaults.standard
+    
+    //Get location based on Longtitude and Lantitude
+    static func getAddressForLatLng(latitude : String, longitude : String) {
+        let params = ["latlng" : latitude + "," + longitude, "key" : "\(geocodingAPIKey)"]
+        Alamofire.request(geocodingURL!, method : .get, parameters : params).responseJSON { (response) in
+            if let jsonResponse = response.result.value as? [String : AnyObject] {
+                let jsonArray = jsonResponse["results"] as! [[String : AnyObject]]
+                if let address = jsonArray[0]["address_components"] as? [[String : AnyObject]] {
+                    let location = Location(dictionary: address)
+                    print("\n\(location.streetNumber) \(location.street), \(location.city), \(location.district)")
+
+                }
+               
+            }
+        }
+        
+    }
     
     //Login
     static func login(_ params : [String : AnyObject], completion : @escaping (Bool)->()) {
@@ -50,7 +70,7 @@ class Client {
                         }
                         
                         
-                        
+
                     }
                     
                 default:

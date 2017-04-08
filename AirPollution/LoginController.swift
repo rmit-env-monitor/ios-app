@@ -119,10 +119,8 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        popUpVC = storyboard.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
-        
-        smartDashBoardVC = storyboard.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
+        popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
+        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
         setupUI()
     }
     
@@ -272,7 +270,6 @@ class LoginController: UIViewController {
         
         
         let v2 = UIViewController()
-        
         let v3 = UIViewController()
         let v4 = UIViewController()
         
@@ -318,7 +315,6 @@ class LoginController: UIViewController {
                     
                 }
                 self.present(alertController, animated: true, completion: nil)
-                
             })
         }
     }
@@ -356,7 +352,6 @@ class LoginController: UIViewController {
                 HUD.hide({ (finished) in
                     self.openPopUpView()
                 })
-                
             }
             else {
                 HUD.hide({ (finished) in
@@ -371,15 +366,15 @@ class LoginController: UIViewController {
 
 
 //MARK : handle getting location of user
-extension LoginController : PopUpViewControllerDelegate, CLLocationManagerDelegate {
+extension LoginController : PopUpViewControllerDelegate {
     func getCurrentLocation(method: locationMethod) {
         popUp.dismiss(animated: true, completion: { 
             switch method {
             case .manually:
-                Client.userDefaults.set("manually", forKey: "locationMethod")
+                Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
                 break
             case .automatically:
-                Client.userDefaults.set("automatically", forKey: "locationMethod")
+                Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
                 break
             }
         })
