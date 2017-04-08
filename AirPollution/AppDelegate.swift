@@ -8,6 +8,9 @@
 
 import UIKit
 import OpenSansSwift
+import GooglePlaces
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.barTintColor = UIColor.black
         _ = OpenSans.registerFonts()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]
+        
+        GMSPlacesClient.provideAPIKey(geocodingAPIKey)
         return true
     }
 

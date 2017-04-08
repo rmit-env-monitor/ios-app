@@ -16,6 +16,7 @@ class Location {
     var district : String?
     var ward : String?
     var country : String?
+    var fullAddress : String?
     
     init(dictionary : [[String : AnyObject]]) {
         self.streetNumber = dictionary[0]["long_name"] as? String
@@ -24,5 +25,10 @@ class Location {
         self.city = dictionary[3]["long_name"] as? String
         self.district = dictionary[4]["long_name"] as? String
         self.country = dictionary[5]["long_name"] as? String
+    }
+    
+    func printAddress() {
+        
+        print("\((self.streetNumber)!)")
     }
 }

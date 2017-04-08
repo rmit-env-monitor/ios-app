@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import OpenSansSwift
+import GooglePlaces
 
 class SmartDashBoardController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -28,16 +29,16 @@ class SmartDashBoardController: UIViewController {
             }
         }
     }
-     
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchLocationController : UISearchController!
     
     var locationManager : LocationManager!
     var suggestedLocationVC : SuggestedLocationViewController?
-    var searchLocationController : UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupSearchBarUI()
-       
+        setupSearchBarUI()
         setupUI()
         locationManager = LocationManager(SmartDashBoardViewController: self)
         NotificationCenter.default.addObserver(self, selector: #selector(checkPermission), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
@@ -71,14 +72,13 @@ class SmartDashBoardController: UIViewController {
     }
     
     func setupSearchBarUI() {
-        suggestedLocationVC = storyboard?.instantiateViewController(withIdentifier: "SuggestedLocationViewController") as? SuggestedLocationViewController
-        searchLocationController = UISearchController(searchResultsController: suggestedLocationVC)
-        searchLocationController.hidesNavigationBarDuringPresentation = false
-        searchLocationController.delegate = self
-        searchLocationController.searchResultsUpdater = suggestedLocationVC
-        searchLocationController.searchBar.delegate = self
-        searchLocationController.searchBar.searchBarStyle = .minimal
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        searchLocationController = UISearchController(searchResultsController: resultsViewController)
+        searchLocationController.searchResultsUpdater = resultsViewController
         
+        searchLocationController.hidesNavigationBarDuringPresentation = false
+        searchLocationController.searchBar.searchBarStyle = .minimal
         let searchBarTextField = searchLocationController.searchBar.value(forKey: "searchField") as? UITextField
         searchBarTextField?.textColor = navigationBarTintColor
         searchBarTextField?.font = UIFont.openSansFontOfSize(16)
@@ -115,9 +115,35 @@ class SmartDashBoardController: UIViewController {
     }
 }
 
-//MARK : Setup search bar
-extension SmartDashBoardController : UISearchBarDelegate,UISearchControllerDelegate {
-
+//MARK : Setup Autocomplete TableView DataSource
+extension SmartDashBoardController : GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        // Do something with the selected place.
+        //print("Place name: \(place.name)")
+        //print("Place address: \(place.formattedAddress)")
+        Client.getAddressForLatLng(latitude: "\(place.coordinate.latitude)", longitude: "\(place.coordinate.longitude)") { (location) in
+            location?.printAddress()
+        }
+        //print("Place attributions: \(place.attributions)")
+        resultsController.dismiss(animated: true, completion: nil)
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }
 
 //MARK : Setup table view
