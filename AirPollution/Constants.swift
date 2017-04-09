@@ -12,6 +12,7 @@ import UIKit
 //String Constants
 let backFromSetting = "backFromSetting"
 let locationMethodKey = "locationMethod"
+let currentAddressKey = "currentAddress"
 
 //Color Constants (the green one)
 let navigationBarTintColor = UIColor.init(r: 201, g: 251, b: 82)

@@ -113,17 +113,24 @@ class LoginController: UIViewController {
     }()
     
     var popUpVC : PopUpViewController!
-    var smartDashBoardVC : SmartDashBoardController!
+    var smartDashBoardVC : SmartDashBoardController?
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        esTabBarController = ESTabBarController()
         popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
-        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
+        
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as? SmartDashBoardController
+        esTabBarController = ESTabBarController()
+
+    }
+    
     
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
@@ -237,8 +244,7 @@ class LoginController: UIViewController {
     
     func keyboardWillHide(notification : NSNotification) {
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
-        
-        
+    
         self.registerLabelBottomAnchor?.isActive = false
         self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
@@ -265,7 +271,6 @@ class LoginController: UIViewController {
     }
     
     func getToTabBarController() -> ESTabBarController {
-    
         let v2 = UIViewController()
         let v3 = UIViewController()
         let v4 = UIViewController()
@@ -274,7 +279,7 @@ class LoginController: UIViewController {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
         }
-        let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC)
+        let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC!)
         
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
         v2.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
@@ -283,9 +288,13 @@ class LoginController: UIViewController {
         
         esTabBarController?.viewControllers = [smartDashBoardNC,v2,v3,v4]
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         return esTabBarController!
     }
-
+    
+    func handleTabBarControllerWhenLoggedOut() {
+        self.esTabBarController = nil
+    }
     
     //Register event
     func handleRegister() {

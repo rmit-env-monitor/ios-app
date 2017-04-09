@@ -16,7 +16,8 @@ class SmartDashBoardController: UIViewController {
     
     var currentAddress : Location? {
         didSet {
-          self.tableView.reloadData()
+            self.tableView.reloadData()
+            self.tableView.alpha = 1
         }
     }
     
@@ -24,11 +25,13 @@ class SmartDashBoardController: UIViewController {
         didSet {
             let latitude = "\((currentLocation?.latitude)!)"
             let longitude = "\((currentLocation?.longitude)!)"
-            
+            let locationDictionary = ["latitude" : (currentLocation?.latitude)!, "longitude" : (currentLocation?.longitude)!]
+            Client.userDefaults.set(locationDictionary, forKey: currentAddressKey)
             Client.getAddressForLatLng(latitude: latitude, longitude: longitude) { (address, fullAddress) in
                 guard address != nil else {
                     return
                 }
+                
                 self.currentAddress = address
                 self.currentAddress?.fullAddress = fullAddress
             }
@@ -43,8 +46,10 @@ class SmartDashBoardController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupSearchBarUI()
         setupUI()
+        
         locationManager = LocationManager(SmartDashBoardViewController: self)
         NotificationCenter.default.addObserver(self, selector: #selector(checkPermissionAndMethodLocation), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
     }
@@ -68,12 +73,12 @@ class SmartDashBoardController: UIViewController {
         }
         else if permissionStatus == .notDetermined {
             locationManager.requestLocationPermission()
-            print("Not DeterMind")
+            print("Not DeterMined")
         }
         else if permissionStatus == .restricted {
-            print("Restricted")
+            print("Restricted, You can do nothing :((")
         }
-        else if permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways {
+        else if (permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways) && self.currentAddress == nil {
             if Client.userDefaults.object(forKey: locationMethodKey) as? String == "\(locationMethod.manually)" {
                 if currentAddress == nil {
                     DispatchQueue.main.async { [weak self] in
@@ -111,8 +116,14 @@ class SmartDashBoardController: UIViewController {
         _ = OpenSans.registerFonts()
         let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
         self.navigationItem.rightBarButtonItem = logoutButton
-        
         self.navigationItem.title = "Current Location"
+        
+        if let cacheCurrentLocation = Client.userDefaults.object(forKey: currentAddressKey) as? [String : CLLocationDegrees] {
+            self.currentLocation = CLLocationCoordinate2DMake(cacheCurrentLocation["latitude"]! , cacheCurrentLocation["longitude"]!)
+        }
+        else {
+            tableView.alpha = 0
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -124,7 +135,9 @@ class SmartDashBoardController: UIViewController {
     func onLogout() {
         Client.logout()
         Client.userDefaults.removeObject(forKey: locationMethodKey)
+        Client.userDefaults.removeObject(forKey: currentAddressKey)
         self.currentAddress = nil
+        NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -143,6 +156,7 @@ extension SmartDashBoardController : GMSAutocompleteResultsViewControllerDelegat
         //print("Place address: \(place.formattedAddress)")
         currentLocation = place.coordinate
         //print("Place attributions: \(place.attributions)")
+        searchLocationController.searchBar.text = nil
         resultsController.dismiss(animated: true, completion: nil)
     }
     
@@ -177,7 +191,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
         }
         cell.sensorIdLabel.text = "ID: \(indexPath.row)"
         return cell
-
+        
         
     }
     
@@ -192,14 +206,14 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-            case 0:
-                return 1
-
-            case 1:
-                return 4
-            default : return 0
+        case 0:
+            return 1
+            
+        case 1:
+            return 4
+        default : return 0
         }
-
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -213,7 +227,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
             return "Districts Nearby"
         default: return "None"
         }
-
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

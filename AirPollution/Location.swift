@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Location {
+class Location : NSObject {
  
     var streetNumber : String?
     var city : String?
