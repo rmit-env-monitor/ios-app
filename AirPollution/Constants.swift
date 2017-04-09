@@ -25,7 +25,8 @@ let baseURL = URL(string: "https://evn-monitor.herokuapp.com")
 let loginURL = URL(string: "\(baseURL!)/auth")
 let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
 let registerURL = URL(string: "\(baseURL!)/users")
-let nearbyDistrictsURL = URL(string: "\(baseURL!)/api/web/nearby")
+let nearbyDistrictsURL = URL(string: "\(baseURL!)/api/mobile/v1/nearby")
+let sensorsByDistrict = URL(string: "\(baseURL!)/api/mobile/v1/devices")
 
 //Map constant
 let geocodingURL = URL(string: "https://maps.googleapis.com/maps/api/geocode/json?")

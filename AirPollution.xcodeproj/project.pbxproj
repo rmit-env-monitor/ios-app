@@ -21,6 +21,8 @@
 		E37CAC181E9644CB00408733 /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3C00F081E925AAF001D1305 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E37CAC1D1E96973800408733 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1C1E96973800408733 /* Constants.swift */; };
 		E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1E1E9697CA00408733 /* LocationManager.swift */; };
+		E3A07F901E9AA7A600C9BF88 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A07F8F1E9AA7A600C9BF88 /* DetailViewController.swift */; };
+		E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */; };
 		E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888D81E6A7A440036B1ED /* AppDelegate.swift */; };
 		E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888DA1E6A7A440036B1ED /* LoginController.swift */; };
 		E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DC1E6A7A440036B1ED /* Main.storyboard */; };
@@ -90,6 +92,8 @@
 		E37408B31E858DD400B92FB0 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		E37CAC1C1E96973800408733 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E37CAC1E1E9697CA00408733 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E3A07F8F1E9AA7A600C9BF88 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 		E3B888D51E6A7A440036B1ED /* AirPollution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPollution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B888D81E6A7A440036B1ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B888DA1E6A7A440036B1ED /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
 				E34C45931E70119F0002BDE9 /* StatsViewController.swift */,
 				E33959641E9299DD000F5145 /* PopUpViewController.swift */,
+				E3A07F8F1E9AA7A600C9BF88 /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */,
 				E37408B31E858DD400B92FB0 /* MapCell.swift */,
 				E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */,
+				E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -374,6 +380,8 @@
 				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
+				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
+				E3A07F901E9AA7A600C9BF88 /* DetailViewController.swift in Sources */,
 				E30CBD711E977B59001CA8CE /* SuggestedLocationViewController.swift in Sources */,
 				E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,

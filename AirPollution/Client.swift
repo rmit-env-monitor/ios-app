@@ -19,21 +19,30 @@ class Client {
     static func getAddressForLatLng(latitude : String, longitude : String, completion : @escaping (_ currentLocation : Location?, _ fullAddress : String?) -> ()) {
         let params = ["latlng" : latitude + "," + longitude, "key" : "\(geocodingAPIKey)"]
         var location : Location?
-        var fullAddress : String?
+        var address : String?
         Alamofire.request(geocodingURL!, method : .get, parameters : params).responseJSON { (response) in
             if let jsonResponse = response.result.value as? [String : AnyObject] {
-                let jsonArray = jsonResponse["results"] as! [[String : AnyObject]]
-                
-                if let address = jsonArray[0]["address_components"] as? [[String : AnyObject]] {
-                    location = Location(dictionary: address)
+            
+                if let jsonArray = jsonResponse["results"] as? [[String : AnyObject]] {
+                    var fullAddress = jsonArray[0]["formatted_address"] as! String
+                    
+                    var addressComponents = fullAddress.components(separatedBy: ", ")
+                    let ward = addressComponents[1]
+                    let district = addressComponents[2]
+                    let city = addressComponents[3]
+                    let locationComponents = [ "ward" : ward,
+                                               "district" : district ,
+                                               "city" : city
+                    ]
+                    
+                    location = Location(dictionary: locationComponents)
+                    address = "\(ward), \(district), \(city)"
                 }
                 
-                if let completeAddress = jsonArray[2]["formatted_address"] as? String {
-                    fullAddress = completeAddress
-                }
+            
                 
             }
-            completion(location,fullAddress)
+            completion(location,address)
         }
     }
     
@@ -45,11 +54,10 @@ class Client {
                 case 200:
                     //print("Login Successfully")
                     if let result = response.result.value {
-                        let JSON = result as! [String : AnyObject]
-                        print(JSON)
-                        if JSON["message"] == nil {
-                            Client.currentUser = User(dictionary: JSON)
-                            userDefaults.set(JSON, forKey: "CurrentUser")
+                        let jsonResponse = result as! [String : AnyObject]
+                        if jsonResponse["message"] == nil {
+                            Client.currentUser = User(dictionary: jsonResponse)
+                            userDefaults.set(jsonResponse, forKey: "CurrentUser")
                             completion(true)
                         }
                         else {
@@ -81,8 +89,8 @@ class Client {
         ]
         Alamofire.request(fetchDataURL!, method: .get, headers: header).responseJSON { (response) in
             if let result = response.result.value {
-                let JSON = result as! [[String : AnyObject]]
-                completion(JSON)
+                let jsonResponse = result as! [[String : AnyObject]]
+                completion(jsonResponse)
             }
         }
     }
@@ -95,8 +103,8 @@ class Client {
                 case 200:
                     print("Register Successfully")
                     if let result = response.result.value {
-                        let JSON = result as! [String : AnyObject]
-                        if JSON.count == 1 {
+                        let jsonResponse = result as! [String : AnyObject]
+                        if jsonResponse.count == 1 {
                             completion(false)
                         }
                         else {
@@ -104,19 +112,64 @@ class Client {
                         }
                     }
                 default:
-                    print("error with response status : ", status)
+                    print("register error with response status : ", status)
                     completion(false)
                 }
             }
         }
     }
     
-    
     //Get nearby districts
-    
-    
+    static func getNearbyDistricts(_ district : String, _ city : String, _ completion : @escaping ([String]?) -> ()) {
+        let header : HTTPHeaders = [
+            "Authorization" : "Bearer \(Client.currentUser!.token!)"
+        ]
+        let params = ["city" : city, "district" : district]
+        
+        var districtsArray = [String]()
+        Alamofire.request(nearbyDistrictsURL!, method: .get, parameters: params, headers: header).responseJSON { (response) in
+            if let status = response.response?.statusCode {
+                switch status {
+                case 200:
+                    if let jsonResponse = response.result.value as? [String : AnyObject] {
+                        if !jsonResponse.isEmpty {
+                            districtsArray = jsonResponse["nearby"] as! [String]
+                            completion(districtsArray)
+                        }
+                    }
+                default:
+                    print("get nearby districts error with response status : ", status)
+                    completion(nil)
+                    
+                }
+              
+            }
+        }
+    }
     
     //Get all sensors based on districts
+    static func getSensorsByDistricts(_ district : String, _ city : String, _ completion : @escaping ([String]?) -> ()) {
+        let header : HTTPHeaders = [
+            "Authorization" : "Bearer \(Client.currentUser!.token!)"
+        ]
+        let params = ["city" : city, "district" : district]
+        //let censorsId = [String]()
+        
+        Alamofire.request(sensorsByDistrict!, method: .get, parameters: params, headers: header).responseJSON { (response) in
+            if let status = response.response?.statusCode {
+                switch status {
+                case 200: break
+//                    if let result = response.result.value {
+//                        //let JSON = result as! [String : AnyObject]
+//                        //waiting to config next
+//                    }
+                default:
+                    print("get nearby districts error with response status : ", status)
+                }
+            }
+        }
+    }
+    
     
     
     

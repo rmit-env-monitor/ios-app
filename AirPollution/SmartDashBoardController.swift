@@ -16,10 +16,22 @@ class SmartDashBoardController: UIViewController {
     
     var currentAddress : Location? {
         didSet {
-            self.tableView.reloadData()
-            self.tableView.alpha = 1
+            
+            let city : String! = currentAddress?.city
+            let district : String! = currentAddress?.district
+            weak var selfRefer = self
+            Client.getNearbyDistricts(district, city) { (response) in
+                if let arrayString = response {
+                    selfRefer?.nearbyDistricts = !arrayString.isEmpty ? arrayString : [String]()
+                    selfRefer?.tableView.reloadData()
+                    selfRefer?.tableView.alpha = 1
+                }
+            }
+            
         }
     }
+    
+    var nearbyDistricts = [String]()
     
     var currentLocation : CLLocationCoordinate2D? {
         didSet {
@@ -31,9 +43,8 @@ class SmartDashBoardController: UIViewController {
                 guard address != nil else {
                     return
                 }
-                
+                print(fullAddress!)
                 self.currentAddress = address
-                self.currentAddress?.fullAddress = fullAddress
             }
         }
     }
@@ -43,6 +54,7 @@ class SmartDashBoardController: UIViewController {
     
     var locationManager : LocationManager!
     var suggestedLocationVC : SuggestedLocationViewController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +99,6 @@ class SmartDashBoardController: UIViewController {
                 }
             }
             else {
-                print("Its fucking automatic")
                 locationManager.requestLocationPermission()
             }
         }
@@ -136,7 +147,6 @@ class SmartDashBoardController: UIViewController {
         Client.logout()
         Client.userDefaults.removeObject(forKey: locationMethodKey)
         Client.userDefaults.removeObject(forKey: currentAddressKey)
-        self.currentAddress = nil
         NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
@@ -182,11 +192,14 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SmartDashboardCell") as! SmartDashBoardCell
         if indexPath.section == 0 {
-            cell.districtLabel.text = "District X"
-            cell.aqhiLabel.text = "AQHI: 0"
+            if currentAddress != nil {
+                cell.districtLabel.text = "\((self.currentAddress!.district)!)"
+                cell.aqhiLabel.text = "AQHI: 0"
+            }
+          
         }
         else if indexPath.section == 1 {
-            cell.districtLabel.text = "District Y"
+            cell.districtLabel.text = "\(self.nearbyDistricts[indexPath.row])"
             cell.aqhiLabel.text = "AQHI: 0"
         }
         cell.sensorIdLabel.text = "ID: \(indexPath.row)"
@@ -210,7 +223,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
             return 1
             
         case 1:
-            return 4
+            return nearbyDistricts.count
         default : return 0
         }
         

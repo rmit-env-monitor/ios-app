@@ -10,21 +10,19 @@ import Foundation
 
 class Location : NSObject {
  
-    var streetNumber : String?
     var city : String?
-    var street : String?
+
     var district : String?
     var ward : String?
-    var country : String?
+    //var country : Strig!
     var fullAddress : String?
     
-    init(dictionary : [[String : AnyObject]]) {
-        self.streetNumber = dictionary[0]["long_name"] as? String
-        self.street = dictionary[1]["long_name"] as? String
-        self.ward = dictionary[2]["long_name"] as? String
-        self.city = dictionary[3]["long_name"] as? String
-        self.district = dictionary[4]["long_name"] as? String
-        self.country = dictionary[5]["long_name"] as? String
+    init(dictionary : [String : String]) {
+      
+        self.ward = dictionary["ward"]
+        self.city = dictionary["city"]
+        self.district = dictionary["district"]!
+        self.fullAddress = "\(self.ward!), \(self.district!), \(self.city!)"
     }
     
     func printAddress() {

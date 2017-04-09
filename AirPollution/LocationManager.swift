@@ -29,7 +29,6 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         super.init()
     }
     
-    
     convenience init(SmartDashBoardViewController : SmartDashBoardController) {
         self.init()
         locationManager.delegate = self
@@ -46,7 +45,9 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         if Client.userDefaults.string(forKey: "locationMethod")! == "automatically" {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             self.currentLocation = locValue
-           self.viewController?.currentLocation = locValue
+            self.viewController?.currentLocation = locValue
+            print(locValue.latitude)
+            print(locValue.longitude)
         }
     }
 }
