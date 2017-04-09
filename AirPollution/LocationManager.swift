@@ -16,6 +16,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     var viewController : SmartDashBoardController?
     
     func requestLocationPermission() {
+        print("IM FUCKING HERE")
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -26,7 +27,6 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        
     }
     
     

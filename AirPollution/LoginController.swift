@@ -28,9 +28,9 @@ class myTextField : YoshikoTextField {
 }
 
 class LoginController: UIViewController {
-    
-    
-   
+
+    var esTabBarController : ESTabBarController?
+  
     
     lazy var nameTextField : myTextField = {
         let tf = myTextField()
@@ -119,6 +119,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        esTabBarController = ESTabBarController()
         popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
         smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as! SmartDashBoardController
         setupUI()
@@ -173,7 +174,6 @@ class LoginController: UIViewController {
         transition.type = kCATransitionReveal
         view.window!.layer.add(transition, forKey: kCATransition)
         self.dismiss(animated: false, completion: nil)
-        
     }
     
     var isRegisterView : Bool = false {
@@ -217,7 +217,6 @@ class LoginController: UIViewController {
     }
     
     func keyboardWillShow(notification : NSNotification) {
-        print("Keyboard did show")
         let keyBoardHeight = getInfoOfKeyBoard(notification: notification)["height"] as? CGFloat
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as! Float
         
@@ -266,30 +265,27 @@ class LoginController: UIViewController {
     }
     
     func getToTabBarController() -> ESTabBarController {
-        let tabBarController = ESTabBarController()
-        
-        
+    
         let v2 = UIViewController()
         let v3 = UIViewController()
         let v4 = UIViewController()
         
-        if let tabBar = tabBarController.tabBar as? ESTabBar {
+        if let tabBar = esTabBarController?.tabBar as? ESTabBar {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
         }
         let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC)
         
-        
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
-        
         v2.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
-        
         v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Routing", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        tabBarController.viewControllers = [smartDashBoardNC,v2,v3,v4]
-        return tabBarController
+        esTabBarController?.viewControllers = [smartDashBoardNC,v2,v3,v4]
+        
+        return esTabBarController!
     }
+
     
     //Register event
     func handleRegister() {

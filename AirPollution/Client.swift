@@ -112,7 +112,11 @@ class Client {
     }
     
     
+    //Get nearby districts
     
+    
+    
+    //Get all sensors based on districts
     
     
     

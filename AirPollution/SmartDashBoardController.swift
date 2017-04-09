@@ -66,6 +66,13 @@ class SmartDashBoardController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
+        else if permissionStatus == .notDetermined {
+            locationManager.requestLocationPermission()
+            print("Not DeterMind")
+        }
+        else if permissionStatus == .restricted {
+            print("Restricted")
+        }
         else if permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways {
             if Client.userDefaults.object(forKey: locationMethodKey) as? String == "\(locationMethod.manually)" {
                 if currentAddress == nil {
@@ -75,6 +82,7 @@ class SmartDashBoardController: UIViewController {
                 }
             }
             else {
+                print("Its fucking automatic")
                 locationManager.requestLocationPermission()
             }
         }
@@ -116,6 +124,7 @@ class SmartDashBoardController: UIViewController {
     func onLogout() {
         Client.logout()
         Client.userDefaults.removeObject(forKey: locationMethodKey)
+        self.currentAddress = nil
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -166,7 +175,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
             cell.districtLabel.text = "District Y"
             cell.aqhiLabel.text = "AQHI: 0"
         }
-        
+        cell.sensorIdLabel.text = "ID: \(indexPath.row)"
         return cell
 
         

@@ -13,6 +13,7 @@ class SmartDashBoardCell: UITableViewCell {
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var aqhiLabel: UILabel!
     
+    @IBOutlet weak var sensorIdLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
