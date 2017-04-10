@@ -63,9 +63,6 @@ class Client {
                         else {
                             completion(false)
                         }
-                        
-                        
-
                     }
                     
                 default:
@@ -135,36 +132,41 @@ class Client {
                         if !jsonResponse.isEmpty {
                             districtsArray = jsonResponse["nearby"] as! [String]
                             completion(districtsArray)
+                            return
                         }
                     }
                 default:
                     print("get nearby districts error with response status : ", status)
                     completion(nil)
-                    
+                    return
                 }
-              
             }
         }
     }
     
     //Get all sensors based on districts
-    static func getSensorsByDistricts(_ district : String, _ city : String, _ completion : @escaping ([String]?) -> ()) {
+    static func getSensorsByDistricts(_ district : String, _ city : String, _ completion : @escaping ([Sensor]?) -> ()) {
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"
         ]
         let params = ["city" : city, "district" : district]
-        //let censorsId = [String]()
         
         Alamofire.request(sensorsByDistrict!, method: .get, parameters: params, headers: header).responseJSON { (response) in
+            var sensors = [Sensor]()
             if let status = response.response?.statusCode {
                 switch status {
-                case 200: break
-//                    if let result = response.result.value {
-//                        //let JSON = result as! [String : AnyObject]
-//                        //waiting to config next
-//                    }
+                case 200:
+                    if let result = response.result.value as? [[String : String]] {
+                        for element in result {
+                            sensors.append(Sensor(id: element["_id"]! , name: element["name"]!))
+                        }
+                    }
+                    completion(sensors)
+                    return
                 default:
                     print("get nearby districts error with response status : ", status)
+                    completion(nil)
+                    return
                 }
             }
         }

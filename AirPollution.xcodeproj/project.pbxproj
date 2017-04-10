@@ -13,7 +13,6 @@
 		E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33959641E9299DD000F5145 /* PopUpViewController.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
-		E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45931E70119F0002BDE9 /* StatsViewController.swift */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
 		E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */; };
 		E37408B21E85884F00B92FB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B11E85884F00B92FB0 /* Location.swift */; };
@@ -28,6 +27,7 @@
 		E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DF1E6A7A440036B1ED /* Assets.xcassets */; };
 		E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */; };
 		E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */; };
+		E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CE1E9BD6560014D09C /* Sensor.swift */; };
 		E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +85,6 @@
 		E33959641E9299DD000F5145 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		E34C45931E70119F0002BDE9 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardController.swift; sourceTree = "<group>"; };
 		E37408B11E85884F00B92FB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		E3B888E21E6A7A440036B1ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3B888E41E6A7A440036B1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E3BB67CE1E9BD6560014D09C /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		E3C00F021E925AAF001D1305 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "../../../../Desktop/OpenSansSwift-master/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
 		E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +140,7 @@
 				E33F90281E6A8B5200672B8E /* User.swift */,
 				E34C45951E7014800002BDE9 /* Stats.swift */,
 				E37408B11E85884F00B92FB0 /* Location.swift */,
+				E3BB67CE1E9BD6560014D09C /* Sensor.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,7 +151,6 @@
 				E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */,
 				E30CBD701E977B59001CA8CE /* SuggestedLocationViewController.swift */,
 				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
-				E34C45931E70119F0002BDE9 /* StatsViewController.swift */,
 				E33959641E9299DD000F5145 /* PopUpViewController.swift */,
 				E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */,
 			);
@@ -374,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
+				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
 				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,
 				E37408B41E858DD400B92FB0 /* MapCell.swift in Sources */,
 				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
@@ -383,7 +384,6 @@
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
 				E30CBD711E977B59001CA8CE /* SuggestedLocationViewController.swift in Sources */,
-				E34C45941E70119F0002BDE9 /* StatsViewController.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
