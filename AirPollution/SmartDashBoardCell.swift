@@ -13,7 +13,6 @@ class SmartDashBoardCell: UITableViewCell {
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var aqhiLabel: UILabel!
     
-    @IBOutlet weak var sensorIdLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +20,6 @@ class SmartDashBoardCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

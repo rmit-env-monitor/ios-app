@@ -83,13 +83,16 @@ class SmartDashBoardController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
+            
         else if permissionStatus == .notDetermined {
             locationManager.requestLocationPermission()
             print("Not DeterMined")
         }
+            
         else if permissionStatus == .restricted {
             print("Restricted, You can do nothing :((")
         }
+            
         else if (permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways) && self.currentAddress == nil {
             if Client.userDefaults.object(forKey: locationMethodKey) as? String == "\(locationMethod.manually)" {
                 if currentAddress == nil {
@@ -127,7 +130,7 @@ class SmartDashBoardController: UIViewController {
         _ = OpenSans.registerFonts()
         let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
         self.navigationItem.rightBarButtonItem = logoutButton
-        self.navigationItem.title = "Current Location"
+
         
         if let cacheCurrentLocation = Client.userDefaults.object(forKey: currentAddressKey) as? [String : CLLocationDegrees] {
             self.currentLocation = CLLocationCoordinate2DMake(cacheCurrentLocation["latitude"]! , cacheCurrentLocation["longitude"]!)
@@ -155,6 +158,15 @@ class SmartDashBoardController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    var toDetailDistrict : String?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToDetailViewSegue" {
+            let viewController = segue.destination as! DetailViewController
+            viewController.title = toDetailDistrict!
+        }
+    }
+    
 }
 
 //MARK : Setup Autocomplete TableView DataSource
@@ -191,31 +203,35 @@ extension SmartDashBoardController : GMSAutocompleteResultsViewControllerDelegat
 extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SmartDashboardCell") as! SmartDashBoardCell
-        if indexPath.section == 0 {
-            if currentAddress != nil {
-                cell.districtLabel.text = "\((self.currentAddress!.district)!)"
+        cell.accessoryType = .disclosureIndicator
+        if currentAddress != nil {
+            if indexPath.section == 0 {
+                if currentAddress != nil {
+                    cell.districtLabel.text = "\((self.currentAddress!.district)!)"
+                    cell.aqhiLabel.text = "AQHI: 0"
+                }
+                
+            }
+            else if indexPath.section == 1 {
+                cell.districtLabel.text = "\(self.nearbyDistricts[indexPath.row])"
                 cell.aqhiLabel.text = "AQHI: 0"
             }
-          
+            return cell
         }
-        else if indexPath.section == 1 {
-            cell.districtLabel.text = "\(self.nearbyDistricts[indexPath.row])"
-            cell.aqhiLabel.text = "AQHI: 0"
+        else {
+            return UITableViewCell()
         }
-        cell.sensorIdLabel.text = "ID: \(indexPath.row)"
-        return cell
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! SmartDashBoardCell
+        toDetailDistrict = cell.districtLabel.text
+        self.performSegue(withIdentifier: "ToDetailViewSegue", sender: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
@@ -228,6 +244,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
         }
         
     }
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
