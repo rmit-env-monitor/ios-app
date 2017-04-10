@@ -9,7 +9,9 @@
 import UIKit
 
 class DetailViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var sensorNo: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

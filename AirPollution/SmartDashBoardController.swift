@@ -159,11 +159,12 @@ class SmartDashBoardController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var toDetailDistrict : String?
+    var toDetailDistrict : String!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDetailViewSegue" {
-            let viewController = segue.destination as! DetailViewController
-            viewController.title = toDetailDistrict!
+            let destinationViewController = segue.destination as! DetailViewController
+            destinationViewController.navigationTitle = toDetailDistrict
+            destinationViewController.city = self.currentAddress?.city!
         }
     }
     
@@ -226,6 +227,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SmartDashBoardCell
         toDetailDistrict = cell.districtLabel.text
+        
         self.performSegue(withIdentifier: "ToDetailViewSegue", sender: nil)
     }
     
