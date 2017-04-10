@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GTProgressBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PKHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>242F92173B569713C4A08F1DEFB3B74E</key>
+		<key>3E666194F58CC1B951258360F9ED8795</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4CE6BB01446ABC4340043FD56AB44921</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E26AFEEB4351BB1C6FBA3C77608743A</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<key>B2A926AAAA2B1468BE1365003DA13153</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFA2D3460718379771F215BA008066DE</key>
+		<key>E2D84E9E4E5FADEEE1E5454EE087E3FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

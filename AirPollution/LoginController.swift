@@ -114,7 +114,7 @@ class LoginController: UIViewController {
     
     var popUpVC : PopUpViewController!
     var smartDashBoardVC : SmartDashBoardController?
-    
+    var fullDashBoardVC : FullDashBoardController?
     
     
     override func viewDidLoad() {
@@ -127,6 +127,8 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as? SmartDashBoardController
+        
+        fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "FullDashBoardController") as? FullDashBoardController
         esTabBarController = ESTabBarController()
 
     }
@@ -271,7 +273,6 @@ class LoginController: UIViewController {
     }
     
     func getToTabBarController() -> ESTabBarController {
-        let v2 = UIViewController()
         let v3 = UIViewController()
         let v4 = UIViewController()
         
@@ -281,12 +282,14 @@ class LoginController: UIViewController {
         }
         let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC!)
         
+        let fullDashBoardNC = UINavigationController(rootViewController: fullDashBoardVC!)
+        
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
-        v2.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
+        fullDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
         v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Routing", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        esTabBarController?.viewControllers = [smartDashBoardNC,v2,v3,v4]
+        esTabBarController?.viewControllers = [smartDashBoardNC,fullDashBoardNC,v3,v4]
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         return esTabBarController!
@@ -361,6 +364,7 @@ class LoginController: UIViewController {
             else {
                 HUD.hide({ (finished) in
                     alertController.title = "Invalid username/password. Please try again:D"
+                    self.present(alertController, animated: true, completion: nil)
                 })
                 
             }

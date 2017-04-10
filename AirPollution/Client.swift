@@ -24,7 +24,7 @@ class Client {
             if let jsonResponse = response.result.value as? [String : AnyObject] {
             
                 if let jsonArray = jsonResponse["results"] as? [[String : AnyObject]] {
-                    var fullAddress = jsonArray[0]["formatted_address"] as! String
+                    let fullAddress = jsonArray[0]["formatted_address"] as! String
                     
                     var addressComponents = fullAddress.components(separatedBy: ", ")
                     let ward = addressComponents[1]

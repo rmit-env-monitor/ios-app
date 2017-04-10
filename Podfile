@@ -14,6 +14,8 @@ target 'AirPollution' do
 	pod 'GooglePlaces'
   	pod 'GooglePlacePicker'
   	pod 'GoogleMaps'
+	pod "GTProgressBar"
+
   # Pods for AirPollution
 
 end

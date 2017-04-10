@@ -227,7 +227,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SmartDashBoardCell
         toDetailDistrict = cell.districtLabel.text
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "ToDetailViewSegue", sender: nil)
     }
     
@@ -246,7 +246,7 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
         }
         
     }
-    
+
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {

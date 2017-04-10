@@ -11,6 +11,10 @@
 		E30CBD711E977B59001CA8CE /* SuggestedLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30CBD701E977B59001CA8CE /* SuggestedLocationViewController.swift */; };
 		E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */; };
 		E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33959641E9299DD000F5145 /* PopUpViewController.swift */; };
+		E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */; };
+		E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */; };
+		E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */; };
+		E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
@@ -83,6 +87,10 @@
 		E30CBD701E977B59001CA8CE /* SuggestedLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedLocationViewController.swift; sourceTree = "<group>"; };
 		E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContentView.swift; sourceTree = "<group>"; };
 		E33959641E9299DD000F5145 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewCell.swift; sourceTree = "<group>"; };
+		E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardController.swift; sourceTree = "<group>"; };
+		E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardCell.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -153,6 +161,8 @@
 				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
 				E33959641E9299DD000F5145 /* PopUpViewController.swift */,
 				E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */,
+				E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */,
+				E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -164,6 +174,8 @@
 				E37408B31E858DD400B92FB0 /* MapCell.swift */,
 				E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */,
 				E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */,
+				E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */,
+				E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -378,17 +390,21 @@
 				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,
 				E37408B41E858DD400B92FB0 /* MapCell.swift in Sources */,
 				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
+				E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
+				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
 				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
+				E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */,
 				E30CBD711E977B59001CA8CE /* SuggestedLocationViewController.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
 				E33F90271E6A88FD00672B8E /* Client.swift in Sources */,
 				E37CAC1D1E96973800408733 /* Constants.swift in Sources */,
+				E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */,
 				E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
