@@ -57,7 +57,7 @@ class Client {
                         let jsonResponse = result as! [String : AnyObject]
                         if jsonResponse["message"] == nil {
                             Client.currentUser = User(dictionary: jsonResponse)
-                            userDefaults.set(jsonResponse, forKey: "CurrentUser")
+                            userDefaults.set(jsonResponse, forKey: currentUserKey)
                             completion(true)
                         }
                         else {

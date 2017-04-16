@@ -112,24 +112,29 @@ class LoginController: UIViewController {
         return imageView
     }()
     
-    var popUpVC : PopUpViewController!
     var smartDashBoardVC : SmartDashBoardController?
     var fullDashBoardVC : FullDashBoardController?
+    
+    var alertController : UIAlertController?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
-        
         setupUI()
+        
+        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as? SmartDashBoardController
         
-        fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "FullDashBoardController") as? FullDashBoardController
-        esTabBarController = ESTabBarController()
+        Client.userDefaults.removeObject(forKey: currentUserKey)
+        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
+            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+            self.present(getToTabBarController(), animated: true, completion: nil)
+        }
+
 
     }
     
@@ -137,7 +142,6 @@ class LoginController: UIViewController {
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
     var registerLabelBottomAnchor : NSLayoutConstraint?
-    //var loginBtnBottomAnchor : NSLayoutConstraint?
     
     func dismissKeyboard() {
         if nameTextField.isFirstResponder {
@@ -212,14 +216,6 @@ class LoginController: UIViewController {
     
     let distanceFromRegisterLabelToBottomView : CGFloat = -5
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let dictionary = Client.userDefaults.dictionary(forKey: "CurrentUser") {
-            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-            self.present(getToTabBarController(), animated: true, completion: nil)
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -276,6 +272,11 @@ class LoginController: UIViewController {
         let v3 = UIViewController()
         let v4 = UIViewController()
         
+        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as? SmartDashBoardController
+        
+        fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "FullDashBoardController") as? FullDashBoardController
+        esTabBarController = ESTabBarController()
+        
         if let tabBar = esTabBarController?.tabBar as? ESTabBar {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
@@ -303,26 +304,22 @@ class LoginController: UIViewController {
     func handleRegister() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
         HUD.show(.progress)
+        HUD.allowsInteraction = false
         Client.register(params as [String : AnyObject]) { (isFinished) in
-            let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
-                alertController.dismiss(animated: true, completion: nil)
-            })
-            alertController.addAction(okAction)
             HUD.hide({ (finished) in
                 if (self.pwTextField.text! != self.confirmTextField.text!) {
-                    alertController.title = "Confirmed password does not matched, please try again:D"
+                    self.alertController?.title = "Confirmed password does not matched, please try again:D"
                     
                 }
                 else if (isFinished) {
-                    alertController.title = "You have registered successfully"
+                    self.alertController?.title = "You have registered successfully"
                     self.dismissAnimation(self)
                 }
                 else {
-                    alertController.title = "An unknown error occurs or username has been taken:("
+                    self.alertController?.title = "An unknown error occurs or username has been taken:("
                     
                 }
-                self.present(alertController, animated: true, completion: nil)
+                self.present(self.alertController!, animated: true, completion: nil)
             })
         }
     }
@@ -336,6 +333,7 @@ class LoginController: UIViewController {
 
     var popUp : PopupDialog!
     func openPopUpView() {
+        let popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
         popUpVC.delegate = self
         popUp = PopupDialog(viewController: popUpVC)
         present(popUp, animated: true, completion: nil)
@@ -345,17 +343,12 @@ class LoginController: UIViewController {
     //login function
     func handleLogin() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
-        print(nameTextField.text!)
-        print(pwTextField.text!)
+        self.view.isUserInteractionEnabled = false
+        
         HUD.show(.progress)
         HUD.dimsBackground = true
         Client.login(params as [String : AnyObject]) { (isFinished) in
-            let alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
-                alertController.dismiss(animated: true, completion: nil)
-            })
-            alertController.addAction(okAction)
-            
+        
             if (isFinished) {
                 HUD.hide({ (finished) in
                     self.openPopUpView()
@@ -363,12 +356,15 @@ class LoginController: UIViewController {
             }
             else {
                 HUD.hide({ (finished) in
-                    alertController.title = "Invalid username/password. Please try again:D"
-                    self.present(alertController, animated: true, completion: nil)
+                    self.alertController?.title = "Invalid username/password. Please try again:D"
+                    self.present(self.alertController!, animated: true, completion: nil)
                 })
                 
             }
+            self.view.isUserInteractionEnabled = true
+
         }
+
     }
 
 }
@@ -381,15 +377,18 @@ extension LoginController : PopUpViewControllerDelegate {
             switch method {
             case .manually:
                 Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
+                self.present(self.getToTabBarController(), animated: true, completion: nil)
                 break
             case .automatically:
                 Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
+                self.present(self.getToTabBarController(), animated: true, completion: nil)
+                break
+            case .none:
+                Client.userDefaults.removeObject(forKey: currentUserKey)
                 break
             }
         })
-        present(getToTabBarController(), animated: true, completion: nil)
     }
-    
 }
 
 
@@ -401,6 +400,13 @@ extension LoginController {
         //hint: add observer when keyboard appears to handle UI resizing
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        //set up alert view
+        alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
+            self.alertController?.dismiss(animated: true, completion: nil)
+        })
+        alertController?.addAction(okAction)
         
         //hint: add tap recognizer to dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
