@@ -20,6 +20,9 @@ let navigationBarTintColor = UIColor.init(r: 201, g: 251, b: 82)
 
 //Storyboard constant
 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+let MapVCStoryBoardID = "MapViewController"
+let FullDashBoardVCStoryBoardID = "FullDashBoardController"
+let SmartDashBoardVCStoryBoardID = "SmartDashBoardController"
 
 //Network constant
 let baseURL = URL(string: "https://evn-monitor.herokuapp.com")

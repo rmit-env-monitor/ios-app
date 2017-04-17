@@ -112,8 +112,7 @@ class LoginController: UIViewController {
         return imageView
     }()
     
-    var smartDashBoardVC : SmartDashBoardController?
-    var fullDashBoardVC : FullDashBoardController?
+    
     
     var alertController : UIAlertController?
     
@@ -129,7 +128,6 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        Client.userDefaults.removeObject(forKey: currentUserKey)
         if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
             Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
             self.present(getToTabBarController(), animated: true, completion: nil)
@@ -272,9 +270,14 @@ class LoginController: UIViewController {
         let v3 = UIViewController()
         let v4 = UIViewController()
         
-        smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "SmartDashBoardController") as? SmartDashBoardController
+        let smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: SmartDashBoardVCStoryBoardID) as? SmartDashBoardController
         
-        fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: "FullDashBoardController") as? FullDashBoardController
+        let fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: FullDashBoardVCStoryBoardID) as? FullDashBoardController
+       
+        
+        let mapVC = storyboard?.instantiateViewController(withIdentifier: MapVCStoryBoardID) as?
+            MapViewController
+        
         esTabBarController = ESTabBarController()
         
         if let tabBar = esTabBarController?.tabBar as? ESTabBar {
@@ -285,12 +288,16 @@ class LoginController: UIViewController {
         
         let fullDashBoardNC = UINavigationController(rootViewController: fullDashBoardVC!)
         
+        let mapNC = UINavigationController(rootViewController: mapVC!)
+        
+    
+        
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
         fullDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
-        v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Routing", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
+        v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Map", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        esTabBarController?.viewControllers = [smartDashBoardNC,fullDashBoardNC,v3,v4]
+        esTabBarController?.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         return esTabBarController!
@@ -392,68 +399,4 @@ extension LoginController : PopUpViewControllerDelegate {
 }
 
 
-
-//MARK : setup view constraints
-extension LoginController {
-    func setupUI() {
-        _ = OpenSans.registerFonts()
-        //hint: add observer when keyboard appears to handle UI resizing
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        //set up alert view
-        alertController = UIAlertController(title: nil, message: "", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (result) in
-            self.alertController?.dismiss(animated: true, completion: nil)
-        })
-        alertController?.addAction(okAction)
-        
-        //hint: add tap recognizer to dismiss keyboard
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        view.addSubview(bgImageView)
-        view.addSubview(nameTextField)
-        view.addSubview(pwTextField)
-        view.addSubview(loginBtn)
-        view.addSubview(registerLabel)
-        
-        registerLabelBottomAnchor = registerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
-        registerLabelBottomAnchor?.isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        
-        loginBtn.bottomAnchor.constraint(equalTo: registerLabel.topAnchor, constant: -10)
-            .isActive = true
-        loginBtn.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor).isActive = true
-        loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        
-        if isRegisterView {
-            view.addSubview(confirmTextField)
-            confirmTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10).isActive = true
-            confirmTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-            confirmTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        }
-        
-        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -80).isActive = true
-        pwTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        nameTextFieldBottomAnchor = nameTextField.bottomAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -10)
-        nameTextFieldBottomAnchor?.isActive = true
-        nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        bgImageViewTopAnchor = bgImageView.topAnchor.constraint(equalTo: view.topAnchor)
-        bgImageViewTopAnchor?.isActive = true
-        bgImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        bgImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        bgImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-    }
-
-}
 
