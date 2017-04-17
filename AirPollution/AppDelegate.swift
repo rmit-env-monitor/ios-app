@@ -27,6 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.openSansSemiboldFontOfSize(18)]
         
         GMSPlacesClient.provideAPIKey(geocodingAPIKey)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        
+        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
+            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+            window?.rootViewController = esTabBarController.sharedInstance.open()
+        }
+        else {
+            let loginController = LoginController()
+            window?.rootViewController = loginController
+        }
+        window?.makeKeyAndVisible()
+
+        
+        
         return true
     }
 

@@ -18,6 +18,7 @@
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
+		E364449B1EA53553004A8C66 /* esTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364449A1EA53553004A8C66 /* esTabBarController.swift */; };
 		E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */; };
 		E37408B21E85884F00B92FB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B11E85884F00B92FB0 /* Location.swift */; };
 		E37408B41E858DD400B92FB0 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B31E858DD400B92FB0 /* MapCell.swift */; };
@@ -96,6 +97,7 @@
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		E364449A1EA53553004A8C66 /* esTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = esTabBarController.swift; sourceTree = "<group>"; };
 		E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardController.swift; sourceTree = "<group>"; };
 		E37408B11E85884F00B92FB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E37408B31E858DD400B92FB0 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */,
 				E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */,
 				E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */,
+				E364449A1EA53553004A8C66 /* esTabBarController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
 				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
+				E364449B1EA53553004A8C66 /* esTabBarController.swift in Sources */,
 				E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,

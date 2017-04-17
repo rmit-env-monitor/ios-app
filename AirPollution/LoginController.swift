@@ -29,8 +29,7 @@ class myTextField : YoshikoTextField {
 
 class LoginController: UIViewController {
 
-    var esTabBarController : ESTabBarController?
-  
+
     
     lazy var nameTextField : myTextField = {
         let tf = myTextField()
@@ -116,26 +115,15 @@ class LoginController: UIViewController {
     
     var alertController : UIAlertController?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         
-        
-       
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
         
-        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
-            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-            self.present(getToTabBarController(), animated: true, completion: nil)
-        }
-
-
     }
-    
     
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
@@ -266,46 +254,6 @@ class LoginController: UIViewController {
         return keyboardInfo
     }
     
-    func getToTabBarController() -> ESTabBarController {
-        let v3 = UIViewController()
-        let v4 = UIViewController()
-        
-        let smartDashBoardVC = storyboard?.instantiateViewController(withIdentifier: SmartDashBoardVCStoryBoardID) as? SmartDashBoardController
-        
-        let fullDashBoardVC = storyboard?.instantiateViewController(withIdentifier: FullDashBoardVCStoryBoardID) as? FullDashBoardController
-       
-        
-        let mapVC = storyboard?.instantiateViewController(withIdentifier: MapVCStoryBoardID) as?
-            MapViewController
-        
-        esTabBarController = ESTabBarController()
-        
-        if let tabBar = esTabBarController?.tabBar as? ESTabBar {
-            tabBar.itemCustomPositioning = .fillIncludeSeparator
-            tabBar.backgroundColor = UIColor.black
-        }
-        let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC!)
-        
-        let fullDashBoardNC = UINavigationController(rootViewController: fullDashBoardVC!)
-        
-        let mapNC = UINavigationController(rootViewController: mapVC!)
-        
-    
-        
-        smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
-        fullDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
-        v3.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Map", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
-        v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
-        
-        esTabBarController?.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
-        return esTabBarController!
-    }
-    
-    func handleTabBarControllerWhenLoggedOut() {
-        self.esTabBarController = nil
-    }
     
     //Register event
     func handleRegister() {
@@ -340,7 +288,7 @@ class LoginController: UIViewController {
 
     var popUp : PopupDialog!
     func openPopUpView() {
-        let popUpVC = storyboard?.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
+        let popUpVC = storyBoard.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
         popUpVC.delegate = self
         popUp = PopupDialog(viewController: popUpVC)
         present(popUp, animated: true, completion: nil)
@@ -384,11 +332,22 @@ extension LoginController : PopUpViewControllerDelegate {
             switch method {
             case .manually:
                 Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
-                self.present(self.getToTabBarController(), animated: true, completion: nil)
+               
+                self.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    UIApplication.shared.keyWindow?.rootViewController = esTabBarController.sharedInstance.open()
+                }
                 break
             case .automatically:
                 Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
-                self.present(self.getToTabBarController(), animated: true, completion: nil)
+                
+                self.dismiss(animated: true, completion: nil)
+                
+                DispatchQueue.main.async {
+                    UIApplication.shared.keyWindow?.rootViewController = esTabBarController.sharedInstance.open()
+                }
+                
+
                 break
             case .none:
                 Client.userDefaults.removeObject(forKey: currentUserKey)
