@@ -9,11 +9,12 @@
 import Foundation
 import ESTabBarController_swift
 
-class esTabBarController : NSObject {
+class EsTabBarController :
+NSObject {
     
-    static let sharedInstance = esTabBarController()
+    static let sharedInstance = EsTabBarController()
     
-    var tabBarController : ESTabBarController?
+    var tabBarController = ESTabBarController()
     
     
     func open() -> ESTabBarController {
@@ -27,9 +28,9 @@ class esTabBarController : NSObject {
         let mapVC = storyboard.instantiateViewController(withIdentifier: MapVCStoryBoardID) as?
         MapViewController
         
-        tabBarController = ESTabBarController()
+        EsTabBarController.sharedInstance.tabBarController = ESTabBarController()
         
-        if let tabBar = tabBarController?.tabBar as? ESTabBar {
+        if let tabBar = EsTabBarController.sharedInstance.tabBarController.tabBar as? ESTabBar {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
         }
@@ -46,19 +47,20 @@ class esTabBarController : NSObject {
         mapNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Map", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        tabBarController?.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
+        EsTabBarController.sharedInstance.tabBarController.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
-        return tabBarController!
+        return EsTabBarController.sharedInstance.tabBarController
     }
     
     func handleTabBarControllerWhenLoggedOut() {
-        tabBarController?.dismiss(animated: true, completion: { 
-            let loginController = LoginController()
-            UIApplication.shared.keyWindow?.rootViewController = loginController
-        })
+        EsTabBarController.sharedInstance.tabBarController.dismiss(animated: true, completion: nil)
+        let loginController = UIApplication.shared.keyWindow?.rootViewController as! LoginController
+        loginController.nameTextField.text = ""
+        loginController.pwTextField.text = ""
+        
     }
     
     
-   
+    
 }

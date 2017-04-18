@@ -29,16 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(geocodingAPIKey)
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+        let loginController = LoginController()
+        window?.rootViewController = loginController
         
         if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
             Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-            window?.rootViewController = esTabBarController.sharedInstance.open()
+            loginController.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
         }
-        else {
-            let loginController = LoginController()
-            window?.rootViewController = loginController
-        }
+     
         window?.makeKeyAndVisible()
 
         

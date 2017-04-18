@@ -148,9 +148,8 @@ class SmartDashBoardController: UIViewController {
     
     func onLogout() {
         Client.logout()
-        Client.userDefaults.removeObject(forKey: locationMethodKey)
-        Client.userDefaults.removeObject(forKey: currentAddressKey)
-        NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
   

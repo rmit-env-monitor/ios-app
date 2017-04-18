@@ -272,7 +272,6 @@ class LoginController: UIViewController {
                 }
                 else {
                     self.alertController?.title = "An unknown error occurs or username has been taken:("
-                    
                 }
                 self.present(self.alertController!, animated: true, completion: nil)
             })
@@ -294,7 +293,6 @@ class LoginController: UIViewController {
         present(popUp, animated: true, completion: nil)
     }
     
-
     //login function
     func handleLogin() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
@@ -332,22 +330,13 @@ extension LoginController : PopUpViewControllerDelegate {
             switch method {
             case .manually:
                 Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
-               
-                self.dismiss(animated: true, completion: nil)
-                DispatchQueue.main.async {
-                    UIApplication.shared.keyWindow?.rootViewController = esTabBarController.sharedInstance.open()
-                }
+                
+                self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
                 break
             case .automatically:
                 Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
-                
-                self.dismiss(animated: true, completion: nil)
-                
-                DispatchQueue.main.async {
-                    UIApplication.shared.keyWindow?.rootViewController = esTabBarController.sharedInstance.open()
-                }
-                
-
+                self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
+               
                 break
             case .none:
                 Client.userDefaults.removeObject(forKey: currentUserKey)

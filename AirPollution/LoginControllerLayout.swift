@@ -72,6 +72,5 @@ extension LoginController {
         bgImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         bgImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
     }
-    
 }
 

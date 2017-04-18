@@ -76,6 +76,9 @@ class Client {
     //Logout
     static func logout() {
         Client.userDefaults.removeObject(forKey: "CurrentUser")
+        Client.userDefaults.removeObject(forKey: locationMethodKey)
+        Client.userDefaults.removeObject(forKey: currentAddressKey)
+                NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         print("Logout successfully")
     }
     
