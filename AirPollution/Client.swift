@@ -148,7 +148,7 @@ class Client {
     }
     
     //Get all sensors based on districts
-    static func getSensorsByDistricts(_ district : String, _ city : String, _ completion : @escaping ([Sensor]?) -> ()) {
+    static func getSensorsByDistricts(District district : String, _ city : String, _ completion : @escaping ([Sensor]?) -> ()) {
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"
         ]

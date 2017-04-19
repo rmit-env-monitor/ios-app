@@ -28,8 +28,6 @@ NSObject {
         let mapVC = storyboard.instantiateViewController(withIdentifier: MapVCStoryBoardID) as?
         MapViewController
         
-        EsTabBarController.sharedInstance.tabBarController = ESTabBarController()
-        
         if let tabBar = EsTabBarController.sharedInstance.tabBarController.tabBar as? ESTabBar {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black

@@ -403,7 +403,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fdb-Bi-08v">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AR0-1O-Arf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="StatsViewController" automaticallyAdjustsScrollViewInsets="NO" id="AR0-1O-Arf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="62I-1L-Pvg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

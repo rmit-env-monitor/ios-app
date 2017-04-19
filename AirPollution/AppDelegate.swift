@@ -32,14 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginController = LoginController()
         window?.rootViewController = loginController
         
-        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
-            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-            loginController.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
-        }
+        
      
         window?.makeKeyAndVisible()
 
-        
+        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey) {
+            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+            loginController.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
+            
+        }
         
         return true
     }

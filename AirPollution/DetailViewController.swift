@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
  
     func fetchSensors() {
         weak var selfRefer = self
-        Client.getSensorsByDistricts(navigationTitle!, city) { (sensors) in
+        Client.getSensorsByDistricts(District: navigationTitle!, city) { (sensors) in
             
             if sensors != nil {
                 if sensors!.isEmpty {

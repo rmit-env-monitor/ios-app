@@ -49,8 +49,7 @@ class SmartDashBoardController: UIViewController {
         }
     }
     
-    var resultsViewController: GMSAutocompleteResultsViewController?
-    var searchLocationController : UISearchController!
+
     
     var locationManager : LocationManager!
     var suggestedLocationVC : SuggestedLocationViewController?
@@ -107,6 +106,8 @@ class SmartDashBoardController: UIViewController {
         }
     }
     
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchLocationController : UISearchController!
     func setupSearchBarUI() {
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
