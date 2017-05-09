@@ -15,7 +15,7 @@ class User : NSObject {
     init(dictionary : [String : AnyObject]) {
         self.name = dictionary["username"] as! String
         self.token = dictionary["token"] as! String
-        }
+    }
     
     
     

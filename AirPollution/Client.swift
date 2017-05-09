@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-
+import PKHUD
 
 
 class Client {
@@ -121,6 +121,7 @@ class Client {
     
     //Get nearby districts
     static func getNearbyDistricts(_ district : String, _ city : String, _ completion : @escaping ([String]?) -> ()) {
+        HUD.show(.progress)
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"
         ]
@@ -135,12 +136,15 @@ class Client {
                         if !jsonResponse.isEmpty {
                             districtsArray = jsonResponse["nearby"] as! [String]
                             completion(districtsArray)
+                            HUD.hide()
                             return
                         }
+                        HUD.hide()
                     }
                 default:
                     print("get nearby districts error with response status : ", status)
                     completion(nil)
+                    HUD.hide()
                     return
                 }
             }
@@ -149,6 +153,7 @@ class Client {
     
     //Get all sensors based on districts
     static func getSensorsByDistricts(District district : String, _ city : String, _ completion : @escaping ([Sensor]?) -> ()) {
+        HUD.show(.progress)
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"
         ]
@@ -165,10 +170,12 @@ class Client {
                         }
                     }
                     completion(sensors)
+                    HUD.hide()
                     return
                 default:
                     print("get nearby districts error with response status : ", status)
                     completion(nil)
+                    HUD.hide()
                     return
                 }
             }

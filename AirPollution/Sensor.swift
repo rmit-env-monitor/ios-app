@@ -11,7 +11,7 @@ import Foundation
 class Sensor {
     var id : String?
     var name : String?
-    var dataSet : Stats?
+    var stats : Stats?
     
     init(id : String, name : String) {
         self.id = id

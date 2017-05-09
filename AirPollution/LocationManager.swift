@@ -16,7 +16,6 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     var viewController : SmartDashBoardController?
     
     func requestLocationPermission() {
-        print("IM FUCKING HERE")
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled() {

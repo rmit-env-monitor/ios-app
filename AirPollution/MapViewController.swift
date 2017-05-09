@@ -10,26 +10,27 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import MapKit
+import PKHUD
+
 
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBarUI()
+        HUD.show(.progress)
         mapView.delegate = self
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        showAnnotation()
     }
 
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchLocationController : UISearchController!
     
     func showAnnotation() {
-        let span : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1,longitudeDelta: 0.1)
         if let currentLocation = Client.userDefaults.object(forKey: currentAddressKey) as? [String : AnyObject] {
            
             let lat  = currentLocation["latitude"] as! Double
@@ -37,14 +38,38 @@ class MapViewController: UIViewController {
             
             let location = CLLocationCoordinate2DMake(lat, lon)
             let annotation = MKPointAnnotation()
-            let region = MKCoordinateRegion(center: location, span: span)
-            self.mapView.setRegion(region, animated: true)
+         
             annotation.coordinate = location
-            annotation.title = "Sensor 1"
-            annotation.subtitle = "AQHI: 212"
-        
-            self.mapView.addAnnotation(annotation)
-
+            
+            var annotations = [MKPointAnnotation]()
+            var coordinations = [CLLocationCoordinate2D]()
+            
+            
+            //Nha Be
+            coordinations.append(CLLocationCoordinate2DMake(Double(10.691720), Double(106.718758)))
+            
+            //Quan 2
+            coordinations.append(CLLocationCoordinate2DMake(Double(10.773778), Double(106.719569)))
+            
+            //Quan 4
+            coordinations.append(CLLocationCoordinate2DMake(Double(10.756656), Double(106.700965)))
+            
+            //Quan 8
+            coordinations.append(CLLocationCoordinate2DMake(Double(10.739984), Double(106.670370)))
+            annotations.append(annotation)
+            
+            for i in 0...3 {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinations[i]
+                annotations.append(annotation)
+            }
+            
+            for annotation in annotations {
+                annotation.title = "District : Quận abcxyz"
+                annotation.subtitle = "AQHI: 0"
+            }
+            mapView.showAnnotations(annotations, animated: true)
+            
         }
     }
     
@@ -87,20 +112,35 @@ extension MapViewController : MKMapViewDelegate {
             detailButton.addTarget(self, action: #selector(handleOpenDetailView), for: .touchUpInside)
             annotationView!.rightCalloutAccessoryView = detailButton
             
+       
+            
+            //we need a variable holding the AQI value used to decide which color the annotationView will be
+            annotationView!.image = lowAQIAnnotationView!
+            let aqhiLabel = UILabel(frame: CGRect(x: 2.5, y: -5, width: annotationView!.image!.size.width - 5, height: annotationView!.image!.size.height))
+            
+            aqhiLabel.text = "0"
+            aqhiLabel.textAlignment = .center
+            aqhiLabel.font = UIFont(name: "Futura", size: 13)
+            aqhiLabel.textColor = UIColor.black
+            annotationView!.addSubview(aqhiLabel)
         }
         //if it exits, update the annotation object of the dequeued annotation View
         else {
             annotationView!.annotation = annotation
         }
         
-        annotationView!.image = UIImage(named: "annotation")
-        let aqhiLabel = UILabel(frame: CGRect(x: 0, y: 0, width: annotationView!.image!.size.width - 5, height: annotationView!.image!.size.height))
-        aqhiLabel.text = "212"
-        aqhiLabel.textAlignment = .center
-        aqhiLabel.font = UIFont(name: "Futura", size: 15)
-        aqhiLabel.textColor = UIColor.white
-        annotationView!.addSubview(aqhiLabel)
+        
+        
+        
         return annotationView
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+       HUD.hide()
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        showAnnotation()
     }
     
     func handleOpenDetailView() {
