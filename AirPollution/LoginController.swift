@@ -28,9 +28,6 @@ class myTextField : YoshikoTextField {
 }
 
 class LoginController: UIViewController {
-
-
-    
     lazy var nameTextField : myTextField = {
         let tf = myTextField()
         tf.font = UIFont.openSansLightFontOfSize(20)
@@ -111,8 +108,6 @@ class LoginController: UIViewController {
         return imageView
     }()
     
-    
-    
     var alertController : UIAlertController?
     
     override func viewDidLoad() {
@@ -121,10 +116,7 @@ class LoginController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
+   
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
     var registerLabelBottomAnchor : NSLayoutConstraint?
@@ -239,7 +231,6 @@ class LoginController: UIViewController {
         
         UIView.animate(withDuration: TimeInterval(keyBoardDuration!)) {
             self.view.layoutIfNeeded()
-            
         }
     }
     
@@ -258,6 +249,8 @@ class LoginController: UIViewController {
     //Register event
     func handleRegister() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
+        self.dismissKeyboard()
+        self.view.isUserInteractionEnabled = false
         HUD.show(.progress)
         HUD.allowsInteraction = false
         Client.register(params as [String : AnyObject]) { (isFinished) in
@@ -293,11 +286,13 @@ class LoginController: UIViewController {
         present(popUp, animated: true, completion: nil)
     }
     
+    
     //login function
     func handleLogin() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
+        self.dismissKeyboard()
+
         self.view.isUserInteractionEnabled = false
-        
         HUD.show(.progress)
         HUD.dimsBackground = true
         Client.login(params as [String : AnyObject]) { (isFinished) in

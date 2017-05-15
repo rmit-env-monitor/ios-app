@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class DetailViewController: UIViewController {
     var navigationTitle : String? {
@@ -29,20 +30,20 @@ class DetailViewController: UIViewController {
 
  
     func fetchSensors() {
-        weak var selfRefer = self
-        Client.getSensorsByDistricts(District: navigationTitle!, city) { (sensors) in
+        Client.getSensorsByDistricts(District: navigationTitle!, city) { [unowned self](sensors)  in
             
             if sensors != nil {
                 if sensors!.isEmpty {
                     let alertController = UIAlertController(title: nil, message: "There is no sensors in this district", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
                         alertController.dismiss(animated: true, completion: nil)
+                        _ = self.navigationController?.popViewController(animated: true)
                     })
                     alertController.addAction(okAction)
                     self.present(alertController,animated: true, completion: nil)
                 }
-                selfRefer?.sensors = sensors!
-                selfRefer?.tableView.reloadData()
+                self.sensors = sensors!
+                self.tableView.reloadData()
             }
             
         }

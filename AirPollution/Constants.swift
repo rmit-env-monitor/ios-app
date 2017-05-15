@@ -51,3 +51,28 @@ public enum HTTPMethod: String {
     case trace   = "TRACE"
     case connect = "CONNECT"
 }
+
+enum DISTRICT : Int {
+    case D1 = 0, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, THUDUC, GOVAP, BINHTHANH, TANBINH, TANPHU, PHUNHUAN, BINHTAN
+}
+
+let districtsInHCM = [ "Quận 1",
+                       "Quận 2",
+                       "Quận 3",
+                       "Quận 4",
+                       "Quận 5",
+                       "Quận 6",
+                       "Quận 7",
+                       "Quận 8",
+                       "Quận 9",
+                       "Quận 10",
+                       "Quận 11",
+                       "Quận 12",
+                       "Thủ Đức",
+                       "Gò Vấp",
+                       "Bình Thạnh",
+                       "Tân Bình",
+                       "Tân Phú",
+                       "Phú Nhuận",
+                       "Bình Tân"
+]

@@ -107,9 +107,8 @@ class PopUpViewController: UIViewController {
 extension PopUpViewController {
     func handleDetectLocationAutomatically(sender : UIButton) {
         self.delegate?.getCurrentLocation(method: .automatically)
-        
-        
     }
+    
     func handleDetectLocationManually(sender : UIButton) {
         self.delegate?.getCurrentLocation(method: .manually)
     }

@@ -48,7 +48,7 @@ class Client {
     
     //Login
     static func login(_ params : [String : AnyObject], completion : @escaping (Bool)->()) {
-        Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).validate().responseJSON { (response) in
+        Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {
                 case 200:
@@ -75,7 +75,7 @@ class Client {
     
     //Logout
     static func logout() {
-        Client.userDefaults.removeObject(forKey: "CurrentUser")
+        Client.userDefaults.removeObject(forKey: currentUserKey)
         Client.userDefaults.removeObject(forKey: locationMethodKey)
         Client.userDefaults.removeObject(forKey: currentAddressKey)
                 NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)

@@ -9,8 +9,7 @@
 import Foundation
 import ESTabBarController_swift
 
-class EsTabBarController :
-NSObject {
+class EsTabBarController : NSObject {
     
     static let sharedInstance = EsTabBarController()
     

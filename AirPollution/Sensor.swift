@@ -12,6 +12,8 @@ class Sensor {
     var id : String?
     var name : String?
     var stats : Stats?
+    var lat : Double?
+    var lng : Double?
     
     init(id : String, name : String) {
         self.id = id

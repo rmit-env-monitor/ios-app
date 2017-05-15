@@ -13,19 +13,10 @@ import UIKit
 class FullDashBoardController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var districts = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for districtsNo in (1..<12) {
-            districts.append("Quận \(districtsNo)")
-        }
-       
-        let districtWords = ["Thủ Đức" , "Gò Vấp" , "Bình Thạnh" , "Tân Bình", "Tân Phú" , "Phú Nhuận", "Bình Tân"]
         
-        for districtWord in districtWords {
-            districts.append(districtWord)
-        }
         self.navigationItem.title = "Dashboard"
         tableView.delegate = self
         tableView.dataSource = self
@@ -56,13 +47,13 @@ extension FullDashBoardController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return districts.count
+        return districtsInHCM.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FullDashBoardCell") as! FullDashBoardCell
         cell.aqhiLabel.text = "AQHI : 0"
-        cell.districtLabel.text = districts[indexPath.row]
+        cell.districtLabel.text = districtsInHCM[indexPath.row]
         return cell
     }
     
