@@ -1,6 +1,7 @@
 # GTProgressBar
 
 [![CI Status](http://img.shields.io/travis/gregttn/GTProgressBar.svg?style=flat)](https://travis-ci.org/gregttn/GTProgressBar)
+![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)
 [![Version](https://img.shields.io/cocoapods/v/GTProgressBar.svg?style=flat)](http://cocoapods.org/pods/GTProgressBar)
 [![License](https://img.shields.io/cocoapods/l/GTProgressBar.svg?style=flat)](http://cocoapods.org/pods/GTProgressBar)
 [![Platform](https://img.shields.io/cocoapods/p/GTProgressBar.svg?style=flat)](http://cocoapods.org/pods/GTProgressBar)
@@ -80,14 +81,44 @@ Many properties of GTProgressBar can be configured. Most of them can be configur
   progressBar.labelTextColor = UIColor(red:0.35, green:0.80, blue:0.36, alpha:1.0)
   ```
 
-* @IBInspectable progressLabelInsets: UIEdgeInsets
+* progressLabelInsets: UIEdgeInsets
 
   This property specifies the insets for the progress label. Default is UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 
-  Currently only the left and right inset is taken into account. The label itself will stay vertically centered within the view.
+  ```swift
+  progressBar.progressLabelInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+  ```
+
+* @IBInspectable progressLabelInsetLeft: CGFloat
+
+  This property allows you to specify the left property of the progressLabelInsets in the Interface Builder. Default is 0.
 
   ```swift
-  progressBar.progressLabelInsets = UIColor(red:0.35, green:0.80, blue:0.36, alpha:1.0)
+  progressBar.progressLabelInsetLeft = 5.0
+  ```
+
+* @IBInspectable progressLabelInsetRight: CGFloat
+
+  This property allows you to specify the right property of the progressLabelInsets in the Interface Builder. Default is 0.
+
+  ```swift
+  progressBar.progressLabelInsetRight = 5.0
+  ```
+
+* @IBInspectable progressLabelInsetTop: CGFloat
+
+  This property allows you to specify the top property of the progressLabelInsets in the Interface Builder. Default is 0.
+
+  ```swift
+  progressBar.progressLabelInsetTop = 5.0
+  ```
+
+* @IBInspectable progressLabelInsetBottom: CGFloat
+
+  This property allows you to specify the bottom property of the progressLabelInsets in the Interface Builder. Default is 0.
+
+  ```swift
+  progressBar.progressLabelInsetBottom = 5.0
   ```
 
 * @IBInspectable cornerRadius: CGFloat
@@ -113,6 +144,28 @@ Many properties of GTProgressBar can be configured. Most of them can be configur
   ```swift
   progressBar.barMaxHeight = 12
   ```
+
+* labelPosition: GTProgressBarLabelPosition
+
+  This property allows you to specify on which side the progress label should be placed. Default is GTProgressBarLabelPosition.left
+
+  ```swift
+  progressBar.labelPosition = GTProgressBarLabelPosition.right
+  ```
+
+* @IBInspectable  labelPositionInt: Int
+
+  This property allows you to specify the position of the progress label using integers in the Interface Builder. Current mapping is
+
+  0 -> GTProgressBarLabelPosition.left
+  1 -> GTProgressBarLabelPosition.right
+  2 -> GTProgressBarLabelPosition.top
+  3 -> GTProgressBarLabelPosition.bottom
+
+  ```swift
+  progressBar.labelPosition = GTProgressBarLabelPosition.right
+  ```
+
 * animateTo(progress: CGFloat)
 
   This method animates the progress bar to the value specified. The allowed values are from 0.0 to 1.0 . If invalid value is provided it will be capped to the nearest allowed value.
@@ -134,6 +187,7 @@ progressBar.barFillInset = 2
 progressBar.labelTextColor = UIColor(red:0.35, green:0.80, blue:0.36, alpha:1.0)
 progressBar.progressLabelInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 progressBar.font = UIFont.boldSystemFont(ofSize: 18)
+progressBar.labelPosition = GTProgressBarLabelPosition.right
 progressBar.barMaxHeight = 12
 
 view.addSubview(progressBar)
@@ -143,14 +197,19 @@ view.addSubview(progressBar)
 
 ## Installation
 
-GTProgressBar is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### [Carthage](https://github.com/Carthage/Carthage)
+To install it, simply add the following line to your Cartfile:
+
+```
+github "gregttn/GTProgressBar"
+```
+
+### [CocoaPods](http://cocoapods.org)
+To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod "GTProgressBar"
 ```
-
-
 
 ## Author
 

@@ -134,11 +134,15 @@ final public class PopupDialog: UIViewController {
         // Add our custom view to the container
         if #available(iOS 9.0, *) {
             if let stackView = popupContainerView.stackView as? UIStackView {
+                addChildViewController(viewController)
                 stackView.insertArrangedSubview(viewController.view, at: 0)
+                viewController.didMove(toParentViewController: self)
             }
         } else {
             if let stackView = popupContainerView.stackView as? TZStackView {
+                addChildViewController(viewController)
                 stackView.insertArrangedSubview(viewController.view, at: 0)
+                viewController.didMove(toParentViewController: self)
             }
         }
 
@@ -158,6 +162,7 @@ final public class PopupDialog: UIViewController {
             let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
             popupContainerView.stackView.addGestureRecognizer(panRecognizer)
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            tapRecognizer.cancelsTouchesInView = false
             popupContainerView.addGestureRecognizer(tapRecognizer)
         }
     }
@@ -200,7 +205,7 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        //dismiss()
+        dismiss()
     }
 
     /*!

@@ -52,7 +52,7 @@ extension FullDashBoardController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FullDashBoardCell") as! FullDashBoardCell
-        cell.aqhiLabel.text = "AQHI : 0"
+        cell.aqhiLabel.text = "AQHI: 0"
         cell.districtLabel.text = districtsInHCM[indexPath.row]
         return cell
     }

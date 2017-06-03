@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import ESTabBarController_swift
-import OpenSansSwift
 import TextFieldEffects
 import PKHUD
 import PopupDialog
@@ -30,7 +29,7 @@ class myTextField : YoshikoTextField {
 class LoginController: UIViewController {
     lazy var nameTextField : myTextField = {
         let tf = myTextField()
-        tf.font = UIFont.openSansLightFontOfSize(20)
+        tf.font = UIFont.getFutura(fontSize: 20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
         tf.activeBorderColor = .black
@@ -45,7 +44,7 @@ class LoginController: UIViewController {
     
     lazy var pwTextField : myTextField = {
         let tf = myTextField()
-        tf.font = UIFont.openSansLightFontOfSize(20)
+        tf.font = UIFont.getFutura(fontSize: 20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
         tf.activeBorderColor = .black
@@ -60,7 +59,7 @@ class LoginController: UIViewController {
     
     lazy var confirmTextField : myTextField = {
         let tf = myTextField()
-        tf.font = UIFont.openSansLightFontOfSize(20)
+        tf.font = UIFont.getFutura(fontSize: 20)
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.activeBackgroundColor = .white
         tf.activeBorderColor = .black
@@ -75,7 +74,7 @@ class LoginController: UIViewController {
     
     lazy var loginBtn : UIButton = {
         let btn = UIButton()
-        btn.titleLabel?.font = UIFont.openSansLightFontOfSize(16)
+        btn.titleLabel?.font = UIFont.getFutura(fontSize: 16)
         btn.setTitle("Login", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = UIColor(r: 255, g: 102, b: 102)
@@ -89,8 +88,7 @@ class LoginController: UIViewController {
     lazy var registerLabel : UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        _ = OpenSans.registerFonts()
-        lb.font = UIFont.openSansFontOfSize(15)
+        lb.font = UIFont.getFutura(fontSize: 15)
         lb.text = "Don't have an account?"
         lb.textAlignment = .center
         lb.isUserInteractionEnabled = true
@@ -325,13 +323,11 @@ extension LoginController : PopUpViewControllerDelegate {
             switch method {
             case .manually:
                 Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
-                
                 self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
                 break
             case .automatically:
                 Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
                 self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
-               
                 break
             case .none:
                 Client.userDefaults.removeObject(forKey: currentUserKey)

@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import OpenSansSwift
 import PKHUD
 import PopupDialog
 
 //MARK : setup view constraints
 extension LoginController {
     func setupUI() {
-        _ = OpenSans.registerFonts()
         //hint: add observer when keyboard appears to handle UI resizing
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)

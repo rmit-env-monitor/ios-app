@@ -11,17 +11,39 @@ import GoogleMaps
 import GooglePlaces
 import MapKit
 import PKHUD
+import UserNotifications
 
 
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //setupSearchBarUI()
         HUD.show(.progress)
         mapView.delegate = self
         self.navigationItem.title = "Map"
-        // Do any additional setup after loading the view.
+        
+        
+        let rightBarButton = UIBarButtonItem(title: "Show Noti", style: .plain, target: self, action: #selector(showNotification))
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func showNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Test Title"
+        content.subtitle = "Test Subtitle"
+        content.body = "blah blah this is the test body"
+        content.badge = 1
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print("\(error?.localizedDescription)")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,14 +107,14 @@ class MapViewController: UIViewController {
         searchLocationController.dimsBackgroundDuringPresentation = false
         let searchBarTextField = searchLocationController.searchBar.value(forKey: "searchField") as? UITextField
         searchBarTextField?.textColor = navigationBarTintColor
-        searchBarTextField?.font = UIFont.openSansFontOfSize(16)
+        searchBarTextField?.font = UIFont.getFutura(fontSize: 16)
         
         self.navigationItem.titleView = self.searchLocationController.searchBar
         self.definesPresentationContext = true
     }
-
 }
 
+//MARK : Setup the map annotation
 extension MapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is MKPointAnnotation) {
@@ -113,10 +135,8 @@ extension MapViewController : MKMapViewDelegate {
             detailButton.addTarget(self, action: #selector(handleOpenDetailView), for: .touchUpInside)
             annotationView!.rightCalloutAccessoryView = detailButton
             
-       
-            
             //we need a variable holding the AQI value used to decide which color the annotationView will be
-            annotationView!.image = lowAQIAnnotationView!
+            annotationView!.image = highAQIAnnotationView
             let aqhiLabel = UILabel(frame: CGRect(x: 2.5, y: -5, width: annotationView!.image!.size.width - 5, height: annotationView!.image!.size.height))
             
             aqhiLabel.text = "0"
@@ -129,10 +149,6 @@ extension MapViewController : MKMapViewDelegate {
         else {
             annotationView!.annotation = annotation
         }
-        
-        
-        
-        
         return annotationView
     }
     

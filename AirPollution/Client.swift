@@ -132,9 +132,9 @@ class Client {
             if let status = response.response?.statusCode {
                 switch status {
                 case 200:
-                    if let jsonResponse = response.result.value as? [String : AnyObject] {
+                    if let jsonResponse = response.result.value as? [String] {
                         if !jsonResponse.isEmpty {
-                            districtsArray = jsonResponse["nearby"] as! [String]
+                            districtsArray = jsonResponse
                             completion(districtsArray)
                             HUD.hide()
                             return

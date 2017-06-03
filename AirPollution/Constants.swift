@@ -15,6 +15,10 @@ let locationMethodKey = "locationMethod"
 let currentAddressKey = "currentAddress"
 let currentUserKey = "CurrentUser"
 
+//App delegate
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+var rootVC = appDelegate.window?.rootViewController
+
 //Color Constants (the green one)
 let navigationBarTintColor = UIColor.init(r: 201, g: 251, b: 82)
 
@@ -25,7 +29,7 @@ let FullDashBoardVCStoryBoardID = "FullDashBoardController"
 let SmartDashBoardVCStoryBoardID = "SmartDashBoardController"
 
 //Network constant
-let baseURL = URL(string: "http://172.104.45.207")
+let baseURL = URL(string: "http://ec2-52-221-209-59.ap-southeast-1.compute.amazonaws.com")
 let loginURL = URL(string: "\(baseURL!)/auth")
 let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
 let registerURL = URL(string: "\(baseURL!)/users")
@@ -76,3 +80,9 @@ let districtsInHCM = [ "Quận 1",
                        "Phú Nhuận",
                        "Bình Tân"
 ]
+
+extension UIFont {
+    static func getFutura(fontSize : CGFloat) -> UIFont {
+      return UIFont(name: "Futura", size: fontSize)!
+    }
+}

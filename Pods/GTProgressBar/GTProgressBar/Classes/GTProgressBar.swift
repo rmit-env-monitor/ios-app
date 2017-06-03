@@ -8,6 +8,8 @@ import UIKit
 
 @IBDesignable
 public class GTProgressBar: UIView {
+    private let minimumProgressBarWidth: CGFloat = 20
+    private let minimumProgressBarFillHeight: CGFloat = 1
     private let backgroundView = UIView()
     private let fillView = UIView()
     private let progressLabel = UILabel()
@@ -15,12 +17,45 @@ public class GTProgressBar: UIView {
     
     public var font: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
+            progressLabel.font = font
             self.setNeedsLayout()
         }
     }
     
     public var progressLabelInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5) {
         didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    @IBInspectable
+    public var progressLabelInsetLeft: CGFloat = 0.0 {
+        didSet {
+            self.progressLabelInsets.left = max(0.0, progressLabelInsetLeft)
+            self.setNeedsLayout()
+        }
+    }
+    
+    @IBInspectable
+    public var progressLabelInsetRight: CGFloat = 0.0 {
+        didSet {
+            self.progressLabelInsets.right = max(0.0, progressLabelInsetRight)
+            self.setNeedsLayout()
+        }
+    }
+    
+    @IBInspectable
+    public var progressLabelInsetTop: CGFloat = 0.0 {
+        didSet {
+            self.progressLabelInsets.top = max(0.0, progressLabelInsetTop)
+            self.setNeedsLayout()
+        }
+    }
+    
+    @IBInspectable
+    public var progressLabelInsetBottom: CGFloat = 0.0 {
+        didSet {
+            self.progressLabelInsets.bottom = max(0.0, progressLabelInsetBottom)
             self.setNeedsLayout()
         }
     }
@@ -34,6 +69,7 @@ public class GTProgressBar: UIView {
     @IBInspectable
     public var barBorderColor: UIColor = UIColor.black {
         didSet {
+            backgroundView.layer.borderColor = barBorderColor.cgColor
             self.setNeedsLayout()
         }
     }
@@ -41,6 +77,7 @@ public class GTProgressBar: UIView {
     @IBInspectable
     public var barBackgroundColor: UIColor = UIColor.white {
         didSet {
+            backgroundView.backgroundColor = barBackgroundColor
             self.setNeedsLayout()
         }
     }
@@ -48,6 +85,7 @@ public class GTProgressBar: UIView {
     @IBInspectable
     public var barFillColor: UIColor = UIColor.black {
         didSet {
+            fillView.backgroundColor = barFillColor
             self.setNeedsLayout()
         }
     }
@@ -55,6 +93,7 @@ public class GTProgressBar: UIView {
     @IBInspectable
     public var barBorderWidth: CGFloat = 2 {
         didSet {
+            backgroundView.layer.borderWidth = barBorderWidth
             self.setNeedsLayout()
         }
     }
@@ -82,6 +121,7 @@ public class GTProgressBar: UIView {
     @IBInspectable
     public var labelTextColor: UIColor = UIColor.black {
         didSet {
+            progressLabel.textColor = labelTextColor
             self.setNeedsLayout()
         }
     }
@@ -103,6 +143,23 @@ public class GTProgressBar: UIView {
         }
     }
     
+    public var labelPosition: GTProgressBarLabelPosition = GTProgressBarLabelPosition.left {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    @IBInspectable
+    public var labelPositionInt: Int = 0 {
+        didSet {
+            let enumPosition = GTProgressBarLabelPosition(rawValue: labelPositionInt)
+            
+            if let position = enumPosition {
+                self.labelPosition = position
+            }
+        }
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         prepareSubviews()
@@ -114,49 +171,61 @@ public class GTProgressBar: UIView {
     }
     
     private func prepareSubviews() {
+        progressLabel.textAlignment = NSTextAlignment.center
+        progressLabel.font = font
+        progressLabel.textColor = labelTextColor
         addSubview(progressLabel)
+
+        backgroundView.backgroundColor = barBackgroundColor
+        backgroundView.layer.borderWidth = barBorderWidth
+        backgroundView.layer.borderColor = barBorderColor.cgColor
         addSubview(backgroundView)
+        
+        fillView.backgroundColor = barFillColor
         addSubview(fillView)
     }
     
     public override func layoutSubviews() {
-        setupProgressLabel()
-        setupBackgroundView()
-        setupFillView()
+        updateProgressLabelText()
+        updateViewsLocation()
     }
     
-    private func setupProgressLabel() {
-        progressLabel.text = "\(Int(_progress * 100))%"
-        let origin = CGPoint(x: progressLabelInsets.left, y: 0)
-        progressLabel.frame = CGRect(origin: origin, size: sizeForLabel())
-        progressLabel.font = font
-        progressLabel.textAlignment = NSTextAlignment.center
-        progressLabel.textColor = labelTextColor
-        
-        centerVerticallyInView(view: progressLabel)
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return createFrameCalculator().sizeThatFits(size)
     }
     
-    private func setupBackgroundView() {
-        let xOffset = backgroundViewXOffset()
-        let height = min(barMaxHeight ?? frame.size.height, frame.size.height)
-        let size = CGSize(width: frame.size.width - xOffset, height: height)
-        let origin = CGPoint(x: xOffset, y: 0)
+    private func updateViewsLocation() {
+        let frameCalculator: FrameCalculator = createFrameCalculator()
         
-        backgroundView.frame = CGRect(origin: origin, size: size)
-        backgroundView.backgroundColor = barBackgroundColor
-        backgroundView.layer.borderWidth = barBorderWidth
-        backgroundView.layer.borderColor = barBorderColor.cgColor
+        progressLabel.frame = frameCalculator.labelFrame()
+        frameCalculator.center(view: progressLabel, parent: self)
+
+        backgroundView.frame = frameCalculator.backgroundViewFrame()
         backgroundView.layer.cornerRadius = cornerRadiusFor(view: backgroundView)
         
-        if let _ = barMaxHeight {
-            centerVerticallyInView(view: backgroundView)
+        if (barMaxHeight != nil) {
+            frameCalculator.center(view: backgroundView, parent: self)
+        }
+        
+        fillView.frame = fillViewFrameFor(progress: _progress)
+        fillView.layer.cornerRadius = cornerRadiusFor(view: fillView)
+    }
+    
+    private func createFrameCalculator() -> FrameCalculator {
+        switch labelPosition {
+        case .right:
+            return LabelRightFrameCalculator(progressBar: self)
+        case .top:
+            return LabelTopFrameCalculator(progressBar: self)
+        case .bottom:
+            return LabelBottomFrameCalculator(progressBar: self)
+        default:
+            return LabelLeftFrameCalculator(progressBar: self)
         }
     }
     
-    private func setupFillView() {
-        fillView.frame = fillViewFrameFor(progress: _progress)
-        fillView.backgroundColor = barFillColor
-        fillView.layer.cornerRadius = cornerRadiusFor(view: fillView)
+    private func updateProgressLabelText() {
+        progressLabel.text = "\(Int(_progress * 100))%"
     }
     
     public func animateTo(progress: CGFloat) {
@@ -187,27 +256,11 @@ public class GTProgressBar: UIView {
         return CGRect(origin: fillFrame.origin, size: fillFrameAdjustedSize)
     }
     
-    private func backgroundViewXOffset() -> CGFloat {
-        return displayLabel ? progressLabel.frame.width + progressLabelInsets.left + progressLabelInsets.right : 0.0
-    }
-    
     private func cornerRadiusFor(view: UIView) -> CGFloat {
         if cornerRadius != 0.0 {
             return cornerRadius
         }
         
         return view.frame.height / 2 * 0.7
-    }
-    
-    private func sizeForLabel() -> CGSize {
-        let text: NSString = "100%"
-        let textSize = text.size(attributes: [NSFontAttributeName : font])
-        
-        return CGSize(width: ceil(textSize.width), height: ceil(textSize.height))
-    }
-    
-    private func centerVerticallyInView(view: UIView) {
-        let center = self.convert(self.center, from: self.superview)
-        view.center = CGPoint(x: view.center.x, y: center.y)
     }
 }

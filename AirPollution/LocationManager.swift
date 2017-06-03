@@ -37,8 +37,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     var permissionStatus : CLAuthorizationStatus {
         return CLLocationManager.authorizationStatus()
     }
-    
-    
+        
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
         if Client.userDefaults.string(forKey: "locationMethod")! == "automatically" {

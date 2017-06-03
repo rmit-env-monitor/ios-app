@@ -29,6 +29,10 @@
 	<string>Request permission</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Request permission</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

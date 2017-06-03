@@ -8,53 +8,53 @@
 
 import UIKit
 import MapKit
-import OpenSansSwift
 import GooglePlaces
+import UserNotifications
+import FirebaseMessaging
+import FirebaseInstanceID
+import Firebase
 
 class SmartDashBoardController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var currentAddress : Location? {
-        didSet {
-            
-            let city : String! = currentAddress?.city
-            let district : String! = currentAddress?.district
-            weak var selfRefer = self
-            Client.getNearbyDistricts(district, city) { (response) in
-                if let arrayString = response {
-                    selfRefer?.nearbyDistricts = !arrayString.isEmpty ? arrayString : [String]()
-                    selfRefer?.tableView.reloadData()
-                    selfRefer?.tableView.alpha = 1
-                }
-            }
-            
-        }
-    }
-    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchLocationController : UISearchController!
     var nearbyDistricts = [String]()
+    var toDetailDistrict : String!
+    var locationManager : LocationManager!
     
     var currentLocation : CLLocationCoordinate2D? {
         didSet {
             let latitude = "\((currentLocation?.latitude)!)"
             let longitude = "\((currentLocation?.longitude)!)"
-            let locationDictionary = ["latitude" : (currentLocation?.latitude)!, "longitude" : (currentLocation?.longitude)!]
-            Client.userDefaults.set(locationDictionary, forKey: currentAddressKey)
+            let locationDictionary = ["latitude" : currentLocation?.latitude, "longitude" : currentLocation?.longitude]
+            Client.userDefaults.set(locationDictionary, forKey:  currentAddressKey)
             Client.getAddressForLatLng(latitude: latitude, longitude: longitude) { (address, fullAddress) in
-                guard address != nil else {
-                    return
+                if address != nil {
+                    self.currentAddress = address
                 }
-                print(fullAddress!)
-                self.currentAddress = address
+                //print(fullAddress!)
             }
         }
     }
     
+    
+    var currentAddress : Location? {
+        didSet {
+            let city : String! = currentAddress!.city
+            let district : String! = currentAddress!.district
+            Client.getNearbyDistricts(district, city) { (response) in
+                if let nearbyDistrictsArray = response {
+                    self.nearbyDistricts = nearbyDistrictsArray.isEmpty ? nearbyDistrictsArray : [String]()
+                    self.tableView.reloadData()
+                    self.tableView.alpha = 1
+                }
+            }
+            
+        }
+    }
 
-    
-    var locationManager : LocationManager!
-    var suggestedLocationVC : SuggestedLocationViewController?
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,13 +62,46 @@ class SmartDashBoardController: UIViewController {
         setupUI()
         
         locationManager = LocationManager(SmartDashBoardViewController: self)
+        //UIApplication.shared.windows[0].rootViewController = EsTabBarController.sharedInstance.open()
+
         NotificationCenter.default.addObserver(self, selector: #selector(checkPermissionAndMethodLocation), name: NSNotification.Name(rawValue: backFromSetting), object: nil)
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         checkPermissionAndMethodLocation()
+        checkPermissionNotification()
+    }
+    
+    func requestPushNotificationPermission() {
+        if #available(iOS 10, *) {
+            let authOptions : UNAuthorizationOptions = [.badge, .alert, .sound]
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { (_, _) in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    func checkPermissionNotification() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            let permissionStatus = settings.authorizationStatus
+            if permissionStatus == .denied {
+//                let alert = UIAlertController(title: "Need Permission", message: "This feature is unusable if you don't permit this app to push notification!", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//                alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+//                    let url = URL(string: UIApplicationOpenSettingsURLString)!
+//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                }))
+//                self.present(alert, animated: true, completion: nil)
+            }
+            else if permissionStatus == .notDetermined {
+                self.requestPushNotificationPermission()
+            }
+        }
     }
     
     func checkPermissionAndMethodLocation() {
@@ -82,16 +115,13 @@ class SmartDashBoardController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
-            
         else if permissionStatus == .notDetermined {
             locationManager.requestLocationPermission()
-            print("Not DeterMined")
+            print("Not Determined")
         }
-            
         else if permissionStatus == .restricted {
             print("Restricted, You can do nothing :((")
         }
-            
         else if (permissionStatus == .authorizedWhenInUse || permissionStatus == .authorizedAlways) && self.currentAddress == nil {
             if Client.userDefaults.object(forKey: locationMethodKey) as? String == "\(locationMethod.manually)" {
                 if currentAddress == nil {
@@ -106,8 +136,6 @@ class SmartDashBoardController: UIViewController {
         }
     }
     
-    var resultsViewController: GMSAutocompleteResultsViewController?
-    var searchLocationController : UISearchController!
     func setupSearchBarUI() {
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
@@ -119,16 +147,13 @@ class SmartDashBoardController: UIViewController {
         searchLocationController.dimsBackgroundDuringPresentation = false
         let searchBarTextField = searchLocationController.searchBar.value(forKey: "searchField") as? UITextField
         searchBarTextField?.textColor = navigationBarTintColor
-        searchBarTextField?.font = UIFont.openSansFontOfSize(16)
+        searchBarTextField?.font = UIFont.getFutura(fontSize: 16)
         
         self.navigationItem.titleView = self.searchLocationController.searchBar
         self.definesPresentationContext = true
     }
     
-    
-    
     func setupUI() {
-        _ = OpenSans.registerFonts()
         let logoutButton = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(onLogout))
         self.navigationItem.rightBarButtonItem = logoutButton
 
@@ -149,18 +174,15 @@ class SmartDashBoardController: UIViewController {
     
     func onLogout() {
         Client.logout()
+        EsTabBarController.sharedInstance.close()
         self.dismiss(animated: true, completion: nil)
-        
     }
-    
-  
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    var toDetailDistrict : String!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDetailViewSegue" {
             let destinationViewController = segue.destination as! DetailViewController
@@ -245,10 +267,8 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
             return nearbyDistricts.count
         default : return 0
         }
-        
     }
 
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:

@@ -9,11 +9,9 @@
 import Foundation
 import ESTabBarController_swift
 
-class EsTabBarController : NSObject {
+class EsTabBarController : ESTabBarController {
     
     static let sharedInstance = EsTabBarController()
-    
-    var tabBarController = ESTabBarController()
     
     
     func open() -> ESTabBarController {
@@ -23,11 +21,10 @@ class EsTabBarController : NSObject {
         
         let fullDashBoardVC = storyboard.instantiateViewController(withIdentifier: FullDashBoardVCStoryBoardID) as? FullDashBoardController
         
-        
         let mapVC = storyboard.instantiateViewController(withIdentifier: MapVCStoryBoardID) as?
         MapViewController
         
-        if let tabBar = EsTabBarController.sharedInstance.tabBarController.tabBar as? ESTabBar {
+        if let tabBar = EsTabBarController.sharedInstance.tabBar as? ESTabBar {
             tabBar.itemCustomPositioning = .fillIncludeSeparator
             tabBar.backgroundColor = UIColor.black
         }
@@ -44,17 +41,13 @@ class EsTabBarController : NSObject {
         mapNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Map", image: UIImage(named: "routing"), selectedImage: UIImage(named: "routing"), tag: 3)
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
-        EsTabBarController.sharedInstance.tabBarController.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
+        EsTabBarController.sharedInstance.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarControllerWhenLoggedOut), name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
-        return EsTabBarController.sharedInstance.tabBarController
+        return EsTabBarController.sharedInstance
     }
     
-    func handleTabBarControllerWhenLoggedOut() {
-        EsTabBarController.sharedInstance.tabBarController.dismiss(animated: true, completion: nil)
-        let loginController = UIApplication.shared.keyWindow?.rootViewController as! LoginController
-        loginController.nameTextField.text = ""
-        loginController.pwTextField.text = ""
+    func close() {
+        EsTabBarController.sharedInstance.dismiss(animated: true, completion: nil)
         
     }
     

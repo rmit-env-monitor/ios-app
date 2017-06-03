@@ -7,7 +7,7 @@ target 'AirPollution' do
   use_frameworks!
 	pod 'Alamofire', '~> 4.4'
 	pod 'PopupDialog', '~> 0.5'
-	pod 'FoldingCell’, '~> 2.0.3'
+
 	pod "ESTabBarController-swift"
 	pod "TextFieldEffects"
 	pod 'PKHUD', '~> 4.0’
@@ -15,6 +15,10 @@ target 'AirPollution' do
   	pod 'GooglePlacePicker'
   	pod 'GoogleMaps'
 	pod "GTProgressBar"
+	pod ‘Firebase/Core’
+	pod ‘Firebase’
+	pod ‘Firebase/Messaging’
+	
 
   # Pods for AirPollution
 

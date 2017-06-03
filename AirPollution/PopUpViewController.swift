@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OpenSansSwift
 
 
 enum locationMethod {
@@ -33,7 +32,7 @@ class PopUpViewController: UIViewController {
     lazy var inputLabel : UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.attributedText = NSAttributedString(string: "Could you tell us where you are now?", attributes: [NSFontAttributeName : UIFont.openSansFontOfSize(18)])
+        lb.attributedText = NSAttributedString(string: "Could you tell us where you are now?", attributes: [NSFontAttributeName : UIFont.getFutura(fontSize: 18)])
         lb.textAlignment = .center
         lb.numberOfLines = 0
         print("HeRe")
@@ -50,7 +49,7 @@ class PopUpViewController: UIViewController {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Automatically detect my location", for: .normal)
-        btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
+        btn.titleLabel?.font = UIFont.getFutura(fontSize: 14)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.setTitleColor(UIColor.black, for: .highlighted)
         btn.addTarget(self, action: #selector(handleDetectLocationAutomatically), for: .touchUpInside)
@@ -61,7 +60,7 @@ class PopUpViewController: UIViewController {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("My location is...", for: .normal)
-        btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
+        btn.titleLabel?.font = UIFont.getFutura(fontSize: 14)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.setTitleColor(UIColor.black, for: .highlighted)
         btn.addTarget(self, action: #selector(handleDetectLocationManually), for: .touchUpInside)
@@ -72,7 +71,7 @@ class PopUpViewController: UIViewController {
        let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Cancel", for: .normal)
-        btn.titleLabel?.font = UIFont.openSansFontOfSize(14)
+        btn.titleLabel?.font = UIFont.getFutura(fontSize: 14)
         btn.setTitleColor(UIColor.gray, for: .normal)
         btn.setTitleColor(UIColor.black, for: .highlighted)
         btn.addTarget(self, action: #selector(handleCancelDetectLocation), for: .touchUpInside)
@@ -126,7 +125,6 @@ extension PopUpViewController {
 //MARK : set up constraints for this VC
 extension PopUpViewController {
     func setupUI() {
-        _ = OpenSans.registerFonts()
         view.addSubview(inputLabel)
         view.addSubview(buttonContainer)
         
