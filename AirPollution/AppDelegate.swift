@@ -76,6 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Opening the app because user clicks push notification")
+        //open specific view here
+        EsTabBarController.sharedInstance.selectedIndex = 2
+    }
+    
+    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }

@@ -29,12 +29,8 @@ class EsTabBarController : ESTabBarController {
             tabBar.backgroundColor = UIColor.black
         }
         let smartDashBoardNC = UINavigationController(rootViewController: smartDashBoardVC!)
-        
         let fullDashBoardNC = UINavigationController(rootViewController: fullDashBoardVC!)
-        
         let mapNC = UINavigationController(rootViewController: mapVC!)
-        
-        
         
         smartDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 1)
         fullDashBoardNC.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "All Sensors", image: UIImage(named: "currentlocation"), selectedImage: UIImage(named: "currentlocation"), tag: 2)
@@ -48,9 +44,6 @@ class EsTabBarController : ESTabBarController {
     
     func close() {
         EsTabBarController.sharedInstance.dismiss(animated: true, completion: nil)
-        
     }
-    
-    
     
 }

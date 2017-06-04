@@ -24,9 +24,6 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         self.navigationItem.title = "Map"
         
-        
-        let rightBarButton = UIBarButtonItem(title: "Show Noti", style: .plain, target: self, action: #selector(showNotification))
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     func showNotification() {

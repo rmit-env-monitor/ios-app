@@ -46,10 +46,10 @@ class SmartDashBoardController: UIViewController {
             let district : String! = currentAddress!.district
             Client.getNearbyDistricts(district, city) { (response) in
                 if let nearbyDistrictsArray = response {
-                    self.nearbyDistricts = nearbyDistrictsArray.isEmpty ? nearbyDistrictsArray : [String]()
-                    self.tableView.reloadData()
-                    self.tableView.alpha = 1
+                    self.nearbyDistricts = !nearbyDistrictsArray.isEmpty ? nearbyDistrictsArray : [String]()
                 }
+                self.tableView.reloadData()
+                self.tableView.alpha = 1
             }
             
         }
@@ -255,6 +255,19 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if nearbyDistricts.isEmpty {
+            let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
+            messageLabel.font = UIFont.getFutura(fontSize: 15)
+            messageLabel.textColor = .black
+            messageLabel.text = "No Data Available, Your Location is not at Ho Chi Minh City"
+            messageLabel.textAlignment = .center
+            messageLabel.sizeToFit()
+            messageLabel.numberOfLines = 0
+            
+            self.tableView.backgroundView = messageLabel
+            self.tableView.separatorStyle = .none
+            
+        }
         return 2
     }
     
@@ -284,7 +297,10 @@ extension SmartDashBoardController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        if currentAddress != nil {
+            return 30
+        }
+        return 0
     }
 }
 
