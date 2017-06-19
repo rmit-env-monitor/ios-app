@@ -38,12 +38,18 @@ class EsTabBarController : ESTabBarController {
         v4.tabBarItem = ESTabBarItem.init(CustomTabBarContentView(), title: "Setting", image: UIImage(named: "setting"), selectedImage: UIImage(named: "setting"), tag: 4)
         
         EsTabBarController.sharedInstance.viewControllers = [smartDashBoardNC,fullDashBoardNC,mapNC,v4]
-        
+        UIApplication.shared.keyWindow?.rootViewController = self
         return EsTabBarController.sharedInstance
     }
     
     func close() {
         EsTabBarController.sharedInstance.dismiss(animated: true, completion: nil)
+        let loginController = LoginController()
+        UIApplication.shared.keyWindow?.rootViewController = loginController
+        
     }
     
+    deinit {
+        print("GIAI THOAT CHO NO")
+    }
 }

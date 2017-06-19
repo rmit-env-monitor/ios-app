@@ -9,43 +9,37 @@
 import Foundation
 import MapKit
 
-class LocationManager : NSObject, CLLocationManagerDelegate {
+class LocationManager : CLLocationManager {
     
-    let locationManager = CLLocationManager()
-    var currentLocation : CLLocationCoordinate2D?
-    var viewController : SmartDashBoardController?
+    static var currentLocation : Location?
     
-    func requestLocationPermission() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    override init() {
-        super.init()
-    }
-    
-    convenience init(SmartDashBoardViewController : SmartDashBoardController) {
-        self.init()
-        locationManager.delegate = self
-        self.viewController = SmartDashBoardViewController
-    }
-    
+  
+//    func requestLocationPermission() {
+//        self.requestWhenInUseAuthorization()
+//        self.requestAlwaysAuthorization()
+//        self.delegate = self
+//        if CLLocationManager.locationServicesEnabled() {
+//            self.desiredAccuracy = kCLLocationAccuracyBest
+//            self.startUpdatingLocation()
+//        }
+//    }
+//    
     var permissionStatus : CLAuthorizationStatus {
         return CLLocationManager.authorizationStatus()
     }
-        
+    
+    
+}
+
+//MARK: conform CLLocationManagerDelegate method
+extension LocationManager : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
-        if Client.userDefaults.string(forKey: "locationMethod")! == "automatically" {
-            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-            self.currentLocation = locValue
-            self.viewController?.currentLocation = locValue
-            print(locValue.latitude)
-            print(locValue.longitude)
-        }
+        self.stopUpdatingLocation()
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        Client.getAddressForLatLng(latitude: "\(locValue.latitude)", longitude: "\(locValue.longitude)", completion: { (location, address) in
+            LocationManager.currentLocation = location
+        })
+        print("\(locValue.latitude)")
     }
 }
+

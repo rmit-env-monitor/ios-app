@@ -18,19 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        //Configure Firebase
         FirebaseApp.configure()
+        
+        //Configure UINavigationBar for the whole app
         UIApplication.shared.statusBarStyle = .lightContent
         let appearance = UINavigationBar.appearance()
         appearance.tintColor = navigationBarTintColor
         appearance.barTintColor = UIColor.black
         appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.getFutura(fontSize: 18)]
         
+        //Configure API Key for Google Places SDK
         GMSPlacesClient.provideAPIKey(geocodingAPIKey)
         
+        //Initialize UIWindows for the App
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        if let dictionary = Client.userDefaults.dictionary(forKey: currentUserKey), Client.userDefaults.object(forKey: locationMethodKey) != nil {
+        //Configure the root view controller
+        if let dictionary = userDefaults.dictionary(forKey: currentUserKey), userDefaults.object(forKey: locationMethodKey) != nil {
             Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
             window?.rootViewController = EsTabBarController.sharedInstance.open()
         }
@@ -39,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = loginController
             
         }
+        
+        //Configure the icon badge number
         application.applicationIconBadgeNumber = 0
         
         return true

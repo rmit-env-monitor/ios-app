@@ -1,19 +1,19 @@
 PODS:
   - Alamofire (4.4.0)
   - ESTabBarController-swift (2.4)
-  - Firebase (4.0.0):
-    - Firebase/Core (= 4.0.0)
-  - Firebase/Core (4.0.0):
-    - FirebaseAnalytics (= 4.0.0)
-    - FirebaseCore (= 4.0.0)
-  - Firebase/Messaging (4.0.0):
+  - Firebase (4.0.2):
+    - Firebase/Core (= 4.0.2)
+  - Firebase/Core (4.0.2):
+    - FirebaseAnalytics (= 4.0.1)
+    - FirebaseCore (= 4.0.2)
+  - Firebase/Messaging (4.0.2):
     - Firebase/Core
     - FirebaseMessaging (= 2.0.0)
-  - FirebaseAnalytics (4.0.0):
+  - FirebaseAnalytics (4.0.1):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.0):
+  - FirebaseCore (4.0.2):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
@@ -39,7 +39,7 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GTProgressBar (0.1.3)
-  - PKHUD (4.2.2)
+  - PKHUD (4.2.3)
   - PopupDialog (0.5.4)
   - Protobuf (3.3.0)
   - TextFieldEffects (1.3.3)
@@ -61,9 +61,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   ESTabBarController-swift: af496895039ba10ae60bf825473c45f23fc5c8b6
-  Firebase: 284eea779b73fdff309791817da7c68bff8dd572
-  FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
-  FirebaseCore: 85ad466044c2f013cdb167f85d426d15b128114a
+  Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
+  FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
+  FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseMessaging: 227406c05b0dc9290702d2e9f18ab5528f0c2cf2
   GoogleMaps: 340a6a0bebd17c2db8abcd3921976c7c53c86cb8
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   GooglePlaces: 74d322c74184ea4576184089b496d291cf0dcd38
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTProgressBar: d130b36db4d0af881795aa4e5648e6dccd85b8fa
-  PKHUD: 9a3599e04d57676ec14746c40e423a52fb6588c0
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   TextFieldEffects: 8706f53525f1ce51c8921b7af32237caab50c467

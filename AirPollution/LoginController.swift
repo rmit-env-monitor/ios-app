@@ -294,7 +294,6 @@ class LoginController: UIViewController {
         HUD.show(.progress)
         HUD.dimsBackground = true
         Client.login(params as [String : AnyObject]) { (isFinished) in
-        
             if (isFinished) {
                 HUD.hide({ (finished) in
                     self.openPopUpView()
@@ -308,7 +307,6 @@ class LoginController: UIViewController {
                 
             }
             self.view.isUserInteractionEnabled = true
-
         }
 
     }
@@ -322,15 +320,15 @@ extension LoginController : PopUpViewControllerDelegate {
         popUp.dismiss(animated: true, completion: { 
             switch method {
             case .manually:
-                Client.userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
+                userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)
                 self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
                 break
             case .automatically:
-                Client.userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
+                userDefaults.set("\(locationMethod.automatically)", forKey: locationMethodKey)
                 self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
                 break
             case .none:
-                Client.userDefaults.removeObject(forKey: currentUserKey)
+                userDefaults.removeObject(forKey: currentUserKey)
                 break
             }
         })

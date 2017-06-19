@@ -13,34 +13,34 @@ import PKHUD
 
 class Client {
     static var currentUser : User?
-    static let userDefaults = UserDefaults.standard
     
     //Get location based on Longtitude and Lantitude
     static func getAddressForLatLng(latitude : String, longitude : String, completion : @escaping (_ currentLocation : Location?, _ fullAddress : String?) -> ()) {
         let params = ["latlng" : latitude + "," + longitude, "key" : "\(geocodingAPIKey)"]
         var location : Location?
-        var address : String?
+        var address = ""
         Alamofire.request(geocodingURL!, method : .get, parameters : params).responseJSON { (response) in
             if let jsonResponse = response.result.value as? [String : AnyObject] {
-            
                 if let jsonArray = jsonResponse["results"] as? [[String : AnyObject]] {
                     let fullAddress = jsonArray[0]["formatted_address"] as! String
-                    
-                    var addressComponents = fullAddress.components(separatedBy: ", ")
-                    let ward = addressComponents[1]
-                    let district = addressComponents[2]
-                    let city = addressComponents[3]
-                    let locationComponents = [ "ward" : ward,
-                                               "district" : district ,
-                                               "city" : city
-                    ]
-                    
-                    location = Location(dictionary: locationComponents)
-                    address = "\(ward), \(district), \(city)"
+                    var fullAddressComponents = fullAddress.components(separatedBy: ", ")
+                    var locationComponents = [String : String]()
+                    for component in fullAddressComponents {
+                        if fullAddressComponents.index(of: component) == 1 {
+                            locationComponents["ward"] = fullAddressComponents[1]
+                            address = "\(fullAddressComponents[1])"
+                        }
+                        else if fullAddressComponents.index(of: component) == 2 {
+                            locationComponents["district"] = fullAddressComponents[2]
+                            address = address + ", \(fullAddressComponents[2])"
+                        }
+                        else if fullAddressComponents.index(of: component) ==  3 {
+                            locationComponents["city"] = fullAddressComponents[3]
+                            address = address + ", \(fullAddressComponents[3])"
+                        }
+                    }
+                    location = Location(dictionary: locationComponents, address: address)
                 }
-                
-            
-                
             }
             completion(location,address)
         }
@@ -75,11 +75,13 @@ class Client {
     
     //Logout
     static func logout() {
-        Client.userDefaults.removeObject(forKey: currentUserKey)
-        Client.userDefaults.removeObject(forKey: locationMethodKey)
-        Client.userDefaults.removeObject(forKey: currentAddressKey)
+        HUD.show(.progress)
+        userDefaults.removeObject(forKey: currentUserKey)
+        userDefaults.removeObject(forKey: locationMethodKey)
+        userDefaults.removeObject(forKey: currentAddressKey)
                 NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         print("Logout successfully")
+        HUD.hide()
     }
     
     //Load dashboard
@@ -164,9 +166,12 @@ class Client {
             if let status = response.response?.statusCode {
                 switch status {
                 case 200:
-                    if let result = response.result.value as? [[String : String]] {
+                    if let result = response.result.value as? [NSDictionary] {
                         for element in result {
-                            sensors.append(Sensor(id: element["_id"]! , name: element["name"]!))
+                            
+                            let id = element["_id"] as! String
+                            let name = element["name"] as! String
+                            sensors.append(Sensor(id: id , name: name))
                         }
                     }
                     completion(sensors)
@@ -178,6 +183,7 @@ class Client {
                     HUD.hide()
                     return
                 }
+                
             }
         }
     }

@@ -43,6 +43,9 @@ let highAQIAnnotationView = UIImage(named: "highAQIAnnotation")
 let mediumAQIAnnotationView = UIImage(named: "mediumAQIAnnotation")
 let lowAQIAnnotationView = UIImage(named: "lowAQIAnnotation")
 
+//UserDefault constant
+let userDefaults = UserDefaults.standard
+
 
 public enum HTTPMethod: String {
     case options = "OPTIONS"
@@ -56,10 +59,10 @@ public enum HTTPMethod: String {
     case connect = "CONNECT"
 }
 
-enum DISTRICT : Int {
-    case D1 = 0, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, THUDUC, GOVAP, BINHTHANH, TANBINH, TANPHU, PHUNHUAN, BINHTAN
-}
-
+//enum DISTRICT : Int {
+//    case D1 = 0, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, THUDUC, GOVAP, BINHTHANH, TANBINH, TANPHU, PHUNHUAN, BINHTAN
+//}
+//
 let districtsInHCM = [ "Quận 1",
                        "Quận 2",
                        "Quận 3",
@@ -81,8 +84,4 @@ let districtsInHCM = [ "Quận 1",
                        "Bình Tân"
 ]
 
-extension UIFont {
-    static func getFutura(fontSize : CGFloat) -> UIFont {
-      return UIFont(name: "Futura", size: fontSize)!
-    }
-}
+

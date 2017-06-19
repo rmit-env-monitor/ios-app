@@ -119,9 +119,6 @@ extension PopUpViewController {
     
 }
 
-
-
-
 //MARK : set up constraints for this VC
 extension PopUpViewController {
     func setupUI() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E326BC011EE587D600A902CC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326BC001EE587D600A902CC /* Extension.swift */; };
 		E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */; };
 		E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33959641E9299DD000F5145 /* PopUpViewController.swift */; };
 		E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */; };
@@ -16,6 +17,7 @@
 		E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
+		E34731951EF2F56800EB17E7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34731941EF2F56800EB17E7 /* AdSupport.framework */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
 		E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E361DE321ED87B22001313A2 /* GoogleService-Info.plist */; };
 		E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364449A1EA53553004A8C66 /* EsTabBarController.swift */; };
@@ -54,6 +56,7 @@
 		4F5957569AE094C21052762A /* Pods-AirPollution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.debug.xcconfig"; sourceTree = "<group>"; };
 		573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirPollution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321603F1EDAF21900D99C39 /* AirPollution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirPollution.entitlements; sourceTree = "<group>"; };
+		E326BC001EE587D600A902CC /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContentView.swift; sourceTree = "<group>"; };
 		E33959641E9299DD000F5145 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardCell.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E34731941EF2F56800EB17E7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E361DE321ED87B22001313A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E364449A1EA53553004A8C66 /* EsTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsTabBarController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E34731951EF2F56800EB17E7 /* AdSupport.framework in Frameworks */,
 				C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +104,7 @@
 		490DF99D9A7DD4B7A4C8D20B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E34731941EF2F56800EB17E7 /* AdSupport.framework */,
 				573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */,
 			);
 			name = Frameworks;
@@ -159,6 +165,7 @@
 				E3B888D81E6A7A440036B1ED /* AppDelegate.swift */,
 				E37CAC1E1E9697CA00408733 /* LocationManager.swift */,
 				E3EE70BA1EA3B8B600DAB588 /* LoginControllerLayout.swift */,
+				E326BC001EE587D600A902CC /* Extension.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -333,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E326BC011EE587D600A902CC /* Extension.swift in Sources */,
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
 				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,

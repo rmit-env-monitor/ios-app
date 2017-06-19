@@ -17,16 +17,15 @@ class Location : NSObject {
     //var country : Strig!
     var fullAddress : String?
     
-    init(dictionary : [String : String]) {
-      
+    
+    init(dictionary : [String : String], address : String) {
         self.ward = dictionary["ward"]
         self.city = dictionary["city"]
         self.district = dictionary["district"]!
-        self.fullAddress = "\(self.ward!), \(self.district!), \(self.city!)"
+        self.fullAddress = address
     }
     
     func printAddress() {
-        
         print("\((self.district)!)")
     }
 }

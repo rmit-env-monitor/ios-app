@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
     var searchLocationController : UISearchController!
     
     func showAnnotation() {
-        if let currentLocation = Client.userDefaults.object(forKey: currentAddressKey) as? [String : AnyObject] {
+        if let currentLocation = userDefaults.object(forKey: currentAddressKey) as? [String : AnyObject] {
            
             let lat  = currentLocation["latitude"] as! Double
             let lon  = currentLocation["longitude"] as! Double
