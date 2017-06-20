@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
         
         UNUserNotificationCenter.current().add(request) { (error) in
             if error != nil {
-                print("\(error?.localizedDescription)")
+                print("\(String(describing: error?.localizedDescription))")
             }
         }
     }

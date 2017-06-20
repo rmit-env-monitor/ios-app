@@ -26,6 +26,7 @@
 		E37408B21E85884F00B92FB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B11E85884F00B92FB0 /* Location.swift */; };
 		E37CAC1D1E96973800408733 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1C1E96973800408733 /* Constants.swift */; };
 		E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1E1E9697CA00408733 /* LocationManager.swift */; };
+		E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FDE821EF8E02700E991EC /* APTextField.swift */; };
 		E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */; };
 		E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888D81E6A7A440036B1ED /* AppDelegate.swift */; };
 		E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888DA1E6A7A440036B1ED /* LoginController.swift */; };
@@ -75,6 +76,7 @@
 		E37408B11E85884F00B92FB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E37CAC1C1E96973800408733 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E37CAC1E1E9697CA00408733 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E38FDE821EF8E02700E991EC /* APTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTextField.swift; sourceTree = "<group>"; };
 		E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 		E3B888D51E6A7A440036B1ED /* AirPollution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPollution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B888D81E6A7A440036B1ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */,
 				E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */,
 				E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */,
+				E38FDE821EF8E02700E991EC /* APTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
 				E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */,
+				E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,

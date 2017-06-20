@@ -14,49 +14,19 @@ import PKHUD
 import PopupDialog
 import MapKit
 
-class textField : YoshikoTextField {
-    override func becomeFirstResponder() -> Bool {
-        if (!self.canBecomeFirstResponder) {
-            return false
-        }
-        UIView.animate(withDuration: 0.2) {
-            super.becomeFirstResponder()
-        }
-        return true
-    }
-    
-    init(placeHolder: String) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        self.font = UIFont.getFutura(fontSize: 20)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.activeBackgroundColor = .white
-        self.activeBorderColor = UIColor(r: 0, g: 204, b: 153)
-        self.inactiveBorderColor = UIColor(r: 0, g: 204, b: 153)
-        self.backgroundColor = .white
-        self.placeholder = placeholder
-        self.placeholderColor = UIColor(r: 0, g: 204, b: 153)
-        self.autocapitalizationType = .none
-        self.layer.cornerRadius = 40
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
 class LoginController: UIViewController {
-    lazy var nameTextField : textField = {
-        let tf = textField(placeHolder: "USERNAME")
+    lazy var nameTextField : APTextField = {
+        let tf = APTextField(placeHolder: "Username")
         return tf
     }()
     
-    lazy var pwTextField : textField = {
-        let tf = textField(placeHolder: "PASSWORD")
+    lazy var pwTextField : APTextField = {
+        let tf = APTextField(placeHolder: "Password")
         return tf
     }()
     
-    lazy var confirmTextField : textField = {
-        let tf = textField(placeHolder: "CONFIRM PASSWORD")
+    lazy var confirmTextField : APTextField = {
+        let tf = APTextField(placeHolder: "Confirm Password")
         return tf
     }()
     
@@ -66,19 +36,19 @@ class LoginController: UIViewController {
         btn.setTitle("Login", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = UIColor(r: 0, g: 204, b: 153)
-        btn.layer.cornerRadius = 5
         btn.layer.masksToBounds = true
         btn.isUserInteractionEnabled = true
         btn.addTarget(self, action: #selector(handleLoginOrRegister), for: .touchUpInside)
         return btn
     }()
     
-    lazy var registerLabel : UILabel = {
-        let lb = UILabel()
+    lazy var signUpLabel : UIButton = {
+        let lb = UIButton()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont.getFutura(fontSize: 15)
-        lb.text = "Don't have an account?"
-        lb.textAlignment = .center
+        lb.titleLabel?.text = "Sign Up"
+        lb.titleLabel?.font = UIFont.getFutura(fontSize: 15)
+        lb.titleLabel?.textAlignment = .center
+        
         lb.isUserInteractionEnabled = true
         let tapOnLabel = UITapGestureRecognizer()
         tapOnLabel.addTarget(self, action: #selector(handleOpenRegisterView))
@@ -91,9 +61,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
-    
     
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
@@ -154,7 +122,7 @@ class LoginController: UIViewController {
     func updateLoginOrRegisterUI() {
         if isRegisterView {
             loginBtn.setTitle("Register", for: .normal)
-            registerLabel.text = "I have an account already"
+            signUpLabel.titleLabel?.text = "I have an account already"
         }
         else {
             loginBtn.setTitle("Login", for: .normal)
@@ -170,7 +138,7 @@ class LoginController: UIViewController {
         }
     }
     
-    let distanceFromRegisterLabelToBottomView : CGFloat = -5
+    let distanceFromRegisterLabelToBottomView : CGFloat = -130
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -184,7 +152,7 @@ class LoginController: UIViewController {
         let resizingDistance = -(keyBoardHeight!) - 10
         
         self.registerLabelBottomAnchor?.isActive = false
-        self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor = self.signUpLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
         
         
@@ -198,7 +166,7 @@ class LoginController: UIViewController {
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
         
         self.registerLabelBottomAnchor?.isActive = false
-        self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor = self.signUpLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
         
         UIView.animate(withDuration: TimeInterval(keyBoardDuration!)) {

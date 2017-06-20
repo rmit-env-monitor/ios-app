@@ -33,38 +33,38 @@ extension LoginController {
         view.addSubview(nameTextField)
         view.addSubview(pwTextField)
         view.addSubview(loginBtn)
-        view.addSubview(registerLabel)
+        view.addSubview(signUpLabel)
         
-        registerLabelBottomAnchor = registerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        registerLabelBottomAnchor = signUpLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
         registerLabelBottomAnchor?.isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        registerLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        registerLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        signUpLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        signUpLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        signUpLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         
-        loginBtn.bottomAnchor.constraint(equalTo: registerLabel.topAnchor, constant: -10)
+        loginBtn.bottomAnchor.constraint(equalTo: signUpLabel.topAnchor, constant: -10)
             .isActive = true
-        loginBtn.leadingAnchor.constraint(equalTo: registerLabel.leadingAnchor).isActive = true
+        loginBtn.leadingAnchor.constraint(equalTo: pwTextField.leadingAnchor).isActive = true
         loginBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.width - 150).isActive = true
         
         if isRegisterView {
             view.addSubview(confirmTextField)
             confirmTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -10).isActive = true
             confirmTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
+            confirmTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 140).isActive = true
             confirmTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         }
         
-        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -80).isActive = true
+        pwTextField.bottomAnchor.constraint(equalTo: loginBtn.topAnchor, constant: -15).isActive = true
         pwTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        pwTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        pwTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 150).isActive = true
+        pwTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         nameTextFieldBottomAnchor = nameTextField.bottomAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -10)
         nameTextFieldBottomAnchor?.isActive = true
         nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
-        nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 150).isActive = true
+        nameTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
 }
