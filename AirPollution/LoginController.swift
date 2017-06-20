@@ -14,7 +14,7 @@ import PKHUD
 import PopupDialog
 import MapKit
 
-class myTextField : YoshikoTextField {
+class textField : YoshikoTextField {
     override func becomeFirstResponder() -> Bool {
         if (!self.canBecomeFirstResponder) {
             return false
@@ -24,51 +24,39 @@ class myTextField : YoshikoTextField {
         }
         return true
     }
+    
+    init(placeHolder: String) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.font = UIFont.getFutura(fontSize: 20)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.activeBackgroundColor = .white
+        self.activeBorderColor = UIColor(r: 0, g: 204, b: 153)
+        self.inactiveBorderColor = UIColor(r: 0, g: 204, b: 153)
+        self.backgroundColor = .white
+        self.placeholder = placeholder
+        self.placeholderColor = UIColor(r: 0, g: 204, b: 153)
+        self.autocapitalizationType = .none
+        self.layer.cornerRadius = 40
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
+
 class LoginController: UIViewController {
-    lazy var nameTextField : myTextField = {
-        let tf = myTextField()
-        tf.font = UIFont.getFutura(fontSize: 20)
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.activeBackgroundColor = .white
-        tf.activeBorderColor = .black
-        tf.inactiveBorderColor = .gray
-        tf.tintColor = .black
-        tf.placeholder = "USERNAME"
-        tf.placeholderColor = .black
-        tf.autocapitalizationType = .none
-        tf.layer.cornerRadius = 40
+    lazy var nameTextField : textField = {
+        let tf = textField(placeHolder: "USERNAME")
         return tf
     }()
     
-    lazy var pwTextField : myTextField = {
-        let tf = myTextField()
-        tf.font = UIFont.getFutura(fontSize: 20)
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.activeBackgroundColor = .white
-        tf.activeBorderColor = .black
-        tf.inactiveBorderColor = .gray
-        tf.tintColor = .black
-        tf.placeholder = "PASSWORD"
-        tf.isSecureTextEntry = true
-        tf.autocapitalizationType = .none
-        tf.placeholderColor = .black
+    lazy var pwTextField : textField = {
+        let tf = textField(placeHolder: "PASSWORD")
         return tf
     }()
     
-    lazy var confirmTextField : myTextField = {
-        let tf = myTextField()
-        tf.font = UIFont.getFutura(fontSize: 20)
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.activeBackgroundColor = .white
-        tf.activeBorderColor = .black
-        tf.inactiveBorderColor = .gray
-        tf.tintColor = .black
-        tf.isSecureTextEntry = true
-        tf.placeholder = "CONFIRM PASSWORD"
-        tf.autocapitalizationType = .none
-        tf.placeholderColor = .black
+    lazy var confirmTextField : textField = {
+        let tf = textField(placeHolder: "CONFIRM PASSWORD")
         return tf
     }()
     
@@ -77,7 +65,7 @@ class LoginController: UIViewController {
         btn.titleLabel?.font = UIFont.getFutura(fontSize: 16)
         btn.setTitle("Login", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = UIColor(r: 255, g: 102, b: 102)
+        btn.backgroundColor = UIColor(r: 0, g: 204, b: 153)
         btn.layer.cornerRadius = 5
         btn.layer.masksToBounds = true
         btn.isUserInteractionEnabled = true
@@ -98,14 +86,6 @@ class LoginController: UIViewController {
         return lb
     }()
     
-    lazy var bgImageView : UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "loginbg")
-        imageView.contentMode = .scaleToFill
-        return imageView
-    }()
-    
     var alertController : UIAlertController?
     
     override func viewDidLoad() {
@@ -114,7 +94,7 @@ class LoginController: UIViewController {
         
     }
     
-   
+    
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
     var bgImageViewTopAnchor : NSLayoutConstraint?
     var registerLabelBottomAnchor : NSLayoutConstraint?
@@ -207,9 +187,7 @@ class LoginController: UIViewController {
         self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
         
-        self.bgImageViewTopAnchor?.isActive = false
-        self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: resizingDistance + 10)
-        self.bgImageViewTopAnchor?.isActive = true
+        
         
         UIView.animate(withDuration: TimeInterval(keyBoardDuration)) {
             self.view.layoutIfNeeded()
@@ -218,14 +196,10 @@ class LoginController: UIViewController {
     
     func keyboardWillHide(notification : NSNotification) {
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
-    
+        
         self.registerLabelBottomAnchor?.isActive = false
         self.registerLabelBottomAnchor = self.registerLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
-        
-        self.bgImageViewTopAnchor?.isActive = false
-        self.bgImageViewTopAnchor = self.bgImageView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        self.bgImageViewTopAnchor?.isActive = true
         
         UIView.animate(withDuration: TimeInterval(keyBoardDuration!)) {
             self.view.layoutIfNeeded()
@@ -242,7 +216,6 @@ class LoginController: UIViewController {
         keyboardInfo["duration"] = keyboardDuration
         return keyboardInfo
     }
-    
     
     //Register event
     func handleRegister() {
@@ -269,13 +242,13 @@ class LoginController: UIViewController {
         }
     }
     
-    //open PopupView to ask user about the location
+    //Open PopupView to ask user about the location
     lazy var popUpView : UIView =  {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
-
+    
     var popUp : PopupDialog!
     func openPopUpView() {
         let popUpVC = storyBoard.instantiateViewController(withIdentifier: "LoginPopUpVC") as! PopUpViewController
@@ -284,12 +257,10 @@ class LoginController: UIViewController {
         present(popUp, animated: true, completion: nil)
     }
     
-    
-    //login function
+    //Login function
     func handleLogin() {
         let params : [String : String] = ["username" : nameTextField.text! , "password" : pwTextField.text!]
         self.dismissKeyboard()
-
         self.view.isUserInteractionEnabled = false
         HUD.show(.progress)
         HUD.dimsBackground = true
@@ -304,20 +275,16 @@ class LoginController: UIViewController {
                     self.alertController?.title = "Invalid username/password. Please try again:D"
                     self.present(self.alertController!, animated: true, completion: nil)
                 })
-                
             }
             self.view.isUserInteractionEnabled = true
         }
-
     }
-
 }
-
 
 //MARK : handle getting location of user
 extension LoginController : PopUpViewControllerDelegate {
     func getCurrentLocation(method: locationMethod) {
-        popUp.dismiss(animated: true, completion: { 
+        popUp.dismiss(animated: true, completion: {
             switch method {
             case .manually:
                 userDefaults.set("\(locationMethod.manually)", forKey: locationMethodKey)

@@ -76,7 +76,6 @@ class PopUpViewController: UIViewController {
         btn.setTitleColor(UIColor.black, for: .highlighted)
         btn.addTarget(self, action: #selector(handleCancelDetectLocation), for: .touchUpInside)
         return btn
-        
     }()
     
     lazy var secondSeparatorLabel : UILabel = {

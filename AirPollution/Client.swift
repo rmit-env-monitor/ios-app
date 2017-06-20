@@ -64,7 +64,6 @@ class Client {
                             completion(false)
                         }
                     }
-                    
                 default:
                     print("error with response status : ", status)
                     completion(false)
@@ -79,12 +78,12 @@ class Client {
         userDefaults.removeObject(forKey: currentUserKey)
         userDefaults.removeObject(forKey: locationMethodKey)
         userDefaults.removeObject(forKey: currentAddressKey)
-                NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
         print("Logout successfully")
         HUD.hide()
     }
     
-    //Load dashboard
+    //Load DashBoard
     static func loadDashBoard(_ completion: @escaping (_ dataDictArray : [[String:AnyObject]]) -> ()) {
         let header : HTTPHeaders = [
             "Authorization" : "Bearer \(Client.currentUser!.token!)"

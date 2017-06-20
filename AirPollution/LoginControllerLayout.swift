@@ -13,7 +13,10 @@ import PopupDialog
 //MARK : setup view constraints
 extension LoginController {
     func setupUI() {
-        //hint: add observer when keyboard appears to handle UI resizing
+        
+        view.backgroundColor = UIColor.white
+        
+        //add observer when keyboard appears to handle UI resizing
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -27,7 +30,6 @@ extension LoginController {
         //hint: add tap recognizer to dismiss keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        view.addSubview(bgImageView)
         view.addSubview(nameTextField)
         view.addSubview(pwTextField)
         view.addSubview(loginBtn)
@@ -64,11 +66,6 @@ extension LoginController {
         nameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width - 100).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        bgImageViewTopAnchor = bgImageView.topAnchor.constraint(equalTo: view.topAnchor)
-        bgImageViewTopAnchor?.isActive = true
-        bgImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        bgImageView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        bgImageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
     }
 }
 

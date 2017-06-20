@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Initialize UIWindows for the App
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        
         //Configure the root view controller
         if let dictionary = userDefaults.dictionary(forKey: currentUserKey), userDefaults.object(forKey: locationMethodKey) != nil {
             Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
@@ -43,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             let loginController = LoginController()
             window?.rootViewController = loginController
-            
         }
         
         //Configure the icon badge number

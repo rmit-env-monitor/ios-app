@@ -13,7 +13,6 @@ class EsTabBarController : ESTabBarController {
     
     static let sharedInstance = EsTabBarController()
     
-    
     func open() -> ESTabBarController {
         let v4 = UIViewController()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -43,13 +42,12 @@ class EsTabBarController : ESTabBarController {
     }
     
     func close() {
-        EsTabBarController.sharedInstance.dismiss(animated: true, completion: nil)
-        let loginController = LoginController()
-        UIApplication.shared.keyWindow?.rootViewController = loginController
+        EsTabBarController.sharedInstance.dismiss(animated: true) { 
+            let loginController = LoginController()
+            UIApplication.shared.keyWindow?.rootViewController = loginController
+        }
+        
         
     }
     
-    deinit {
-        print("GIAI THOAT CHO NO")
-    }
 }
