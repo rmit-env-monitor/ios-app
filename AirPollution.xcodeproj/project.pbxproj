@@ -17,9 +17,10 @@
 		E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
+		E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */; };
 		E34731951EF2F56800EB17E7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34731941EF2F56800EB17E7 /* AdSupport.framework */; };
+		E34BF3491F095DA3007F2D65 /* APPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E34BF3481F095DA3007F2D65 /* APPopUpView.xib */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
-		E35240E11EF780A000452076 /* NewLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35240E01EF780A000452076 /* NewLoginController.swift */; };
 		E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E361DE321ED87B22001313A2 /* GoogleService-Info.plist */; };
 		E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364449A1EA53553004A8C66 /* EsTabBarController.swift */; };
 		E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */; };
@@ -35,7 +36,8 @@
 		E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */; };
 		E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */; };
 		E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CE1E9BD6560014D09C /* Sensor.swift */; };
-		E3EE70BB1EA3B8B600DAB588 /* LoginControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EE70BA1EA3B8B600DAB588 /* LoginControllerLayout.swift */; };
+		E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E51F0509600024B52A /* APLoginController.swift */; };
+		E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */; };
 		E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */; };
 		E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,9 +69,10 @@
 		E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardCell.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPopUpView.swift; sourceTree = "<group>"; };
 		E34731941EF2F56800EB17E7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E34BF3481F095DA3007F2D65 /* APPopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPopUpView.xib; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
-		E35240E01EF780A000452076 /* NewLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLoginController.swift; sourceTree = "<group>"; };
 		E361DE321ED87B22001313A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E364449A1EA53553004A8C66 /* EsTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsTabBarController.swift; sourceTree = "<group>"; };
 		E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardController.swift; sourceTree = "<group>"; };
@@ -87,7 +90,8 @@
 		E3B888E41E6A7A440036B1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E3BB67CE1E9BD6560014D09C /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
-		E3EE70BA1EA3B8B600DAB588 /* LoginControllerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginControllerLayout.swift; sourceTree = "<group>"; };
+		E3E0A2E51F0509600024B52A /* APLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLoginController.swift; sourceTree = "<group>"; };
+		E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRegisterController.swift; sourceTree = "<group>"; };
 		E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,7 +149,8 @@
 				E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */,
 				E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */,
 				E364449A1EA53553004A8C66 /* EsTabBarController.swift */,
-				E35240E01EF780A000452076 /* NewLoginController.swift */,
+				E3E0A2E51F0509600024B52A /* APLoginController.swift */,
+				E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -159,6 +164,8 @@
 				E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */,
 				E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */,
 				E38FDE821EF8E02700E991EC /* APTextField.swift */,
+				E34BF3481F095DA3007F2D65 /* APPopUpView.xib */,
+				E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -170,7 +177,6 @@
 				E37CAC1C1E96973800408733 /* Constants.swift */,
 				E3B888D81E6A7A440036B1ED /* AppDelegate.swift */,
 				E37CAC1E1E9697CA00408733 /* LocationManager.swift */,
-				E3EE70BA1EA3B8B600DAB588 /* LoginControllerLayout.swift */,
 				E326BC001EE587D600A902CC /* Extension.swift */,
 			);
 			name = Helpers;
@@ -288,6 +294,7 @@
 				E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */,
 				E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */,
 				E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */,
+				E34BF3491F095DA3007F2D65 /* APPopUpView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,13 +355,14 @@
 			files = (
 				E326BC011EE587D600A902CC /* Extension.swift in Sources */,
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
-				E35240E11EF780A000452076 /* NewLoginController.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
 				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,
 				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
 				E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */,
+				E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
+				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,
 				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
 				E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */,
 				E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */,
@@ -362,13 +370,13 @@
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
 				E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */,
+				E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */,
 				E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
 				E33F90271E6A88FD00672B8E /* Client.swift in Sources */,
 				E37CAC1D1E96973800408733 /* Constants.swift in Sources */,
-				E3EE70BB1EA3B8B600DAB588 /* LoginControllerLayout.swift in Sources */,
 				E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */,
 				E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */,
 			);

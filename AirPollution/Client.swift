@@ -47,7 +47,8 @@ class Client {
     }
     
     //Login
-    static func login(_ params : [String : AnyObject], completion : @escaping (Bool)->()) {
+    static func login(_ params : [String : Any], completion : @escaping (Bool)->()) {
+        print(params)
         Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {
@@ -56,6 +57,7 @@ class Client {
                     if let result = response.result.value {
                         let jsonResponse = result as! [String : AnyObject]
                         if jsonResponse["message"] == nil {
+                            print(jsonResponse)
                             Client.currentUser = User(dictionary: jsonResponse)
                             userDefaults.set(jsonResponse, forKey: currentUserKey)
                             completion(true)

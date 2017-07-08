@@ -9,7 +9,6 @@ target 'AirPollution' do
 	pod 'PopupDialog', '~> 0.5'
 
 	pod "ESTabBarController-swift"
-	pod "TextFieldEffects"
 	pod 'PKHUD', '~> 4.0’
 	pod 'GooglePlaces'
   	pod 'GooglePlacePicker'
@@ -18,7 +17,8 @@ target 'AirPollution' do
 	pod ‘Firebase/Core’
 	pod ‘Firebase’
 	pod ‘Firebase/Messaging’
-	
+	pod 'SIAlertView'
+	pod 'BEMCheckBox'
 
   # Pods for AirPollution
 

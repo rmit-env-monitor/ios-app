@@ -24,9 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Configure UINavigationBar for the whole app
         UIApplication.shared.statusBarStyle = .lightContent
         let appearance = UINavigationBar.appearance()
-        appearance.tintColor = navigationBarTintColor
-        appearance.barTintColor = UIColor.black
-        appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(r: 201, g: 251, b: 82), NSFontAttributeName : UIFont.getFutura(fontSize: 18)]
+        appearance.barTintColor = UIColor.airPollutionGreen
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         //Configure API Key for Google Places SDK
         GMSPlacesClient.provideAPIKey(geocodingAPIKey)
@@ -35,14 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         //Configure the root view controller
-        if let dictionary = userDefaults.dictionary(forKey: currentUserKey), userDefaults.object(forKey: locationMethodKey) != nil {
-            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
-            window?.rootViewController = EsTabBarController.sharedInstance.open()
-        }
-        else {
-            let loginController = LoginController()
-            window?.rootViewController = loginController
-        }
+//        if let dictionary = userDefaults.dictionary(forKey: currentUserKey), userDefaults.object(forKey: locationMethodKey) != nil {
+//            Client.currentUser = User(dictionary: dictionary as [String : AnyObject])
+//            window?.rootViewController = EsTabBarController.sharedInstance.open()
+//        }
+//        else {
+//            let loginController = LoginController()
+//            window?.rootViewController = loginController
+//        }
+        let apLoginController = storyBoard.instantiateInitialViewController()
+        window?.rootViewController = apLoginController
+        
         
         //Configure the icon badge number
         application.applicationIconBadgeNumber = 0

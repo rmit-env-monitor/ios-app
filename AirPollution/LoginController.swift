@@ -9,28 +9,27 @@
 import UIKit
 import Alamofire
 import ESTabBarController_swift
-import TextFieldEffects
 import PKHUD
 import PopupDialog
 import MapKit
 
 class LoginController: UIViewController {
-    lazy var nameTextField : APTextField = {
-        let tf = APTextField(placeHolder: "Username")
+    lazy var nameTextField : UITextField = {
+        let tf = UITextField()
         return tf
     }()
     
-    lazy var pwTextField : APTextField = {
-        let tf = APTextField(placeHolder: "Password")
+    lazy var pwTextField : UITextField = {
+        let tf = UITextField()
         return tf
     }()
     
-    lazy var confirmTextField : APTextField = {
-        let tf = APTextField(placeHolder: "Confirm Password")
+    lazy var confirmTextField : UITextField = {
+        let tf = UITextField()
         return tf
     }()
     
-    lazy var loginBtn : UIButton = {
+    lazy var loginButton : UIButton = {
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.getFutura(fontSize: 16)
         btn.setTitle("Login", for: .normal)
@@ -42,13 +41,14 @@ class LoginController: UIViewController {
         return btn
     }()
     
-    lazy var signUpLabel : UIButton = {
+    lazy var signUpButton : UIButton = {
         let lb = UIButton()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.titleLabel?.text = "Sign Up"
         lb.titleLabel?.font = UIFont.getFutura(fontSize: 15)
         lb.titleLabel?.textAlignment = .center
-        
+        lb.titleLabel?.backgroundColor = .blue
+        lb.titleLabel?.textColor = .black
         lb.isUserInteractionEnabled = true
         let tapOnLabel = UITapGestureRecognizer()
         tapOnLabel.addTarget(self, action: #selector(handleOpenRegisterView))
@@ -60,7 +60,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        //setupUI()
     }
     
     var nameTextFieldBottomAnchor : NSLayoutConstraint?
@@ -121,11 +121,11 @@ class LoginController: UIViewController {
     
     func updateLoginOrRegisterUI() {
         if isRegisterView {
-            loginBtn.setTitle("Register", for: .normal)
-            signUpLabel.titleLabel?.text = "I have an account already"
+            loginButton.setTitle("Register", for: .normal)
+            signUpButton.titleLabel?.text = "I have an account already"
         }
         else {
-            loginBtn.setTitle("Login", for: .normal)
+            loginButton.setTitle("Login", for: .normal)
         }
     }
     
@@ -152,7 +152,7 @@ class LoginController: UIViewController {
         let resizingDistance = -(keyBoardHeight!) - 10
         
         self.registerLabelBottomAnchor?.isActive = false
-        self.registerLabelBottomAnchor = self.signUpLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor = self.signUpButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: resizingDistance + distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
         
         
@@ -166,7 +166,7 @@ class LoginController: UIViewController {
         let keyBoardDuration = getInfoOfKeyBoard(notification: notification)["duration"] as? Float
         
         self.registerLabelBottomAnchor?.isActive = false
-        self.registerLabelBottomAnchor = self.signUpLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
+        self.registerLabelBottomAnchor = self.signUpButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: distanceFromRegisterLabelToBottomView)
         self.registerLabelBottomAnchor?.isActive = true
         
         UIView.animate(withDuration: TimeInterval(keyBoardDuration!)) {
@@ -249,7 +249,7 @@ class LoginController: UIViewController {
     }
 }
 
-//MARK : handle getting location of user
+// MARK : handle getting location of user
 extension LoginController : PopUpViewControllerDelegate {
     func getCurrentLocation(method: locationMethod) {
         popUp.dismiss(animated: true, completion: {
