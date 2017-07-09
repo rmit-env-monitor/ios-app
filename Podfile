@@ -18,7 +18,8 @@ target 'AirPollution' do
 	pod ‘Firebase’
 	pod ‘Firebase/Messaging’
 	pod 'SIAlertView'
-	pod 'BEMCheckBox'
+	pod 'KDCircularProgress'
+
 
   # Pods for AirPollution
 

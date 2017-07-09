@@ -71,6 +71,6 @@ extension APLoginController {
 // MARK: - APPopUpViewDelegate
 extension APLoginController: APPopUpViewDelegate {
     func okButtonTapped() {
-        // handel button event
+        self.performSegue(withIdentifier: "Show Tab Bar Controller", sender: nil)
     }
 }

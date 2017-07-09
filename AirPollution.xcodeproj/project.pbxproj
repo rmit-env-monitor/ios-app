@@ -36,6 +36,10 @@
 		E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */; };
 		E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */; };
 		E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CE1E9BD6560014D09C /* Sensor.swift */; };
+		E3CFE4A91F11D53100E44641 /* APMapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */; };
+		E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */; };
+		E3CFE4AD1F11F9B400E44641 /* APTodayContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4AC1F11F9B400E44641 /* APTodayContainerView.swift */; };
+		E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */; };
 		E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E51F0509600024B52A /* APLoginController.swift */; };
 		E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */; };
 		E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */; };
@@ -90,6 +94,10 @@
 		E3B888E41E6A7A440036B1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E3BB67CE1E9BD6560014D09C /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APMapContainerViewController.swift; sourceTree = "<group>"; };
+		E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APMainPageController.swift; sourceTree = "<group>"; };
+		E3CFE4AC1F11F9B400E44641 /* APTodayContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTodayContainerView.swift; sourceTree = "<group>"; };
+		E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForecastContainerView.swift; sourceTree = "<group>"; };
 		E3E0A2E51F0509600024B52A /* APLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLoginController.swift; sourceTree = "<group>"; };
 		E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRegisterController.swift; sourceTree = "<group>"; };
 		E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +159,10 @@
 				E364449A1EA53553004A8C66 /* EsTabBarController.swift */,
 				E3E0A2E51F0509600024B52A /* APLoginController.swift */,
 				E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */,
+				E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */,
+				E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */,
+				E3CFE4AC1F11F9B400E44641 /* APTodayContainerView.swift */,
+				E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -203,18 +215,26 @@
 		E3B888D71E6A7A440036B1ED /* AirPollution */ = {
 			isa = PBXGroup;
 			children = (
-				E321603F1EDAF21900D99C39 /* AirPollution.entitlements */,
+				E3CFE4A71F11D30A00E44641 /* Resource */,
 				E33F902A1E6A8FAC00672B8E /* Helpers */,
 				E33F90241E6A85B100672B8E /* View */,
 				E33F90231E6A85A700672B8E /* Controller */,
 				E33F90221E6A859300672B8E /* Model */,
+			);
+			path = AirPollution;
+			sourceTree = "<group>";
+		};
+		E3CFE4A71F11D30A00E44641 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E321603F1EDAF21900D99C39 /* AirPollution.entitlements */,
 				E3B888DC1E6A7A440036B1ED /* Main.storyboard */,
 				E3B888DF1E6A7A440036B1ED /* Assets.xcassets */,
 				E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */,
 				E361DE321ED87B22001313A2 /* GoogleService-Info.plist */,
 				E3B888E41E6A7A440036B1ED /* Info.plist */,
 			);
-			path = AirPollution;
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */,
 				E326BC011EE587D600A902CC /* Extension.swift in Sources */,
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
@@ -363,16 +384,19 @@
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
 				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,
+				E3CFE4AD1F11F9B400E44641 /* APTodayContainerView.swift in Sources */,
 				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
 				E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */,
 				E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
+				E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */,
 				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
 				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
 				E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */,
 				E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */,
 				E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */,
 				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
+				E3CFE4A91F11D53100E44641 /* APMapContainerViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
 				E33F90271E6A88FD00672B8E /* Client.swift in Sources */,

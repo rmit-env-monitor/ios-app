@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.5.0)
-  - BEMCheckBox (1.4.1)
   - ESTabBarController-swift (2.4)
   - Firebase (4.0.3):
     - Firebase/Core (= 4.0.3)
@@ -40,6 +39,7 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GTProgressBar (0.1.3)
+  - KDCircularProgress (1.5.2)
   - PKHUD (4.2.3)
   - PopupDialog (0.5.4)
   - Protobuf (3.3.0)
@@ -47,7 +47,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
-  - BEMCheckBox
   - ESTabBarController-swift
   - Firebase
   - Firebase/Core
@@ -56,13 +55,13 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - GTProgressBar
+  - KDCircularProgress
   - PKHUD (~> 4.0)
   - PopupDialog (~> 0.5)
   - SIAlertView
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   ESTabBarController-swift: af496895039ba10ae60bf825473c45f23fc5c8b6
   Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
@@ -74,11 +73,12 @@ SPEC CHECKSUMS:
   GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTProgressBar: d130b36db4d0af881795aa4e5648e6dccd85b8fa
+  KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
   PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
 
-PODFILE CHECKSUM: f9538d571d4f4ecc6a6fdcd082350da54c33ef4f
+PODFILE CHECKSUM: 4cddce87307233b490491067dbf0edd72e86883a
 
 COCOAPODS: 1.2.1

@@ -74,7 +74,7 @@ extension APRegisterController {
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    func backButtonPressed() {
+    fileprivate dynamic func backButtonPressed() {
         if termViewController != nil {
             self.termViewController?.navigationController?.popViewController(animated: true)
             self.termViewController?.dismiss(animated: true) { [weak self] in

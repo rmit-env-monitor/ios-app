@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BEMCheckBox
 
 protocol APPopUpViewDelegate: class {
     func okButtonTapped()
@@ -41,11 +40,15 @@ final class APPopUpView: UIView {
     }
 
     @IBAction func okButtonTapped(_ sender: Any) {
-        delegate?.okButtonTapped()
+        UIView.animate(withDuration: 0.2, animations: { 
+            self.removeFromSuperview()
+        }) { success in
+            self.delegate?.okButtonTapped()
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        //self.removeFromSuperview()
+        self.removeFromSuperview()
     }
     
     fileprivate func setupButtonWhenTapped(button: UIButton) {
