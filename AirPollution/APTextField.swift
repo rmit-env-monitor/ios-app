@@ -22,7 +22,8 @@ class APTextField : UITextField {
     override func awakeFromNib() {
         self.layer.borderWidth = 1
         self.adjustsFontSizeToFitWidth = true
-        self.textColor = UIColor.airPollutionGreen
+        self.textColor = .airPollutionGreen
+        self.tintColor = .airPollutionGreen
         self.layer.borderColor = UIColor.airPollutionGreen.cgColor
         self.autocapitalizationType = .none
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bounds.height))

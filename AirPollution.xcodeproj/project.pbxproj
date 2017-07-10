@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		E326BC011EE587D600A902CC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326BC001EE587D600A902CC /* Extension.swift */; };
+		E326BC011EE587D600A902CC /* APExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326BC001EE587D600A902CC /* APExtension.swift */; };
 		E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */; };
 		E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33959641E9299DD000F5145 /* PopUpViewController.swift */; };
 		E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */; };
@@ -18,6 +18,7 @@
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
 		E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */; };
+		E3443A111F13B3AD00895EB8 /* APUltils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3443A101F13B3AD00895EB8 /* APUltils.swift */; };
 		E34731951EF2F56800EB17E7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34731941EF2F56800EB17E7 /* AdSupport.framework */; };
 		E34BF3491F095DA3007F2D65 /* APPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E34BF3481F095DA3007F2D65 /* APPopUpView.xib */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
@@ -64,7 +65,7 @@
 		4F5957569AE094C21052762A /* Pods-AirPollution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.debug.xcconfig"; sourceTree = "<group>"; };
 		573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirPollution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321603F1EDAF21900D99C39 /* AirPollution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirPollution.entitlements; sourceTree = "<group>"; };
-		E326BC001EE587D600A902CC /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E326BC001EE587D600A902CC /* APExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APExtension.swift; sourceTree = "<group>"; };
 		E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContentView.swift; sourceTree = "<group>"; };
 		E33959641E9299DD000F5145 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPopUpView.swift; sourceTree = "<group>"; };
+		E3443A101F13B3AD00895EB8 /* APUltils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APUltils.swift; sourceTree = "<group>"; };
 		E34731941EF2F56800EB17E7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E34BF3481F095DA3007F2D65 /* APPopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPopUpView.xib; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -189,7 +191,8 @@
 				E37CAC1C1E96973800408733 /* Constants.swift */,
 				E3B888D81E6A7A440036B1ED /* AppDelegate.swift */,
 				E37CAC1E1E9697CA00408733 /* LocationManager.swift */,
-				E326BC001EE587D600A902CC /* Extension.swift */,
+				E326BC001EE587D600A902CC /* APExtension.swift */,
+				E3443A101F13B3AD00895EB8 /* APUltils.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -374,13 +377,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */,
-				E326BC011EE587D600A902CC /* Extension.swift in Sources */,
+				E326BC011EE587D600A902CC /* APExtension.swift in Sources */,
 				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
 				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,
 				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
 				E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */,
 				E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */,
+				E3443A111F13B3AD00895EB8 /* APUltils.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
 				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,

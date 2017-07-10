@@ -62,7 +62,6 @@ extension APRegisterController {
         self.termViewController?.navigationItem.leftBarButtonItem?.tintColor = .white
         let scrollView = UIScrollView(frame: CGRect(x: 30, y: 30, width: self.view.bounds.width - 60, height: self.view.bounds.height - 60))
         self.termViewController?.view.addSubview(scrollView)
-        
         let contentLabel = UILabel(frame: CGRect(x: 0, y: 0, width: scrollView.bounds.width, height: scrollView.bounds.height))
         scrollView.addSubview(contentLabel)
         scrollView.isScrollEnabled = true
@@ -72,6 +71,19 @@ extension APRegisterController {
         contentLabel.sizeToFit()
         scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: contentLabel.frame.height)
         self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        guard let username = usernameTextField.text, let password = passwordTextField.text, let confirmPassword = confirmTextField.text else { return }
+        let params : [String: String] = ["username": username, "password": password]
+        Client.register(params) { (success) in
+            if success {
+            }
+        }
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     fileprivate dynamic func backButtonPressed() {

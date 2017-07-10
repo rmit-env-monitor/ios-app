@@ -48,36 +48,37 @@ class Client {
     
     //Login
     static func login(_ params : [String : Any], completion : @escaping (Bool)->()) {
-        print(params)
+        HUD.show(.progress)
         Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).responseJSON { (response) in
-            if let status = response.response?.statusCode {
-                switch status {
-                case 200:
-                    //print("Login Successfully")
-                    if let result = response.result.value {
-                        let jsonResponse = result as! [String : AnyObject]
-                        if jsonResponse["message"] == nil {
-                            print(jsonResponse)
-                            Client.currentUser = User(dictionary: jsonResponse)
-                            userDefaults.set(jsonResponse, forKey: currentUserKey)
-                            completion(true)
-                        }
-                        else {
-                            completion(false)
-                        }
+            guard let status = response.response?.statusCode else { return }
+            switch status {
+            case 200:
+                if let result = response.result.value {
+                    guard let jsonResponse = result as? [String : AnyObject] else { return }
+                    if jsonResponse["message"] == nil {
+                        print(jsonResponse)
+                        Client.currentUser = User(dictionary: jsonResponse)
+                        userDefaults.set(jsonResponse, forKey: USERTOKEN)
+                        completion(true)
                     }
-                default:
-                    print("error with response status : ", status)
-                    completion(false)
+                    else {
+                        completion(false)
+                    }
+                    HUD.hide()
                 }
+            default:
+                print("error with response status : ", status)
+                completion(false)
+                HUD.hide()
             }
+            
         }
     }
     
     //Logout
     static func logout() {
         HUD.show(.progress)
-        userDefaults.removeObject(forKey: currentUserKey)
+        //userDefaults.removeObject(forKey: currentUserKey)
         userDefaults.removeObject(forKey: locationMethodKey)
         userDefaults.removeObject(forKey: currentAddressKey)
         NotificationCenter.default.post(name: Notification.Name("handleTabBarControllerWhenLoggedOut"), object: nil)
@@ -99,7 +100,7 @@ class Client {
     }
     
     //Register
-    static func register(_ params : [String : AnyObject], completion : @escaping (Bool) -> ()) {
+    static func register(_ params : [String : String], completion : @escaping (Bool) -> ()) {
         Alamofire.request(registerURL!, method: .post, parameters: params).validate().responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {

@@ -192,22 +192,22 @@ class LoginController: UIViewController {
         self.view.isUserInteractionEnabled = false
         HUD.show(.progress)
         HUD.allowsInteraction = false
-        Client.register(params as [String : AnyObject]) { (isFinished) in
-            HUD.hide({ (finished) in
-                if (self.pwTextField.text! != self.confirmTextField.text!) {
-                    self.alertController?.title = "Confirmed password does not matched, please try again:D"
-                    
-                }
-                else if (isFinished) {
-                    self.alertController?.title = "You have registered successfully"
-                    self.dismissAnimation(self)
-                }
-                else {
-                    self.alertController?.title = "An unknown error occurs or username has been taken:("
-                }
-                self.present(self.alertController!, animated: true, completion: nil)
-            })
-        }
+//        Client.register(params as [String : AnyObject]) { (isFinished) in
+//            HUD.hide({ (finished) in
+//                if (self.pwTextField.text! != self.confirmTextField.text!) {
+//                    self.alertController?.title = "Confirmed password does not matched, please try again:D"
+//                    
+//                }
+//                else if (isFinished) {
+//                    self.alertController?.title = "You have registered successfully"
+//                    self.dismissAnimation(self)
+//                }
+//                else {
+//                    self.alertController?.title = "An unknown error occurs or username has been taken:("
+//                }
+//                self.present(self.alertController!, animated: true, completion: nil)
+//            })
+//        }
     }
     
     //Open PopupView to ask user about the location
@@ -263,7 +263,7 @@ extension LoginController : PopUpViewControllerDelegate {
                 self.present(EsTabBarController.sharedInstance.open(), animated: true, completion: nil)
                 break
             case .none:
-                userDefaults.removeObject(forKey: currentUserKey)
+                //userDefaults.removeObject(forKey: currentUserKey)
                 break
             }
         })

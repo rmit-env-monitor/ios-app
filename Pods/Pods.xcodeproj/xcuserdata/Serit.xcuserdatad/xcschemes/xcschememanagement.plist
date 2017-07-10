@@ -49,24 +49,9 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SIAlertView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18D294F2D167C1F8DC69CD5760CB4C21</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1DEBB0BE901646644CCD5D6A1A3D2914</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>322428ECC8C5EC71F14C92233787C7AC</key>
 		<dict>
 			<key>primary</key>
@@ -87,7 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1EEA0AC584F187A901BB8CDBADF99C7</key>
+		<key>9386E0315A31FDC28E75ED9A6097E73C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2ABE8A86693D7D1FDFEF0C57DFEDFBE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7A75F149082140741FC1E0B5B2863C8</key>
+		<key>C7017434F462046ABF1816C8FD3C708C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA9982E547EC8129155648736A0C9DDE</key>
+		<key>D7A75F149082140741FC1E0B5B2863C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

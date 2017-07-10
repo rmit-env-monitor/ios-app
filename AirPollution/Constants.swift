@@ -13,7 +13,7 @@ import UIKit
 let backFromSetting = "backFromSetting"
 let locationMethodKey = "locationMethod"
 let currentAddressKey = "currentAddress"
-let currentUserKey = "CurrentUser"
+let USERTOKEN = "UserToken"
 
 //App delegate
 let appDelegate = UIApplication.shared.delegate as! AppDelegate

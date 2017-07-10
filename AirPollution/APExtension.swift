@@ -28,6 +28,9 @@ extension UIColor {
  
 }
 
+extension UIApplication {
+    
+}
 
 
 extension CLLocationManager {
