@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class APLoginController: UIViewController {
     
@@ -19,7 +20,6 @@ class APLoginController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var logoTopLayoutConstraint: NSLayoutConstraint!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -27,8 +27,12 @@ class APLoginController: UIViewController {
     }
     
     fileprivate func setupUI() {
-        setupLogoUI()
-        setupFBButtonUI()
+        logoImageView.clipsToBounds = true
+        logoImageView.layer.cornerRadius = 51
+        let facebookLogo = UIImageView(frame: CGRect(x: loginWithFBButton.bounds.width - 50, y: 0, width: 43, height: 45))
+        facebookLogo.image = UIImage(named: "Facebook-Icon")
+        facebookLogo.contentMode = .scaleToFill
+        loginWithFBButton.addSubview(facebookLogo)
     }
     
     fileprivate func setupNotificationCenter() {
@@ -50,18 +54,6 @@ class APLoginController: UIViewController {
         }
     }
     
-    fileprivate func setupLogoUI() {
-        logoImageView.clipsToBounds = true
-        logoImageView.layer.cornerRadius = 51
-    }
-    
-    fileprivate func setupFBButtonUI() {
-        let facebookLogo = UIImageView(frame: CGRect(x: loginWithFBButton.bounds.width - 50, y: 0, width: 43, height: 45))
-        facebookLogo.image = UIImage(named: "Facebook-Icon")
-        facebookLogo.contentMode = .scaleToFill
-        loginWithFBButton.addSubview(facebookLogo)
-    }
-    
     @IBAction func onTabGesture(_ sender: Any) {
         self.view.endEditing(true)
     }
@@ -70,29 +62,31 @@ class APLoginController: UIViewController {
 // MARK: - Handle Button Events
 extension APLoginController {
     @IBAction func signInButtonPressed(_ sender: Any) {
+        self.view.endEditing(true)
         guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
         let params: [String: Any] = ["username": username, "password": password]
-        Client.login(params) { (success) in
-            if success == false {
-                let alertViewController = UIAlertController(title: "Login Failed", message: "Wrong username or password!", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
-                    alertViewController.dismiss(animated: true, completion: nil)
-                }
-                alertViewController.addAction(okAction)
-                self.present(alertViewController, animated: true, completion: nil)
+        HUD.show(.progress)
+        Client.login(params) { (response) in
+            if let errorMessage = response["message"] {
+                APUltils.presentAlertController(title: "Login Failed", message: errorMessage, completionHandler: { })
             } else {
-                self.view.endEditing(true)
-                let popUpView = APPopUpView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width - 50, height: self.view.bounds.height / 2))
+                Client.currentUser = User(dictionary: response)
+                userDefaults.set(response["token"], forKey: USERTOKEN)
+                let popUpView = APPopUpView(frame: CGRect(x: 0, y: self.view.bounds.height, width: 294, height: 297))
                 popUpView.delegate = self
-                popUpView.center = self.view.center
                 self.view.addSubview(popUpView)
+                popUpView.center.x = self.view.center.x
+                UIView.animate(withDuration: 0.2) { popUpView.center.y = self.view.center.y }
             }
+            HUD.hide()
         }
     }
 }
 
 // MARK: - APPopUpViewDelegate
 extension APLoginController: APPopUpViewDelegate {
+    func cancelButtonTapped() { }
+
     func okButtonTapped() {
         self.performSegue(withIdentifier: "Show Tab Bar Controller", sender: nil)
     }

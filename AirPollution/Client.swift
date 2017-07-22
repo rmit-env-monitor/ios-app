@@ -47,28 +47,18 @@ class Client {
     }
     
     //Login
-    static func login(_ params : [String : Any], completion : @escaping (Bool)->()) {
+    static func login(_ params : [String : Any], completion : @escaping ([String:String])->()) {
         HUD.show(.progress)
-        Alamofire.request(loginURL!, method: .post, parameters: params, encoding : JSONEncoding.default).responseJSON { (response) in
+        Alamofire.request(loginURL, method: .post, parameters: params).responseJSON { (response) in
             guard let status = response.response?.statusCode else { return }
             switch status {
             case 200:
-                if let result = response.result.value {
-                    guard let jsonResponse = result as? [String : AnyObject] else { return }
-                    if jsonResponse["message"] == nil {
-                        print(jsonResponse)
-                        Client.currentUser = User(dictionary: jsonResponse)
-                        userDefaults.set(jsonResponse, forKey: USERTOKEN)
-                        completion(true)
-                    }
-                    else {
-                        completion(false)
-                    }
-                    HUD.hide()
-                }
+                guard let jsonResponse = response.result.value as? [String: String] else { return }
+                completion(jsonResponse)
+                HUD.hide()
             default:
                 print("error with response status : ", status)
-                completion(false)
+                completion(["message": "Something wrong happened:("])
                 HUD.hide()
             }
             
@@ -100,24 +90,24 @@ class Client {
     }
     
     //Register
-    static func register(_ params : [String : String], completion : @escaping (Bool) -> ()) {
+    static func register(_ params : [String : String], completion : @escaping (String) -> ()) {
         Alamofire.request(registerURL!, method: .post, parameters: params).validate().responseJSON { (response) in
             if let status = response.response?.statusCode {
                 switch status {
                 case 200:
                     print("Register Successfully")
                     if let result = response.result.value {
-                        let jsonResponse = result as! [String : AnyObject]
+                        guard let jsonResponse = result as? [String : AnyObject] else { return }
                         if jsonResponse.count == 1 {
-                            completion(false)
+                            completion(jsonResponse["message"] as! String)
                         }
                         else {
-                            completion(true)
+                            completion("")
                         }
                     }
                 default:
                     print("register error with response status : ", status)
-                    completion(false)
+                    completion("Error: \(status)")
                 }
             }
         }
@@ -133,24 +123,23 @@ class Client {
         
         var districtsArray = [String]()
         Alamofire.request(nearbyDistrictsURL!, method: .get, parameters: params, headers: header).responseJSON { (response) in
-            if let status = response.response?.statusCode {
-                switch status {
-                case 200:
-                    if let jsonResponse = response.result.value as? [String] {
-                        if !jsonResponse.isEmpty {
-                            districtsArray = jsonResponse
-                            completion(districtsArray)
-                            HUD.hide()
-                            return
-                        }
+            guard let status = response.response?.statusCode else { return }
+            switch status {
+            case 200:
+                if let jsonResponse = response.result.value as? [String] {
+                    if !jsonResponse.isEmpty {
+                        districtsArray = jsonResponse
+                        completion(districtsArray)
                         HUD.hide()
+                        return
                     }
-                default:
-                    print("get nearby districts error with response status : ", status)
-                    completion(nil)
                     HUD.hide()
-                    return
                 }
+            default:
+                print("get nearby districts error with response status : ", status)
+                completion(nil)
+                HUD.hide()
+                return
             }
         }
     }
@@ -165,27 +154,25 @@ class Client {
         
         Alamofire.request(sensorsByDistrict!, method: .get, parameters: params, headers: header).responseJSON { (response) in
             var sensors = [Sensor]()
-            if let status = response.response?.statusCode {
-                switch status {
-                case 200:
-                    if let result = response.result.value as? [NSDictionary] {
-                        for element in result {
-                            
-                            let id = element["_id"] as! String
-                            let name = element["name"] as! String
-                            sensors.append(Sensor(id: id , name: name))
-                        }
+            guard let status = response.response?.statusCode else { return }
+            switch status {
+            case 200:
+                if let result = response.result.value as? [NSDictionary] {
+                    for element in result {
+                        
+                        let id = element["_id"] as! String
+                        let name = element["name"] as! String
+                        sensors.append(Sensor(id: id , name: name))
                     }
-                    completion(sensors)
-                    HUD.hide()
-                    return
-                default:
-                    print("get nearby districts error with response status : ", status)
-                    completion(nil)
-                    HUD.hide()
-                    return
                 }
-                
+                completion(sensors)
+                HUD.hide()
+                return
+            default:
+                print("get nearby districts error with response status : ", status)
+                completion(nil)
+                HUD.hide()
+                return
             }
         }
     }

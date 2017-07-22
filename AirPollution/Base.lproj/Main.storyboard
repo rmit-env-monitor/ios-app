@@ -38,7 +38,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIo-Kv-dCB">
                                 <rect key="frame" x="84" y="473" width="207" height="45"/>
@@ -216,7 +216,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TPG-Bl-XzC" customClass="APTextField" customModule="AirPollution" customModuleProvider="target">
                                 <rect key="frame" x="85" y="390" width="205" height="40"/>
@@ -225,7 +225,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vh-6I-cDD">
                                 <rect key="frame" x="85" y="455" width="205" height="45"/>
@@ -815,7 +815,7 @@
             <objects>
                 <navigationController storyboardIdentifier="StatsViewController" automaticallyAdjustsScrollViewInsets="NO" id="AR0-1O-Arf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="62I-1L-Pvg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="62I-1L-Pvg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -834,7 +834,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kJ0-eh-gfI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="US9-eq-Kgp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gOu-hL-4ja">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gOu-hL-4ja">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.60007959600000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

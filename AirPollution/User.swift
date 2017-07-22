@@ -12,8 +12,8 @@ class User : NSObject {
     var name : String!
     var token : String!
 
-    init(dictionary : [String : AnyObject]) {
-        self.name = dictionary["username"] as! String
-        self.token = dictionary["token"] as! String
+    init(dictionary : [String : String]) {
+        self.name = dictionary["username"]
+        self.token = dictionary["token"] 
     }
 }

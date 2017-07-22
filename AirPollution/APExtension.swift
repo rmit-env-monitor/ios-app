@@ -24,14 +24,24 @@ extension UIColor {
     static var airPollutionGreen : UIColor {
         return UIColor(r: 0, g: 204, b: 153)
     }
-    
- 
 }
 
-extension UIApplication {
-    
+extension UIViewController {
+    static func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabBarController = controller as? UITabBarController {
+            if let selectedViewController = tabBarController.selectedViewController {
+                return topViewController(controller: selectedViewController)
+            }
+        }
+        if let presentedViewController = controller?.presentedViewController {
+            return topViewController(controller: presentedViewController)
+        }
+        return controller
+    }
 }
-
 
 extension CLLocationManager {
     func requestLocationPermission() {

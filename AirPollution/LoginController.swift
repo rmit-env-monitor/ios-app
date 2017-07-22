@@ -232,20 +232,20 @@ class LoginController: UIViewController {
         self.view.isUserInteractionEnabled = false
         HUD.show(.progress)
         HUD.dimsBackground = true
-        Client.login(params as [String : AnyObject]) { (isFinished) in
-            if (isFinished) {
-                HUD.hide({ (finished) in
-                    self.openPopUpView()
-                })
-            }
-            else {
-                HUD.hide({ (finished) in
-                    self.alertController?.title = "Invalid username/password. Please try again:D"
-                    self.present(self.alertController!, animated: true, completion: nil)
-                })
-            }
-            self.view.isUserInteractionEnabled = true
-        }
+//        Client.login(params as [String : AnyObject]) { (isFinished) in
+//            if (isFinished) {
+//                HUD.hide({ (finished) in
+//                    self.openPopUpView()
+//                })
+//            }
+//            else {
+//                HUD.hide({ (finished) in
+//                    self.alertController?.title = "Invalid username/password. Please try again:D"
+//                    self.present(self.alertController!, animated: true, completion: nil)
+//                })
+//            }
+//            self.view.isUserInteractionEnabled = true
+//        }
     }
 }
 

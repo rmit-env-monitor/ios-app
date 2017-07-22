@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 protocol APRegisterControllerDelegate: class {
     func didFinishSignUp(username: String, password: String)
@@ -26,18 +27,10 @@ class APRegisterController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-
-    func setupUI() {
-        setupLogo()
-        setupBackButton()
-    }
     
-    func setupLogo() {
+    func setupUI() {
         logoImageView.clipsToBounds = true
         logoImageView.layer.cornerRadius = 51
-    }
-    
-    func setupBackButton() {
         let backButton = UIButton(frame: CGRect(x: 30, y: 30, width: 30, height: 30))
         backButton.setImage(greenBackIcon!, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
@@ -74,10 +67,19 @@ extension APRegisterController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
-        guard let username = usernameTextField.text, let password = passwordTextField.text, let confirmPassword = confirmTextField.text else { return }
+        HUD.show(.progress)
+        guard let username = usernameTextField.text, let password = passwordTextField.text, let confirmPassword = passwordTextField.text else { return }
+        if password != confirmPassword { APUltils.presentAlertController(title: "Passwords Does Not Match!") { }; return }
         let params : [String: String] = ["username": username, "password": password]
-        Client.register(params) { (success) in
-            if success {
+        Client.register(params) { (response) in
+            HUD.hide()
+            if response == "" {
+                APUltils.presentAlertController(title: "Register Successfully!") { [weak self] in
+                    guard let weakSelf = self else { return }
+                    weakSelf.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                APUltils.presentAlertController(title: response) { }
             }
         }
     }
@@ -88,15 +90,11 @@ extension APRegisterController {
     
     fileprivate dynamic func backButtonPressed() {
         if termViewController != nil {
-            self.termViewController?.navigationController?.popViewController(animated: true)
-            self.termViewController?.dismiss(animated: true) { [weak self] in
-                guard let weakSelf = self else { return }
-                weakSelf.termViewController = nil
-            }
-        } else { 
+            self.termViewController?.dismiss(animated: true, completion: nil)
+        } else {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
     
 }

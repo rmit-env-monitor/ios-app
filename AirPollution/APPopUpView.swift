@@ -10,6 +10,7 @@ import UIKit
 
 protocol APPopUpViewDelegate: class {
     func okButtonTapped()
+    func cancelButtonTapped()
 }
 
 final class APPopUpView: UIView {
@@ -42,13 +43,14 @@ final class APPopUpView: UIView {
     @IBAction func okButtonTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.2, animations: { 
             self.removeFromSuperview()
-        }) { success in
+        }) { (success) in
             self.delegate?.okButtonTapped()
         }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.removeFromSuperview()
+        self.delegate?.cancelButtonTapped()
     }
     
     fileprivate func setupButtonWhenTapped(button: UIButton) {

@@ -29,8 +29,8 @@ let FullDashBoardVCStoryBoardID = "FullDashBoardController"
 let SmartDashBoardVCStoryBoardID = "SmartDashBoardController"
 
 //Network constant
-let baseURL = URL(string: "http://ec2-52-221-209-59.ap-southeast-1.compute.amazonaws.com")
-let loginURL = URL(string: "\(baseURL!)/auth")
+let baseURL = URL(string: "http://env-monitor-stage-1163794038.ap-southeast-1.elb.amazonaws.com")
+let loginURL = URL(string: "\(baseURL!)/auth")!
 let fetchDataURL = URL(string: "\(baseURL!)/api/mobile/locations")
 let registerURL = URL(string: "\(baseURL!)/users")
 let nearbyDistrictsURL = URL(string: "\(baseURL!)/api/mobile/v1/nearby")
