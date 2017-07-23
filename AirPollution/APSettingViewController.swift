@@ -29,7 +29,9 @@ class APSettingViewController: UIViewController {
     }
     
     fileprivate func setupUI() {
-        
+        let button = UIBarButtonItem(title: "Done", style: .done, target: self, action: nil)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationItem.rightBarButtonItem = button
     }
     
     fileprivate func setupTableView() {
