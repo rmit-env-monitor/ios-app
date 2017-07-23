@@ -115,7 +115,7 @@
                                     <action selector="signInButtonPressed:" destination="MwT-uK-QFB" eventType="touchUpInside" id="rgO-QP-3gQ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="azW-fV-hgY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="azW-fV-hgY" customClass="APProfileImageView" customModule="AirPollution" customModuleProvider="target">
                                 <rect key="frame" x="137" y="74" width="101" height="102"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -193,7 +193,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-WT-eOs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-WT-eOs" customClass="APProfileImageView" customModule="AirPollution" customModuleProvider="target">
                                 <rect key="frame" x="137" y="74" width="101" height="102"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="101" id="H5z-bc-RQs"/>
@@ -419,17 +419,24 @@
                                 </constraints>
                                 <color key="tintColor" red="0.88678091843501328" green="0.20642399713739901" blue="0.084941646703578316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="LogOutTapped:" destination="wfI-xy-jy1" eventType="touchUpInside" id="557-IM-IDX"/>
+                                </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="wYm-ai-B2G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-Background" translatesAutoresizingMaskIntoConstraints="NO" id="wYm-ai-B2G" customClass="APProfileImageView" customModule="AirPollution" customModuleProvider="target">
                                 <rect key="frame" x="137" y="98" width="101" height="102"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="102" id="rvP-to-r8B"/>
                                     <constraint firstAttribute="width" constant="101" id="ykP-Ul-JT7"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MaT-dL-cNB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MaT-dL-cNB">
                                 <rect key="frame" x="0.0" y="280" width="375" height="247"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.9410743117" green="0.94123536350000003" blue="0.94106405969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="wfI-xy-jy1" id="iHn-Qa-Mb6"/>
+                                    <outlet property="delegate" destination="wfI-xy-jy1" id="hdb-ZK-AwG"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITA-ur-jGQ">
                                 <rect key="frame" x="148" y="208" width="79" height="21"/>
@@ -454,6 +461,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="chL-Dy-1lD"/>
+                    <connections>
+                        <outlet property="tableView" destination="MaT-dL-cNB" id="8wQ-jd-hnv"/>
+                        <outlet property="usernameLabel" destination="ITA-ur-jGQ" id="hKs-qD-D5U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgz-Yh-o6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -717,7 +728,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bad-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-pO-ytw">
-                                        <rect key="frame" x="16" y="34" width="26" height="27"/>
+                                        <rect key="frame" x="16.5" y="34" width="26" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="26" id="Nj0-FB-EJT"/>
                                             <constraint firstAttribute="height" constant="27" id="jlu-5i-JK0"/>
@@ -731,20 +742,20 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moderate-icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-DT-z51">
-                                        <rect key="frame" x="120" y="34" width="26" height="27"/>
+                                        <rect key="frame" x="119.5" y="34" width="26" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="398-j2-0HM"/>
                                             <constraint firstAttribute="width" constant="26" id="qrt-F7-dRL"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRw-ky-qDG">
-                                        <rect key="frame" x="19" y="75" width="19" height="11"/>
+                                        <rect key="frame" x="19.5" y="75" width="19" height="11"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.34113579989999998" green="0.34119981529999999" blue="0.341131717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwb-Zl-oc5">
-                                        <rect key="frame" x="20.5" y="90" width="16" height="11"/>
+                                        <rect key="frame" x="21" y="90" width="16" height="11"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.34113579989999998" green="0.34119981529999999" blue="0.341131717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -762,13 +773,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmI-86-eut">
-                                        <rect key="frame" x="123" y="75" width="19" height="11"/>
+                                        <rect key="frame" x="122.5" y="75" width="19" height="11"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.34113579989999998" green="0.34119981529999999" blue="0.341131717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywI-oi-t1D">
-                                        <rect key="frame" x="124.5" y="90" width="16" height="11"/>
+                                        <rect key="frame" x="124" y="90" width="16" height="11"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.34113579989999998" green="0.34119981529999999" blue="0.341131717" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>

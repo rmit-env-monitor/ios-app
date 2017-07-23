@@ -19,6 +19,9 @@
 		E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E361DE321ED87B22001313A2 /* GoogleService-Info.plist */; };
 		E37408B21E85884F00B92FB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B11E85884F00B92FB0 /* Location.swift */; };
 		E37B0C5A1F24CB8A00206A63 /* APSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */; };
+		E37B0C5F1F24D05400206A63 /* APSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B0C5D1F24D05400206A63 /* APSettingTableViewCell.swift */; };
+		E37B0C601F24D05400206A63 /* APSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37B0C5E1F24D05400206A63 /* APSettingTableViewCell.xib */; };
+		E37B0C621F25070B00206A63 /* APProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B0C611F25070B00206A63 /* APProfileImageView.swift */; };
 		E37CAC1D1E96973800408733 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1C1E96973800408733 /* Constants.swift */; };
 		E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1E1E9697CA00408733 /* LocationManager.swift */; };
 		E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FDE821EF8E02700E991EC /* APTextField.swift */; };
@@ -64,6 +67,9 @@
 		E361DE321ED87B22001313A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E37408B11E85884F00B92FB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettingViewController.swift; sourceTree = "<group>"; };
+		E37B0C5D1F24D05400206A63 /* APSettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettingTableViewCell.swift; sourceTree = "<group>"; };
+		E37B0C5E1F24D05400206A63 /* APSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APSettingTableViewCell.xib; sourceTree = "<group>"; };
+		E37B0C611F25070B00206A63 /* APProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APProfileImageView.swift; sourceTree = "<group>"; };
 		E37CAC1C1E96973800408733 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E37CAC1E1E9697CA00408733 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E38FDE821EF8E02700E991EC /* APTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTextField.swift; sourceTree = "<group>"; };
@@ -144,6 +150,9 @@
 				E38FDE821EF8E02700E991EC /* APTextField.swift */,
 				E34BF3481F095DA3007F2D65 /* APPopUpView.xib */,
 				E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */,
+				E37B0C5D1F24D05400206A63 /* APSettingTableViewCell.swift */,
+				E37B0C5E1F24D05400206A63 /* APSettingTableViewCell.xib */,
+				E37B0C611F25070B00206A63 /* APProfileImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 				E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */,
 				E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */,
 				E34BF3491F095DA3007F2D65 /* APPopUpView.xib in Resources */,
+				E37B0C601F24D05400206A63 /* APSettingTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +355,7 @@
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
 				E37B0C5A1F24CB8A00206A63 /* APSettingViewController.swift in Sources */,
 				E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */,
+				E37B0C5F1F24D05400206A63 /* APSettingTableViewCell.swift in Sources */,
 				E3443A111F13B3AD00895EB8 /* APUltils.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
 				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,
@@ -352,6 +363,7 @@
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */,
 				E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */,
+				E37B0C621F25070B00206A63 /* APProfileImageView.swift in Sources */,
 				E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */,
 				E3CFE4A91F11D53100E44641 /* APMapContainerViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,

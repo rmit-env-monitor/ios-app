@@ -17,7 +17,7 @@ class APLoginController: UIViewController {
     @IBOutlet weak var loginWithFBButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var logoImageView: APProfileImageView!
     @IBOutlet weak var logoTopLayoutConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {

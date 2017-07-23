@@ -15,7 +15,7 @@ protocol APRegisterControllerDelegate: class {
 
 class APRegisterController: UIViewController {
     
-    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var logoImageView: APProfileImageView!
     @IBOutlet weak var usernameTextField: APTextField!
     @IBOutlet weak var passwordTextField: APTextField!
     @IBOutlet weak var confirmTextField: APTextField!
