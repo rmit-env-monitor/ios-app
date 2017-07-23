@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		E326BC011EE587D600A902CC /* APExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326BC001EE587D600A902CC /* APExtension.swift */; };
-		E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */; };
-		E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33959641E9299DD000F5145 /* PopUpViewController.swift */; };
-		E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */; };
-		E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */; };
-		E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */; };
-		E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
 		E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */; };
@@ -23,19 +17,15 @@
 		E34BF3491F095DA3007F2D65 /* APPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E34BF3481F095DA3007F2D65 /* APPopUpView.xib */; };
 		E34C45961E7014800002BDE9 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C45951E7014800002BDE9 /* Stats.swift */; };
 		E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E361DE321ED87B22001313A2 /* GoogleService-Info.plist */; };
-		E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364449A1EA53553004A8C66 /* EsTabBarController.swift */; };
-		E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */; };
 		E37408B21E85884F00B92FB0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37408B11E85884F00B92FB0 /* Location.swift */; };
+		E37B0C5A1F24CB8A00206A63 /* APSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */; };
 		E37CAC1D1E96973800408733 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1C1E96973800408733 /* Constants.swift */; };
 		E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37CAC1E1E9697CA00408733 /* LocationManager.swift */; };
 		E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38FDE821EF8E02700E991EC /* APTextField.swift */; };
-		E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */; };
 		E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888D81E6A7A440036B1ED /* AppDelegate.swift */; };
-		E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B888DA1E6A7A440036B1ED /* LoginController.swift */; };
 		E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DC1E6A7A440036B1ED /* Main.storyboard */; };
 		E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B888DF1E6A7A440036B1ED /* Assets.xcassets */; };
 		E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B888E11E6A7A440036B1ED /* LaunchScreen.storyboard */; };
-		E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */; };
 		E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB67CE1E9BD6560014D09C /* Sensor.swift */; };
 		E3CFE4A91F11D53100E44641 /* APMapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */; };
 		E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */; };
@@ -43,8 +33,6 @@
 		E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */; };
 		E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E51F0509600024B52A /* APLoginController.swift */; };
 		E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */; };
-		E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */; };
-		E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,12 +54,6 @@
 		573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirPollution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E321603F1EDAF21900D99C39 /* AirPollution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirPollution.entitlements; sourceTree = "<group>"; };
 		E326BC001EE587D600A902CC /* APExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APExtension.swift; sourceTree = "<group>"; };
-		E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContentView.swift; sourceTree = "<group>"; };
-		E33959641E9299DD000F5145 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
-		E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewCell.swift; sourceTree = "<group>"; };
-		E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardController.swift; sourceTree = "<group>"; };
-		E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDashBoardCell.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		E33F90281E6A8B5200672B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPopUpView.swift; sourceTree = "<group>"; };
@@ -80,21 +62,17 @@
 		E34BF3481F095DA3007F2D65 /* APPopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPopUpView.xib; sourceTree = "<group>"; };
 		E34C45951E7014800002BDE9 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		E361DE321ED87B22001313A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E364449A1EA53553004A8C66 /* EsTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsTabBarController.swift; sourceTree = "<group>"; };
-		E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardController.swift; sourceTree = "<group>"; };
 		E37408B11E85884F00B92FB0 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSettingViewController.swift; sourceTree = "<group>"; };
 		E37CAC1C1E96973800408733 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E37CAC1E1E9697CA00408733 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E38FDE821EF8E02700E991EC /* APTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APTextField.swift; sourceTree = "<group>"; };
-		E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
 		E3B888D51E6A7A440036B1ED /* AirPollution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPollution.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B888D81E6A7A440036B1ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3B888DA1E6A7A440036B1ED /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		E3B888DD1E6A7A440036B1ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3B888DF1E6A7A440036B1ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3B888E21E6A7A440036B1ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3B888E41E6A7A440036B1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E3BB67CE1E9BD6560014D09C /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APMapContainerViewController.swift; sourceTree = "<group>"; };
 		E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APMainPageController.swift; sourceTree = "<group>"; };
@@ -102,8 +80,6 @@
 		E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APForecastContainerView.swift; sourceTree = "<group>"; };
 		E3E0A2E51F0509600024B52A /* APLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLoginController.swift; sourceTree = "<group>"; };
 		E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APRegisterController.swift; sourceTree = "<group>"; };
-		E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartDashBoardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,20 +127,13 @@
 		E33F90231E6A85A700672B8E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E37408AF1E83DF0B00B92FB0 /* SmartDashBoardController.swift */,
-				E3B888DA1E6A7A440036B1ED /* LoginController.swift */,
-				E33959641E9299DD000F5145 /* PopUpViewController.swift */,
-				E3BB67CC1E9B75C80014D09C /* DetailViewController.swift */,
-				E33CC8F11E9BF50A00E1D06C /* StatsViewController.swift */,
-				E33CC8F81E9BF88300E1D06C /* FullDashBoardController.swift */,
-				E3EE70BD1EA3BCAD00DAB588 /* MapViewController.swift */,
-				E364449A1EA53553004A8C66 /* EsTabBarController.swift */,
 				E3E0A2E51F0509600024B52A /* APLoginController.swift */,
 				E3E0A2E71F07CFEB0024B52A /* APRegisterController.swift */,
 				E3CFE4A81F11D53100E44641 /* APMapContainerViewController.swift */,
 				E3CFE4AA1F11DBD000E44641 /* APMainPageController.swift */,
 				E3CFE4AC1F11F9B400E44641 /* APTodayContainerView.swift */,
 				E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */,
+				E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -172,11 +141,6 @@
 		E33F90241E6A85B100672B8E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E329482C1E7D0F1B005C3757 /* CustomTabBarContentView.swift */,
-				E3FE413D1E9961DC00EFF589 /* SmartDashBoardCell.swift */,
-				E3A07F921E9AA7DA00C9BF88 /* DetailViewCell.swift */,
-				E33CC8F41E9BF59B00E1D06C /* StatsViewCell.swift */,
-				E33CC8FB1E9BF8A700E1D06C /* FullDashBoardCell.swift */,
 				E38FDE821EF8E02700E991EC /* APTextField.swift */,
 				E34BF3481F095DA3007F2D65 /* APPopUpView.xib */,
 				E34033A71F0D4CD90075BAD2 /* APPopUpView.swift */,
@@ -378,34 +342,22 @@
 			files = (
 				E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */,
 				E326BC011EE587D600A902CC /* APExtension.swift in Sources */,
-				E329482D1E7D0F1B005C3757 /* CustomTabBarContentView.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
-				E3BB67CD1E9B75C80014D09C /* DetailViewController.swift in Sources */,
-				E37408B01E83DF0B00B92FB0 /* SmartDashBoardController.swift in Sources */,
-				E33CC8F51E9BF59B00E1D06C /* StatsViewCell.swift in Sources */,
+				E37B0C5A1F24CB8A00206A63 /* APSettingViewController.swift in Sources */,
 				E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */,
 				E3443A111F13B3AD00895EB8 /* APUltils.swift in Sources */,
 				E33F90291E6A8B5200672B8E /* User.swift in Sources */,
-				E33CC8FC1E9BF8A700E1D06C /* FullDashBoardCell.swift in Sources */,
 				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,
 				E3CFE4AD1F11F9B400E44641 /* APTodayContainerView.swift in Sources */,
-				E3FE413E1E9961DC00EFF589 /* SmartDashBoardCell.swift in Sources */,
-				E364449B1EA53553004A8C66 /* EsTabBarController.swift in Sources */,
-				E3EE70BE1EA3BCAD00DAB588 /* MapViewController.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
 				E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */,
-				E3B888DB1E6A7A440036B1ED /* LoginController.swift in Sources */,
-				E3A07F931E9AA7DA00C9BF88 /* DetailViewCell.swift in Sources */,
-				E33CC8F91E9BF88300E1D06C /* FullDashBoardController.swift in Sources */,
 				E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */,
 				E38FDE831EF8E02700E991EC /* APTextField.swift in Sources */,
-				E33959651E9299DD000F5145 /* PopUpViewController.swift in Sources */,
 				E3CFE4A91F11D53100E44641 /* APMapContainerViewController.swift in Sources */,
 				E34C45961E7014800002BDE9 /* Stats.swift in Sources */,
 				E3B888D91E6A7A440036B1ED /* AppDelegate.swift in Sources */,
 				E33F90271E6A88FD00672B8E /* Client.swift in Sources */,
 				E37CAC1D1E96973800408733 /* Constants.swift in Sources */,
-				E33CC8F21E9BF50A00E1D06C /* StatsViewController.swift in Sources */,
 				E37CAC1F1E9697CA00408733 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
