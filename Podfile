@@ -6,8 +6,6 @@ target 'AirPollution' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 	pod 'Alamofire', '~> 4.4'
-	pod 'PopupDialog', '~> 0.5'
-
 	pod "ESTabBarController-swift"
 	pod 'PKHUD', '~> 4.0’
 	pod 'GooglePlaces'
@@ -18,6 +16,7 @@ target 'AirPollution' do
 	pod ‘Firebase’
 	pod ‘Firebase/Messaging’
 	pod 'KDCircularProgress'
+	pod 'UICircularProgressRing'
 
   # Pods for AirPollution
 

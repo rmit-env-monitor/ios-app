@@ -39,12 +39,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PopupDialog.xcscheme</key>
+		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Protobuf.xcscheme</key>
+		<key>UICircularProgressRing.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,7 +52,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2B3349546DF1A3DAB6718763E8F4177E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>322428ECC8C5EC71F14C92233787C7AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D85B64CD72197F7154846665586B9C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,22 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9386E0315A31FDC28E75ED9A6097E73C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A2ABE8A86693D7D1FDFEF0C57DFEDFBE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C5B80060FE8C664DF08841000F41D515</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7017434F462046ABF1816C8FD3C708C</key>
+		<key>D586D7961D25770BF35ED58C7811CB1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

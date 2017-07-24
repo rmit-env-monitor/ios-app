@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C61EC9813D9635AA12B6E195 /* Pods_AirPollution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E31A2AB01F25F79B0016BC68 /* APCircularProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31A2AAF1F25F79B0016BC68 /* APCircularProgressBar.xib */; };
+		E31A2AB21F25FB870016BC68 /* APViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A2AB11F25FB870016BC68 /* APViewController.swift */; };
+		E31A2AB41F25FBBE0016BC68 /* APCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31A2AB31F25FBBE0016BC68 /* APCircularProgressBar.swift */; };
 		E326BC011EE587D600A902CC /* APExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326BC001EE587D600A902CC /* APExtension.swift */; };
 		E33F90271E6A88FD00672B8E /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90261E6A88FD00672B8E /* Client.swift */; };
 		E33F90291E6A8B5200672B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33F90281E6A8B5200672B8E /* User.swift */; };
@@ -55,6 +58,9 @@
 		405CABA7326C80157FB0F5F0 /* Pods-AirPollution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.release.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.release.xcconfig"; sourceTree = "<group>"; };
 		4F5957569AE094C21052762A /* Pods-AirPollution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirPollution.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AirPollution/Pods-AirPollution.debug.xcconfig"; sourceTree = "<group>"; };
 		573F97CFC15D5DD0FE615FD8 /* Pods_AirPollution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AirPollution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E31A2AAF1F25F79B0016BC68 /* APCircularProgressBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APCircularProgressBar.xib; sourceTree = "<group>"; };
+		E31A2AB11F25FB870016BC68 /* APViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APViewController.swift; sourceTree = "<group>"; };
+		E31A2AB31F25FBBE0016BC68 /* APCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APCircularProgressBar.swift; sourceTree = "<group>"; };
 		E321603F1EDAF21900D99C39 /* AirPollution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirPollution.entitlements; sourceTree = "<group>"; };
 		E326BC001EE587D600A902CC /* APExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APExtension.swift; sourceTree = "<group>"; };
 		E33F90261E6A88FD00672B8E /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 				E3CFE4AC1F11F9B400E44641 /* APTodayContainerView.swift */,
 				E3CFE4AE1F11F9D500E44641 /* APForecastContainerView.swift */,
 				E37B0C591F24CB8A00206A63 /* APSettingViewController.swift */,
+				E31A2AB11F25FB870016BC68 /* APViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -153,6 +160,8 @@
 				E37B0C5D1F24D05400206A63 /* APSettingTableViewCell.swift */,
 				E37B0C5E1F24D05400206A63 /* APSettingTableViewCell.xib */,
 				E37B0C611F25070B00206A63 /* APProfileImageView.swift */,
+				E31A2AAF1F25F79B0016BC68 /* APCircularProgressBar.xib */,
+				E31A2AB31F25FBBE0016BC68 /* APCircularProgressBar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B888E31E6A7A440036B1ED /* LaunchScreen.storyboard in Resources */,
+				E31A2AB01F25F79B0016BC68 /* APCircularProgressBar.xib in Resources */,
 				E361DE331ED87B22001313A2 /* GoogleService-Info.plist in Resources */,
 				E3B888E01E6A7A440036B1ED /* Assets.xcassets in Resources */,
 				E3B888DE1E6A7A440036B1ED /* Main.storyboard in Resources */,
@@ -353,6 +363,7 @@
 				E3CFE4AB1F11DBD000E44641 /* APMainPageController.swift in Sources */,
 				E326BC011EE587D600A902CC /* APExtension.swift in Sources */,
 				E3BB67CF1E9BD6560014D09C /* Sensor.swift in Sources */,
+				E31A2AB41F25FBBE0016BC68 /* APCircularProgressBar.swift in Sources */,
 				E37B0C5A1F24CB8A00206A63 /* APSettingViewController.swift in Sources */,
 				E34033A81F0D4CD90075BAD2 /* APPopUpView.swift in Sources */,
 				E37B0C5F1F24D05400206A63 /* APSettingTableViewCell.swift in Sources */,
@@ -361,6 +372,7 @@
 				E3E0A2E81F07CFEB0024B52A /* APRegisterController.swift in Sources */,
 				E3CFE4AD1F11F9B400E44641 /* APTodayContainerView.swift in Sources */,
 				E37408B21E85884F00B92FB0 /* Location.swift in Sources */,
+				E31A2AB21F25FB870016BC68 /* APViewController.swift in Sources */,
 				E3CFE4AF1F11F9D500E44641 /* APForecastContainerView.swift in Sources */,
 				E3E0A2E61F0509600024B52A /* APLoginController.swift in Sources */,
 				E37B0C621F25070B00206A63 /* APProfileImageView.swift in Sources */,
