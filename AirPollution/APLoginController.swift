@@ -14,7 +14,6 @@ class APLoginController: UIViewController {
     @IBOutlet weak var usernameTextField: APTextField!
     @IBOutlet weak var passwordTextField: APTextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var loginWithFBButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var logoImageView: APProfileImageView!
@@ -29,10 +28,6 @@ class APLoginController: UIViewController {
     fileprivate func setupUI() {
         logoImageView.clipsToBounds = true
         logoImageView.layer.cornerRadius = 51
-        let facebookLogo = UIImageView(frame: CGRect(x: loginWithFBButton.bounds.width - 50, y: 0, width: 43, height: 45))
-        facebookLogo.image = UIImage(named: "Facebook-Icon")
-        facebookLogo.contentMode = .scaleToFill
-        loginWithFBButton.addSubview(facebookLogo)
     }
     
     fileprivate func setupNotificationCenter() {
@@ -57,6 +52,11 @@ class APLoginController: UIViewController {
     @IBAction func onTabGesture(_ sender: Any) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func onFbButtonTapped(_ sender: Any) {
+        // handle facebook login
+    }
+    
 }
 
 // MARK: - Handle Button Events

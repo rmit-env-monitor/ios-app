@@ -10,7 +10,6 @@ import UIKit
 import UICircularProgressRing
 class APCircularProgressBar: UIView {
 
-   
     override init(frame: CGRect) {
         super.init(frame: frame)
         let nib = UINib(nibName: "APCircularProgressBar", bundle: nil)
